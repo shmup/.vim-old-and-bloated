@@ -220,11 +220,12 @@ function! <SID>PutVimrc()
 endfunction
 
 command! PullVimrc call <SID>PullVimrc()
-function! <SID>PullVimrc()
-  :!cd ~/.vim
-  :Git pull
-  :so ~/.vimrc
-endfunction
+if !exists("*<SID>PullVimrc")
+  function! <SID>PullVimrc()
+    :!cd ~/.vim && git pull
+    :so ~/.vim/vimrc
+  endfunction
+endif
 
 " Uses the Repeat group to highlight the repeated lines
 " http://stackoverflow.com/questions/1268032/marking-duplicate-lines/1270689#1270689
