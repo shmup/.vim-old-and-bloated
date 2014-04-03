@@ -216,13 +216,12 @@ endif
 
 command! PutVimrc call <SID>PutVimrc()
 function! <SID>PutVimrc()
-  :Git add ~/.vimrc
-  :Git commit -m 'updated .vimrc'
-  :Git push origin master
+  :!cd ~/.vim && git add vimrc && git commit -m 'updated vimrc' && git push
 endfunction
 
 command! PullVimrc call <SID>PullVimrc()
 function! <SID>PullVimrc()
+  :!cd ~/.vim
   :Git pull
   :so ~/.vimrc
 endfunction
