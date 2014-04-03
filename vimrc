@@ -1,0 +1,250 @@
+syntax on
+
+" vundle
+filetype on
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+
+Bundle 'airblade/vim-gitgutter'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'bling/vim-airline'
+"Bundle 'jaredly/vim-debug'
+Bundle 'jmcantrell/vim-virtualenv'
+Bundle 'justinmk/vim-sneak'
+Bundle 'kien/ctrlp.vim'
+Bundle 'majutsushi/tagbar'
+Bundle 'mileszs/ack.vim'
+Bundle 'nvie/vim-flake8'
+Bundle 'schickling/vim-bufonly'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
+Bundle 'shmup/inkpot'
+Bundle 'taglist.vim'
+Bundle 'terryma/vim-expand-region'
+Bundle 'terryma/vim-multiple-cursors'
+Bundle 'tpope/vim-commentary'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-obsession'
+Bundle 'tpope/vim-sensible'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'vim-scripts/matrix.vim--Yang'
+
+filetype plugin indent on
+
+" code formatting
+set autoindent smartindent                      " automatically indent on new lines
+set expandtab                                   " expand tabs to spaces
+set tabstop=4                                   " actual tab width
+set softtabstop=4                               " insert mode tab/backspace width
+set shiftwidth=2                                " normal mode (auto)indent width
+set backspace=indent,eol,start
+
+" search
+set ignorecase                                  " case insensitive search
+set smartcase                                   " case-sensitive search if query contains caps
+set hlsearch                                    " highlight search results
+set incsearch                                   " search as you type
+
+" backup and undo files
+set nobackup
+set nowritebackup
+set noswapfile
+set backupdir=$HOME/.vim/backup
+set backupcopy=yes
+set backupskip=/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*
+set directory=~/.vim/swap,~/tmp,.               " keep swp files under ~/.vim/swap
+set undofile
+set undodir=~/.vim/undo
+set undolevels=1000                             " number of undos to keep
+
+" editor setup
+set autochdir                                   " auto cd into dir that file is in
+set autoread                                    " watch for file changes
+set complete=.,w,b,u,U,t,i,d                    " do lots of scanning on tab completion
+"set clipboard=unnamed                           " use system clipboard for yanking and putting
+set encoding=utf-8                              " define char set
+set diffopt=filler,iwhite                       " ignore all whitespace and sync
+set encoding=utf-8
+set hidden
+set history=10000
+set laststatus=2
+set lazyredraw                                  " don't redraw when don't have to
+set linebreak
+set more                                        " use more prompt
+set noautowrite                                 " don't automagically write on :next
+set nocompatible                                " vim, not vi
+set noerrorbells                                " No error bells please
+set nowrap                                      " Don't wrap lines by default
+set number                                      " line numbers
+set ruler                                       " show the line number on the bar
+set scrolloff=5                                 " keep at least 5 lines above/below
+set shortmess+=I                                " hide intro screen
+set showcmd
+set showmatch                                   " show matching bracket
+set showmode
+set sidescrolloff=5                             " keep at least 5 lines left/right
+set smarttab                                    " tab and backspace are smart
+set ttyfast                                     " we havelet g:ctrlp_by_filename = 1 a fast terminal
+set updatecount=100                             " switch every 100 chars
+set wildmenu                                    " menu has tab completion
+set wildmode=longest:full
+set wildignorecase                              " ignore case in tab completion
+set wildignore+=Zend,local
+set wmh=0                                       " minimum window height
+
+" ctrlp
+let g:ctrlp_follow_symlinks = 1
+let g:ctrlp_working_path_mode = 'rca'
+
+" YouCompleteMe
+let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<ENTER>']
+let g:ycm_key_invoke_completion = '<C-Space>'
+
+" editor styling
+set t_Co=256
+colorscheme solarized
+
+" key mapping
+nore ; :
+let mapleader = "\<Space>"
+let g:CommandTCancelMap=['<ESC>','<C-c>']
+let g:CommandTMaxHeight = 30
+let g:CommandTInputDebounce = 200
+let g:sneak#streak = 1
+nnoremap <leader>. :CtrlPTag<cr>
+map <leader>n :NERDTreeToggle<CR>
+cmap w!! w !sudo tee > /dev/null %
+cmap ra!! !sudo service apache2 restart
+nmap <F8> :TagbarToggle<CR>
+map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+noremap <leader>1 1gt
+noremap <leader>2 2gt
+noremap <leader>3 3gt
+noremap <leader>4 4gt
+noremap <leader>5 5gt
+noremap <leader>6 6gt
+noremap <leader>7 7gt
+noremap <leader>8 8gt
+noremap <leader>9 9gt
+noremap <leader>0 :tablast<cr>
+nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+nmap <leader>a :Ack!<space>
+nmap <leader>g :GitGutterToggle<CR>
+nmap <Leader><Leader> V
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+vnoremap <silent> y y`]
+vnoremap <silent> p p`]
+nnoremap <silent> p p`]
+nnoremap <CR> G
+nnoremap <BS> gg
+map <leader>ra :!sudo service apache2 restart<cr>
+map <leader>eh :e ~/Work/hosts<cr>
+map <leader>ev :e ~/.vimrc<cr>
+map <leader>ec :e ~/Work/confs/
+map <F2> :mksession! ~/.vim/session <cr>
+map <F3> :source ~/.vim/session <cr>
+
+" GUI only things
+if has('gui_running')
+  set background=dark
+  set lines=50
+  set columns=120
+  set guioptions-=T         " removes main toolbar
+  set guioptions-=rRL       " removes vertical scrollbars
+  set guioptions=aegimt
+  "set guioptions+=rRL      " split vertical scrollbar
+  "set guioptions+=bh       " adds horizontal scrollbar
+  set cursorline cursorcolumn
+  au WinLeave * set nocursorline nocursorcolumn
+  au WinEnter * set cursorline cursorcolumn
+  if has("gui_macvim")
+    set guifont=Monaco:h13
+  else
+    set guifont=Inconsolata\ 10
+  endif
+else
+  set background=light
+endif
+
+" search. cs to replace. esc. n.n.n.n.
+vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
+    \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
+omap s :normal vs<CR>
+
+" automatically clean whitespace
+map <leader>s  :%s/\s\+$//<cr>:let @/=''<CR>
+
+" <Ctrl-l> redraws the screen and removes any search highlighting.
+nnoremap <silent> <leader>l :nohl<CR><C-l>
+
+" <f9> will list the open buffers, and wait for you to choose a #
+nnoremap <f9> :buffers<CR>:buffer<Space>
+
+" <f5> autocommand for running files
+autocmd FileType python nnoremap <buffer> <f5> :exec '!python' shellescape(@%, 1)<cr>
+
+" When editing a file, always jump to the last cursor position
+ autocmd BufReadPost *
+ \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+ \   exe "normal g'\"" |
+ \ endif
+
+" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
+if executable('ag')
+  let g:ackprg = 'ag --nogroup --column'
+
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
+
+command! PutVimrc call <SID>PutVimrc()
+function! <SID>PutVimrc()
+  :Git add ~/.vimrc
+  :Git commit -m 'updated .vimrc'
+  :Git push origin master
+endfunction
+
+command! PullVimrc call <SID>PullVimrc()
+function! <SID>PullVimrc()
+  :Git pull
+  :so ~/.vimrc
+endfunction
+
+" Uses the Repeat group to highlight the repeated lines
+" http://stackoverflow.com/questions/1268032/marking-duplicate-lines/1270689#1270689
+command! HighlightRepeats call <SID>HighlightRepeats()
+function! <SID>HighlightRepeats()
+  :syn clear Repeat | g/^\(.*\)\n\ze\%(.*\n\)*\1$/exe 'syn match Repeat "^' . escape(getline('.'), '".\^$*[]') . '$"' | nohlsearch
+endfunction
+
+" Clears lines highlighted in Repeat group
+command! ClearHighlightRepeats call <SID>ClearHighlightRepeats()
+function! <SID>ClearHighlightRepeats()
+  :syn clear Repeat
+endfunction
+
+" Toggles the background color, and reloads the colorscheme.
+command! ToggleBackground call <SID>ToggleBackground()
+function! <SID>ToggleBackground()
+    let &background = ( &background == "dark"? "light" : "dark" )
+    if exists("g:colors_name")
+        exe "colorscheme " . g:colors_name
+    endif
+endfunction

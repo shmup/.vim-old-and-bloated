@@ -1,0 +1,3 @@
+vim dotfiles
+
+git clone && ./install.sh
