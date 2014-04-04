@@ -68,7 +68,7 @@ set complete=.,w,b,u,U,t,i,d                    " do lots of scanning on tab com
 set encoding=utf-8                              " define char set
 set diffopt=filler,iwhite                       " ignore all whitespace and sync
 set encoding=utf-8
-set hidden
+set hidden                                      " automatically hide buffers with unsaved changes
 set history=10000
 set laststatus=2
 set lazyredraw                                  " don't redraw when don't have to
@@ -116,10 +116,9 @@ let g:CommandTInputDebounce = 200
 let g:sneak#streak = 1
 nnoremap <leader>. :CtrlPTag<cr>
 map <leader>n :NERDTreeToggle<CR>
-cmap w!! w !sudo tee > /dev/null %
-cmap ra!! !sudo service apache2 restart
 nmap <F8> :TagbarToggle<CR>
 map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+cmap w!! w !sudo tee > /dev/null %
 noremap <leader>1 1gt
 noremap <leader>2 2gt
 noremap <leader>3 3gt
@@ -160,7 +159,7 @@ map <F3> :source ~/.vim/session <cr>
 
 " GUI only things
 if has('gui_running')
-  set background=dark
+  set background=light
   set lines=50
   set columns=120
   set guioptions-=T         " removes main toolbar
