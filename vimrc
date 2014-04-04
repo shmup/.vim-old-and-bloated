@@ -156,8 +156,8 @@ map <leader>ra :!sudo service apache2 restart<cr>
 map <leader>eh :e ~/Work/hosts<cr>
 map <leader>ev :e ~/.vim/vimrc<cr>
 map <leader>ec :e ~/Work/confs/
-map <F2> :mksession! ~/.vim/session <cr>
-map <F3> :source ~/.vim/session <cr>
+map <F2> :mksession! ~/.vim/sessions/
+map <F3> :source ~/.vim/session/
 
 " GUI only things
 if has('gui_running')
