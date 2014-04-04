@@ -8,15 +8,17 @@ call vundle#rc()
 
 Bundle 'gmarik/vundle'
 
+"Bundle 'jaredly/vim-debug'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'bling/vim-airline'
-"Bundle 'jaredly/vim-debug'
+Bundle 'chilicuil/conque'
 Bundle 'jmcantrell/vim-virtualenv'
 Bundle 'justinmk/vim-sneak'
 Bundle 'kien/ctrlp.vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'mileszs/ack.vim'
+Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'nvie/vim-flake8'
 Bundle 'schickling/vim-bufonly'
 Bundle 'scrooloose/nerdtree'
