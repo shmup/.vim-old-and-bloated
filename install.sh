@@ -21,6 +21,6 @@ vim +PluginInstall +qall
 
 if [ -d "$HOME/.vim/bundle/YouCompleteMe" ]; then
     echo "compiling YouCompleteMe with C language support"
-    ./$HOME/.vim/bundle/YouCompleteMe/install.sh --clang-completer
+    cd $HOME/.vim/bundle/YouCompleteMe && ./install.sh --clang-completer
 fi
 
