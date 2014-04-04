@@ -12,9 +12,9 @@ Bundle 'gmarik/vundle'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'bling/vim-airline'
-Bundle 'chilicuil/conque'
+Bundle 'chilicuil/conque'                       " run interactive programs in vim buffer
 Bundle 'jmcantrell/vim-virtualenv'
-Bundle 'justinmk/vim-sneak'
+Bundle 'justinmk/vim-sneak'                     " 2 character specification motion plugin
 Bundle 'kien/ctrlp.vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'mileszs/ack.vim'

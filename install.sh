@@ -11,8 +11,16 @@ fi
 
 mkdir -p ~/.vim/undo
 
-git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+if [ ! -d "$HOME/.vim/bundle/vundle" ]; then
+    echo "cloning vundle"
+    git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+fi
 
+echo "installing vim plugins"
 vim +PluginInstall +qall
 
-cd bundle/YouCompleteMe && ./install.sh --clang-completer
+if [ -d "$HOME/.vim/bundle/YouCompleteMe" ]; then
+    echo "compiling YouCompleteMe with C language support"
+    ./$HOME/.vim/bundle/YouCompleteMe/install.sh --clang-completer
+fi
+
