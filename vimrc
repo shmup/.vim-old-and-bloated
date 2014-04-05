@@ -178,7 +178,7 @@ if has('gui_running')
     set guifont=Inconsolata\ 10
   endif
 else
-  set background=light
+  set background=dark
 endif
 
 " search. cs to replace. esc. n.n.n.n.
