@@ -157,7 +157,7 @@ map <leader>eh :e ~/Work/hosts<cr>
 map <leader>ev :e ~/.vim/vimrc<cr>
 map <leader>ec :e ~/Work/confs/
 map <F2> :mksession! ~/.vim/sessions/
-map <F3> :source ~/.vim/session/
+map <F3> :source ~/.vim/sessions/
 
 " GUI only things
 if has('gui_running')
