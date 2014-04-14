@@ -32,6 +32,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-obsession'
 Bundle 'tpope/vim-sensible'
 Bundle 'Valloric/YouCompleteMe'
+Bundle 'vim-scripts/django.vim'
 Bundle 'vim-scripts/matrix.vim--Yang'
 
 filetype plugin indent on
@@ -116,6 +117,7 @@ let g:CommandTCancelMap=['<ESC>','<C-c>']
 let g:CommandTMaxHeight = 30
 let g:CommandTInputDebounce = 200
 let g:sneak#streak = 1
+let NERDTreeIgnore = ['\.pyc$']
 nnoremap <leader>. :CtrlPTag<cr>
 map <leader>n :NERDTreeToggle<CR>
 nmap <F8> :TagbarToggle<CR>
