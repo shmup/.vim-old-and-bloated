@@ -111,8 +111,56 @@ let g:ycm_key_invoke_completion = '<C-Space>'
 set t_Co=256
 colorscheme solarized
 
-" key mapping
-nore ; :
+" mapping for devices without easy <ESC>
+inoremap jj <ESC>
+
+" make Y like C/D
+nnoremap Y y$
+
+" more intuitive j/k
+nnoremap j gj
+nnoremap k gk
+
+" quick tab changing
+noremap <leader>1 1gt
+noremap <leader>2 2gt
+noremap <leader>3 3gt
+noremap <leader>4 4gt
+noremap <leader>5 5gt
+noremap <leader>6 6gt
+noremap <leader>7 7gt
+noremap <leader>8 8gt
+noremap <leader>9 9gt
+
+" better window changing
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+" clipboard things
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
+
+" return and backspace hacks
+nnoremap <CR> G
+nnoremap <BS> gg
+
+" sudo write
+cmap w!! w !sudo tee > /dev/null %
+
+" sneak stuff
+nmap <leader>s <Plug>Sneak_s
+nmap <leader>S <Plug>Sneak_S
+xmap <leader>s <Plug>Sneak_s
+xmap <leader>S <Plug>Sneak_S
+omap <leader>s <Plug>Sneak_s
+omap <leader>S <Plug>Sneak_S
+
 let mapleader = "\<Space>"
 let g:CommandTCancelMap=['<ESC>','<C-c>']
 let g:CommandTMaxHeight = 30
@@ -123,38 +171,16 @@ nnoremap <leader>. :CtrlPTag<cr>
 map <leader>n :NERDTreeToggle<CR>
 nmap <F8> :TagbarToggle<CR>
 map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
-cmap w!! w !sudo tee > /dev/null %
-noremap <leader>1 1gt
-noremap <leader>2 2gt
-noremap <leader>3 3gt
-noremap <leader>4 4gt
-noremap <leader>5 5gt
-noremap <leader>6 6gt
-noremap <leader>7 7gt
-noremap <leader>8 8gt
-noremap <leader>9 9gt
 noremap <leader>0 :tablast<cr>
 nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
 nmap <leader>a :Ack!<space>
 nmap <leader>g :GitGutterToggle<CR>
 nmap <Leader><Leader> V
-vmap <Leader>y "+y
-vmap <Leader>d "+d
-nmap <Leader>p "+p
-nmap <Leader>P "+P
-vmap <Leader>p "+p
-vmap <Leader>P "+P
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
-nnoremap <CR> G
-nnoremap <BS> gg
 map <leader>ra :!sudo service apache2 restart<cr>
 map <leader>eh :e ~/Work/hosts<cr>
 map <leader>ev :e ~/.vim/vimrc<cr>
@@ -190,7 +216,7 @@ vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
 omap s :normal vs<CR>
 
 " automatically clean whitespace
-map <leader>s  :%s/\s\+$//<cr>:let @/=''<CR>
+map <leader>W  :%s/\s\+$//<cr>:let @/=''<CR>
 
 " <Ctrl-l> redraws the screen and removes any search highlighting.
 nnoremap <silent> <leader>l :nohl<CR><C-l>
