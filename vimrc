@@ -67,7 +67,8 @@ set undolevels=1000                             " number of undos to keep
 set autochdir                                   " auto cd into dir that file is in
 set autoread                                    " watch for file changes
 set complete=.,w,b,u,U,t,i,d                    " do lots of scanning on tab completion
-"set clipboard=unnamed                           " use system clipboard for yanking and putting
+set clipboard=unnamed                           " use system clipboard for yanking and putting
+set cursorline cursorcolumn                     " use cursor lines because theyre awesome
 set encoding=utf-8                              " define char set
 set diffopt=filler,iwhite                       " ignore all whitespace and sync
 set encoding=utf-8
@@ -77,6 +78,7 @@ set laststatus=2
 set lazyredraw                                  " don't redraw when don't have to
 set linebreak
 set more                                        " use more prompt
+set mouse+=a
 set noautowrite                                 " don't automagically write on :next
 set nocompatible                                " vim, not vi
 set noerrorbells                                " No error bells please
@@ -160,6 +162,14 @@ xmap <leader>S <Plug>Sneak_S
 omap <leader>s <Plug>Sneak_s
 omap <leader>S <Plug>Sneak_S
 
+if has("autocmd")
+  " git gutter color fix
+  au ColorScheme * highlight clear SignColumn
+  " remove/add cursorline based on window focus
+  au WinLeave * set nocursorline nocursorcolumn
+  au WinEnter * set cursorline cursorcolumn
+endif
+
 let mapleader = "\<Space>"
 let g:CommandTCancelMap=['<ESC>','<C-c>']
 let g:CommandTMaxHeight = 30
@@ -197,9 +207,6 @@ if has('gui_running')
   set guioptions=aegimt
   "set guioptions+=rRL      " split vertical scrollbar
   "set guioptions+=bh       " adds horizontal scrollbar
-  set cursorline cursorcolumn
-  au WinLeave * set nocursorline nocursorcolumn
-  au WinEnter * set cursorline cursorcolumn
   if has("gui_macvim")
     set guifont=Monaco:h13
   else
