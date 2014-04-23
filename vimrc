@@ -100,6 +100,8 @@ set wildignorecase                              " ignore case in tab completion
 set wildignore+=Zend,local
 set wmh=0                                       " minimum window height
 
+let mapleader = "\<Space>"
+
 " ctrlp
 let g:ctrlp_follow_symlinks = 1
 let g:ctrlp_working_path_mode = 'rca'
@@ -170,7 +172,6 @@ if has("autocmd")
   au WinEnter * set cursorline cursorcolumn
 endif
 
-let mapleader = "\<Space>"
 let g:CommandTCancelMap=['<ESC>','<C-c>']
 let g:CommandTMaxHeight = 30
 let g:CommandTInputDebounce = 200
