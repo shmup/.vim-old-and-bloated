@@ -165,7 +165,7 @@ omap <leader>S <Plug>Sneak_S
 if has("autocmd")
   " git gutter color fix
   au ColorScheme * highlight clear SignColumn
-  " remove/add cursorline based on window focus
+  " remove/add cursorline colors
   au WinLeave * set nocursorline nocursorcolumn
   au WinEnter * set cursorline cursorcolumn
 endif
