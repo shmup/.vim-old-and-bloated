@@ -13,6 +13,7 @@ Bundle 'airblade/vim-gitgutter'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'bling/vim-airline'
 Bundle 'chilicuil/conque'
+Bundle 'godlygeek/tabular'
 Bundle 'jmcantrell/vim-virtualenv'
 Bundle 'justinmk/vim-sneak'
 Bundle 'kien/ctrlp.vim'
@@ -29,6 +30,7 @@ Bundle 'terryma/vim-expand-region'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-obsession'
 Bundle 'tpope/vim-sensible'
 Bundle 'Valloric/YouCompleteMe'
@@ -233,6 +235,9 @@ nnoremap <f9> :buffers<CR>:buffer<Space>
 
 " <f5> autocommand for running files
 autocmd FileType python nnoremap <buffer> <f5> :exec '!python' shellescape(@%, 1)<cr>
+
+" <f1> same as CTRL-^
+nnoremap <f1> <C-^>
 
 " When editing a file, always jump to the last cursor position
  autocmd BufReadPost *
