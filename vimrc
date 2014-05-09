@@ -7,7 +7,6 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
-
 "Bundle 'jaredly/vim-debug'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'altercation/vim-colors-solarized'
@@ -18,6 +17,8 @@ Bundle 'jmcantrell/vim-virtualenv'
 Bundle 'justinmk/vim-sneak'
 Bundle 'kien/ctrlp.vim'
 Bundle 'majutsushi/tagbar'
+Bundle 'mattn/gist-vim'
+Bundle 'mattn/webapi-vim'
 Bundle 'mileszs/ack.vim'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'nvie/vim-flake8'
@@ -198,9 +199,10 @@ nnoremap <silent> p p`]
 map <leader>ra :!sudo service apache2 restart<cr>
 map <leader>eh :e ~/Work/hosts<cr>
 map <leader>ev :e ~/.vim/vimrc<cr>
+map <leader>et :e ~/.tmux.conf<cr>
 map <leader>ec :e ~/Work/confs/
-map <F2> :mksession! ~/.vim/sessions/
-map <F3> :source ~/.vim/sessions/
+map <F3> :mksession! ~/.vim/sessions/
+map <F4> :source ~/.vim/sessions/
 
 " GUI only things
 if has('gui_running')
@@ -237,6 +239,7 @@ nnoremap <f9> :buffers<CR>:buffer<Space>
 
 " <f5> autocommand for running files
 autocmd FileType python nnoremap <buffer> <f5> :exec '!python' shellescape(@%, 1)<cr>
+autocmd FileType sh nnoremap <buffer> <f5> :exec '!' shellescape(@%, 1)<cr>
 
 " <f1> same as CTRL-^
 nnoremap <f1> <C-^>
@@ -256,6 +259,20 @@ if executable('ag')
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
+
+" Gist settings
+let g:gist_detect_filetype = 1
+let g:gist_open_browser_after_post = 1
+let g:gist_post_private = 1
+
+if has("unix")
+  let s:uname = system("uname -s")
+  if s:uname == "Darwin"
+    let g:gist_clip_command = 'pbcopy'
+  else
+    let g:gist_clip_command = 'xclip -selection clipboard'
+  endif
 endif
 
 command! PutVimrc call <SID>PutVimrc()
