@@ -276,6 +276,7 @@ if has("unix")
 endif
 
 " syntastic/flake8
+" http://learnvimscriptthehardway.stevelosh.com/chapters/38.html (Toggling)
 let g:python_length_is_big = 0
 command! TogglePythonLength call <SID>TogglePythonLength()
 function! <SID>TogglePythonLength()
