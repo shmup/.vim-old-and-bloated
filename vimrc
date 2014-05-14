@@ -100,7 +100,7 @@ set updatecount=100                             " switch every 100 chars
 set wildmenu                                    " menu has tab completion
 set wildmode=longest:full
 set wildignorecase                              " ignore case in tab completion
-set wildignore+=Zend,local
+set wildignore+=Zend,local,*.pyc
 set wmh=0                                       " minimum window height
 
 let mapleader = "\<Space>"
@@ -274,6 +274,23 @@ if has("unix")
     let g:gist_clip_command = 'xclip -selection clipboard'
   endif
 endif
+
+" syntastic/flake8
+let g:python_length_is_big = 0
+command! TogglePythonLength call <SID>TogglePythonLength()
+function! <SID>TogglePythonLength()
+    if g:python_length_is_big
+        let g:python_length_is_big = 0
+        let g:syntastic_python_flake8_args = ""
+        let g:syntastic_python_flake8_args = ""
+        echo "Python max line length: 79"
+    else
+        let g:syntastic_python_flake8_args = "--ignore=E501"
+        let g:syntastic_python_flake8_args = "--max-line-length=160"
+        let g:python_length_is_big = 1
+        echo "Python max line length: 160"
+    endif
+endfunction
 
 command! PutVimrc call <SID>PutVimrc()
 function! <SID>PutVimrc()
