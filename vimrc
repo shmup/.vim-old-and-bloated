@@ -70,7 +70,7 @@ set undolevels=1000                             " number of undos to keep
 set autochdir                                   " auto cd into dir that file is in
 set autoread                                    " watch for file changes
 set complete=.,w,b,u,U,t,i,d                    " do lots of scanning on tab completion
-set clipboard=unnamed                           " use system clipboard for yanking and putting
+" set clipboard=unnamed                           " use system clipboard for yanking and putting
 set cursorline cursorcolumn                     " use cursor lines because theyre awesome
 set encoding=utf-8                              " define char set
 set diffopt=filler,iwhite                       " ignore all whitespace and sync
@@ -304,6 +304,14 @@ if !exists("*<SID>PullVimrc")
     :so ~/.vim/vimrc
   endfunction
 endif
+
+" hard wrap text function
+" help command-range && help func-range
+command! -nargs=? HardWrap call HardWrap(<f-args>)
+function! HardWrap(...)
+  let textwidth = a:0 == 0? 79 : str2nr(a:1)
+  normal! gqG
+endfunction
 
 " Uses the Repeat group to highlight the repeated lines
 " http://stackoverflow.com/questions/1268032/marking-duplicate-lines/1270689#1270689
