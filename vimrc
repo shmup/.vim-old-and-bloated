@@ -329,6 +329,7 @@ function! <SID>ToggleBackground()
 endfunction
 
 " Pretty XML
+" http://unix.stackexchange.com/questions/62464/vim-making-xml-text-pretty
 command! PrettyXml call <SID>PrettyXml()
 function! <SID>PrettyXml()
   :%!xmllint --format %
