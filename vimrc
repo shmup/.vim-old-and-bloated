@@ -327,3 +327,9 @@ function! <SID>ToggleBackground()
         exe "colorscheme " . g:colors_name
     endif
 endfunction
+
+" Pretty XML
+command! PrettyXml call <SID>PrettyXml()
+function! <SID>PrettyXml()
+  :%!xmllint --format %
+endfunction
