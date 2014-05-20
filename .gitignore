@@ -1,3 +1,5 @@
 bundle
 undo
 sessions/*
+.netrwhist
+syntax
