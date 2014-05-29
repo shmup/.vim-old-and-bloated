@@ -175,6 +175,9 @@ if has("autocmd")
   au WinEnter * set cursorline cursorcolumn
   " markdown gets wrapped
   au BufNewFile,BufRead *.md,*.markdown set wrap
+  " python thing
+  au! FileType python setl nosmartindent
+
 endif
 
 let g:CommandTCancelMap=['<ESC>','<C-c>']
