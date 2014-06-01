@@ -197,6 +197,7 @@ vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
 map <leader>ra :!sudo service apache2 restart<cr>
+map <leader>rn :!sudo service nginx restart<cr>
 map <leader>eh :e ~/Work/hosts<cr>
 map <leader>ev :e ~/.vim/vimrc<cr>
 map <leader>et :e ~/.tmux.conf<cr>
