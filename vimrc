@@ -47,7 +47,7 @@ set autoindent smartindent                      " automatically indent on new li
 set expandtab                                   " expand tabs to spaces
 set tabstop=4                                   " actual tab width
 set softtabstop=4                               " insert mode tab/backspace width
-set shiftwidth=2                                " normal mode (auto)indent width
+set shiftwidth=4                                " normal mode (auto)indent width
 set backspace=indent,eol,start
 
 " search
@@ -179,7 +179,9 @@ if has("autocmd")
   au BufNewFile,BufRead *.md,*.markdown set wrap
   " python thing
   au! FileType python setl nosmartindent
-
+  " save dem folds
+  autocmd BufWinLeave *.* mkview
+  autocmd BufWinEnter *.* silent loadview 
 endif
 
 let g:CommandTCancelMap=['<ESC>','<C-c>']
