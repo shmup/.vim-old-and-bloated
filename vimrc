@@ -344,6 +344,10 @@ function! <SID>ToggleBackground()
     endif
 endfunction
 
+" Pretty JSON
+" https://coderwall.com/p/faceag
+command! PrettyJSON %!python -m json.tool
+
 " Pretty XML
 " http://unix.stackexchange.com/questions/62464/vim-making-xml-text-pretty
 command! PrettyXml call <SID>PrettyXml()
