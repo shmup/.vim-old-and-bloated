@@ -188,6 +188,8 @@ let g:CommandTCancelMap=['<ESC>','<C-c>']
 let g:CommandTMaxHeight = 30
 let g:CommandTInputDebounce = 200
 let g:sneak#streak = 1
+let g:Tlist_GainFocus_On_ToggleOpen = 1
+let g:tagbar_autofocus = 1
 let NERDTreeIgnore = ['\.pyc$']
 nnoremap <leader>. :CtrlPTag<cr>
 map <leader>n :NERDTreeToggle<CR>
@@ -276,6 +278,8 @@ let g:gist_post_private = 1
 
 if has("unix")
   let s:uname = system("uname -s")
+    " <f6> refresh browser, and return focus to terminal
+    nnoremap <f6> :!wmctrl -a chrome && xdotool key F5 && wmctrl -a terminal<CR><CR>
   if s:uname == "Darwin"
     let g:gist_clip_command = 'pbcopy'
   else
