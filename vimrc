@@ -7,7 +7,6 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
-"Bundle 'jaredly/vim-debug'
 Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-notes'
 Bundle 'airblade/vim-gitgutter'
@@ -18,6 +17,7 @@ Bundle 'chilicuil/conque'
 Bundle 'godlygeek/tabular'
 Bundle 'jmcantrell/vim-virtualenv'
 Bundle 'justinmk/vim-sneak'
+Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'mattn/emmet-vim'
@@ -38,9 +38,9 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-obsession'
 Bundle 'tpope/vim-sensible'
-Bundle 'Valloric/YouCompleteMe'
 Bundle 'vim-scripts/django.vim'
 Bundle 'vim-scripts/matrix.vim--Yang'
+Bundle 'Valloric/YouCompleteMe'
 
 filetype plugin indent on
 
@@ -186,6 +186,8 @@ if has("autocmd")
   " save dem folds
   autocmd BufWinLeave *.* mkview
   autocmd BufWinEnter *.* silent loadview 
+  " coffee
+  autocmd FileType coffee set commentstring=#\ %s
 endif
 
 let g:CommandTCancelMap=['<ESC>','<C-c>']
