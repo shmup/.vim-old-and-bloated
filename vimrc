@@ -7,13 +7,10 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
-Bundle 'xolox/vim-misc'
-Bundle 'xolox/vim-notes'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'bling/vim-airline'
 Bundle 'captbaritone/better-indent-support-for-php-with-html'
-Bundle 'chilicuil/conque'
 Bundle 'godlygeek/tabular'
 Bundle 'jmcantrell/vim-virtualenv'
 Bundle 'justinmk/vim-sneak'
@@ -116,8 +113,6 @@ let g:ctrlp_working_path_mode = 'rca'
 " YouCompleteMe
 let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<ENTER>']
 let g:ycm_key_invoke_completion = '<C-Space>'
-
-let g:notes_directories = ['~/Documents/Notes']
 
 " editor styling
 set t_Co=256
