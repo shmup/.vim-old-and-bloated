@@ -1,4 +1,5 @@
 augroup filetypedetect
     au BufNewFile,BufRead .htaccess,*.conf setf apache
-    au BufNewFile,BufRead *.coffee set ts=4 | set sw=4 | set sts=4 | setf coffee
+    au BufNewFile,BufRead *.coffee set ts=2 | set sw=2 | set sts=2 | setf coffee
+    au BufNewFile,BufRead *.php set autoindent
 augroup END
