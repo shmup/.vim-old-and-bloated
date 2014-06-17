@@ -34,9 +34,10 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-obsession'
 Bundle 'tpope/vim-sensible'
+Bundle 'Valloric/YouCompleteMe'
 Bundle 'vim-scripts/django.vim'
 Bundle 'vim-scripts/matrix.vim--Yang'
-Bundle 'Valloric/YouCompleteMe'
+Bundle 'vim-scripts/phpfolding.vim'
 
 filetype plugin indent on
 
