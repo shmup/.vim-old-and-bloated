@@ -13,6 +13,7 @@ Bundle 'bling/vim-airline'
 Bundle 'captbaritone/better-indent-support-for-php-with-html'
 Bundle 'godlygeek/tabular'
 Bundle 'jmcantrell/vim-virtualenv'
+Bundle 'junegunn/fzf'
 Bundle 'justinmk/vim-sneak'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
@@ -193,6 +194,7 @@ let g:Tlist_GainFocus_On_ToggleOpen = 1
 let g:tagbar_autofocus = 1
 let NERDTreeIgnore = ['\.pyc$']
 nnoremap <leader>. :CtrlPTag<cr>
+nnoremap <leader>f :FZF<CR>
 map <leader>n :NERDTreeToggle<CR>
 nmap <F8> :TagbarToggle<CR>
 map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
