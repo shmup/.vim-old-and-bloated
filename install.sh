@@ -9,18 +9,15 @@ else
     ln -s "$PWD/vimrc" "$HOME/.vimrc"
 fi
 
+mkdir -p ~/.vim/autoload
 mkdir -p ~/.vim/undo
 mkdir -p ~/.vim/backup
 mkdir -p ~/.vim/swap
 mkdir -p ~/.vim/sessions
-
-if [ ! -d "$HOME/.vim/bundle/vundle" ]; then
-    echo "cloning vundle"
-    git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-fi
+curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim
 
 echo "installing vim plugins"
-vim +PluginInstall +qall
+vim +PlugInstall
 
 if [ -d "$HOME/.vim/bundle/YouCompleteMe" ]; then
     echo "compiling YouCompleteMe with C language support"

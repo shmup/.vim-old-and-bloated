@@ -1,6 +1,8 @@
 bundle
 undo
-sessions/*
+sessions
 .netrwhist
 syntax
-view/*
+view
+plugged
+autoload

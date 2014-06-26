@@ -1,46 +1,81 @@
-syntax on
+call plug#begin('~/.vim/plugged')
 
-" vundle
-filetype on
-filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+let os=substitute(system('uname'), '\n', '', '')
 
-Bundle 'gmarik/vundle'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'bling/vim-airline'
-Bundle 'captbaritone/better-indent-support-for-php-with-html'
-Bundle 'godlygeek/tabular'
-Bundle 'jmcantrell/vim-virtualenv'
-Bundle 'junegunn/fzf'
-Bundle 'justinmk/vim-sneak'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'kien/ctrlp.vim'
-Bundle 'majutsushi/tagbar'
-Bundle 'mattn/emmet-vim'
-Bundle 'mattn/gist-vim'
-Bundle 'mattn/webapi-vim'
-Bundle 'mileszs/ack.vim'
-Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'nvie/vim-flake8'
-Bundle 'schickling/vim-bufonly'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/syntastic'
-Bundle 'taglist.vim'
-Bundle 'terryma/vim-expand-region'
-Bundle 'terryma/vim-multiple-cursors'
-Bundle 'tpope/vim-commentary'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-markdown'
-Bundle 'tpope/vim-obsession'
-Bundle 'tpope/vim-sensible'
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'vim-scripts/django.vim'
-Bundle 'vim-scripts/matrix.vim--Yang'
-Bundle 'vim-scripts/phpfolding.vim'
+if os == 'Darwin' || os == 'Mac'
+    let s:linux = 0
+elseif os == 'Linux'
+    let s:linux = 1
+endif
 
-filetype plugin indent on
+let s:ag = executable('ag')
+
+""" PLUGINS
+Plug 'Yggdroot/indentLine'
+Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/vim-emoji'
+Plug 'junegunn/seoul256.vim'
+Plug 'altercation/vim-colors-solarized'
+Plug 'bling/vim-airline'
+Plug 'godlygeek/tabular'
+Plug 'jmcantrell/vim-virtualenv'
+Plug 'junegunn/fzf'
+Plug 'justinmk/vim-sneak'
+Plug 'kien/ctrlp.vim'
+Plug 'mattn/gist-vim'
+Plug 'mattn/webapi-vim'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'schickling/vim-bufonly'
+Plug 'scrooloose/syntastic'
+Plug 'terryma/vim-expand-region'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-sensible'
+Plug 'Valloric/YouCompleteMe'
+Plug 'vim-scripts/django.vim'
+Plug 'vim-scripts/matrix.vim--Yang'
+
+" Tmux
+Plug 'tpope/vim-tbone'
+
+" Lang
+Plug 'mattn/emmet-vim'
+Plug 'nvie/vim-flake8'
+Plug 'tpope/vim-markdown'
+Plug 'kchmck/vim-coffee-script'
+Plug 'captbaritone/better-indent-support-for-php-with-html'
+Plug 'shmup/phpfolding.vim'
+
+" Edit
+Plug 'junegunn/vim-oblique'
+Plug 'tpope/vim-commentary'
+
+" Browsing
+Plug 'Yggdroot/indentLine'
+Plug 'mileszs/ack.vim',     { 'on': 'Ack'            }
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+if v:version >= 703
+    Plug 'majutsushi/tagbar'
+endif
+
+" Git
+Plug 'tpope/vim-fugitive'
+Plug 'gregsexton/gitv', { 'on': 'Gitv' }
+if v:version >= 703
+  Plug 'airblade/vim-gitgutter'
+else
+  Plug 'mhinz/vim-signify'
+endif
+
+if !s:linux
+  Plug 'zerowidth/vim-copy-as-rtf'
+endif
+
+call plug#end()
+
+""" BASIC
+let mapleader = "\<Space>"
 
 " code formatting
 set autoindent smartindent                      " automatically indent on new lines
@@ -64,7 +99,6 @@ set backupdir=$HOME/.vim/backup
 set backupcopy=yes
 set backupskip=/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*
 set directory=~/.vim/swap,~/tmp,.               " keep swp files under ~/.vim/swap
-set undofile
 set undodir=~/.vim/undo
 set undolevels=1000                             " number of undos to keep
 
@@ -72,7 +106,9 @@ set undolevels=1000                             " number of undos to keep
 set autochdir                                   " auto cd into dir that file is in
 set autoread                                    " watch for file changes
 set complete=.,w,b,u,U,t,i,d                    " do lots of scanning on tab completion
-" set clipboard=unnamed                           " use system clipboard for yanking and putting
+if $TMUX == ''
+    set clipboard+=unnamed
+endif
 set cursorline cursorcolumn                     " use cursor lines because theyre awesome
 set encoding=utf-8                              " define char set
 set diffopt=filler,iwhite                       " ignore all whitespace and sync
@@ -105,19 +141,15 @@ set wildignorecase                              " ignore case in tab completion
 set wildignore+=Zend,local,*.pyc
 set wmh=0                                       " minimum window height
 
-let mapleader = "\<Space>"
-
-" ctrlp
-let g:ctrlp_follow_symlinks = 1
-let g:ctrlp_working_path_mode = 'rca'
-
-" YouCompleteMe
-let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<ENTER>']
-let g:ycm_key_invoke_completion = '<C-Space>'
-
 " editor styling
 set t_Co=256
-colorscheme solarized
+colorscheme seoul256
+
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. <Leader>aip)
+nmap <Leader>a <Plug>(EasyAlign)
 
 " mapping for devices without easy <ESC>
 inoremap jj <ESC>
@@ -130,7 +162,6 @@ nnoremap j gj
 nnoremap k gk
 
 " quick tab changing
-noremap <leader>1 1gt
 noremap <leader>2 2gt
 noremap <leader>3 3gt
 noremap <leader>4 4gt
@@ -147,12 +178,22 @@ map <C-k> <C-w>k
 map <C-l> <C-w>l
 
 " clipboard things
-vmap <Leader>y "+y
-vmap <Leader>d "+d
-nmap <Leader>p "+p
-nmap <Leader>P "+P
-vmap <Leader>p "+p
-vmap <Leader>P "+P
+if !s:linux
+  " Clipboard
+  vnoremap <C-c> "*y
+  " <C-V><C-V> Paste clipboard content
+  inoremap <C-V><C-V> <c-o>"*P
+  " Clipboard-RTF
+  vnoremap <S-c> <esc>:colo seoul256-light<cr>gv:CopyRTF<cr>:colo seoul256<cr>
+endif
+
+
+vmap <Leader>y "*y
+vmap <Leader>d "*d
+nmap <Leader>p "*p
+nmap <Leader>P "*P
+vmap <Leader>p "*p
+vmap <Leader>P "*P
 
 " return and backspace hacks
 nnoremap <CR> G
@@ -168,6 +209,15 @@ xmap <leader>s <Plug>Sneak_s
 xmap <leader>S <Plug>Sneak_S
 omap <leader>s <Plug>Sneak_s
 omap <leader>S <Plug>Sneak_S
+
+" ----------------------------------------------------------------------------
+" ack.vim
+" ----------------------------------------------------------------------------
+if s:ag
+  let g:ackprg = 'ag --nogroup --nocolor --column'
+elseif !executable('ack')
+  let g:ackprg = 'grep -rn "$*" * \| sed "s/:\([0-9]*\):/:\1:1:/" '
+endif
 
 if has("autocmd")
   " git gutter color fix
@@ -192,9 +242,9 @@ let g:CommandTInputDebounce = 200
 let g:sneak#streak = 1
 let g:Tlist_GainFocus_On_ToggleOpen = 1
 let g:tagbar_autofocus = 1
-let NERDTreeIgnore = ['\.pyc$']
-nnoremap <leader>. :CtrlPTag<cr>
-nnoremap <leader>f :FZF<CR>
+let nerdtreeignore = ['\.pyc$']
+nnoremap <leader>. :ctrlptag<cr>
+nnoremap <leader>f :fzf<cr>
 map <leader>n :NERDTreeToggle<CR>
 nmap <F8> :TagbarToggle<CR>
 map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
@@ -290,6 +340,8 @@ if has("unix")
   endif
 endif
 
+""" Functions & Commands
+
 " syntastic/flake8
 " http://learnvimscriptthehardway.stevelosh.com/chapters/38.html (Toggling)
 let g:python_length_is_big = 0
@@ -361,3 +413,24 @@ command! PrettyXml call <SID>PrettyXml()
 function! <SID>PrettyXml()
   :%!xmllint --format %
 endfunction
+
+""" PLUGIN SETTINGS
+
+" indentline
+let g:indentLine_enabled = 0
+
+" emoji
+silent! if emoji#available()
+  let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
+  let g:gitgutter_sign_modified = emoji#for('small_orange_diamond')
+  let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
+  let g:gitgutter_sign_modified_removed = emoji#for('collision')
+endif
+
+" ctrlp
+let g:ctrlp_follow_symlinks = 1
+let g:ctrlp_working_path_mode = 'rca'
+
+" YouCompleteMe
+let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<ENTER>']
+let g:ycm_key_invoke_completion = '<C-Space>'
