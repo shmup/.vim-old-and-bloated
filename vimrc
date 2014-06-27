@@ -11,6 +11,7 @@ endif
 let s:ag = executable('ag')
 
 """ PLUGINS
+Plug 'qstrahl/vim-matchmaker'
 Plug 'Yggdroot/indentLine'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/goyo.vim'
@@ -18,23 +19,18 @@ Plug 'junegunn/vim-emoji'
 Plug 'junegunn/seoul256.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'bling/vim-airline'
-Plug 'godlygeek/tabular'
-Plug 'jmcantrell/vim-virtualenv'
-Plug 'junegunn/fzf'
 Plug 'justinmk/vim-sneak'
 Plug 'kien/ctrlp.vim'
-Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'schickling/vim-bufonly'
-Plug 'scrooloose/syntastic'
 Plug 'terryma/vim-expand-region'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-sensible'
 Plug 'Valloric/YouCompleteMe'
-Plug 'vim-scripts/django.vim'
 Plug 'vim-scripts/matrix.vim--Yang'
+Plug 'ervandew/supertab'
 
 " Tmux
 Plug 'tpope/vim-tbone'
@@ -42,16 +38,25 @@ Plug 'tpope/vim-tbone'
 " Lang
 Plug 'mattn/emmet-vim'
 Plug 'nvie/vim-flake8'
-Plug 'tpope/vim-markdown'
+Plug 'plasticboy/vim-markdown',  { 'for': 'markdown'   }
 Plug 'kchmck/vim-coffee-script'
+Plug 'pangloss/vim-javascript'
 Plug 'captbaritone/better-indent-support-for-php-with-html'
+Plug 'shawncplus/phpcomplete.vim'
 Plug 'shmup/phpfolding.vim'
+Plug 'scrooloose/syntastic'
+Plug 'jmcantrell/vim-virtualenv'
+Plug 'vim-scripts/django.vim'
 
 " Edit
 Plug 'junegunn/vim-oblique'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'mbbill/undotree'
 
 " Browsing
+Plug 'junegunn/fzf'
 Plug 'Yggdroot/indentLine'
 Plug 'mileszs/ack.vim',     { 'on': 'Ack'            }
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -60,6 +65,7 @@ if v:version >= 703
 endif
 
 " Git
+Plug 'mattn/gist-vim'
 Plug 'tpope/vim-fugitive'
 Plug 'gregsexton/gitv', { 'on': 'Gitv' }
 if v:version >= 703
@@ -178,22 +184,21 @@ map <C-k> <C-w>k
 map <C-l> <C-w>l
 
 " clipboard things
-if !s:linux
-  " Clipboard
+if s:linux
+  vmap <Leader>y "*y
+  vmap <Leader>d "*d
+  nmap <Leader>p "*p
+  nmap <Leader>P "*P
+  vmap <Leader>p "*p
+  vmap <Leader>P "*P
+else
+  " clipboard
   vnoremap <C-c> "*y
   " <C-V><C-V> Paste clipboard content
   inoremap <C-V><C-V> <c-o>"*P
   " Clipboard-RTF
   vnoremap <S-c> <esc>:colo seoul256-light<cr>gv:CopyRTF<cr>:colo seoul256<cr>
 endif
-
-
-vmap <Leader>y "*y
-vmap <Leader>d "*d
-nmap <Leader>p "*p
-nmap <Leader>P "*P
-vmap <Leader>p "*p
-vmap <Leader>P "*P
 
 " return and backspace hacks
 nnoremap <CR> G
@@ -210,41 +215,8 @@ xmap <leader>S <Plug>Sneak_S
 omap <leader>s <Plug>Sneak_s
 omap <leader>S <Plug>Sneak_S
 
-" ----------------------------------------------------------------------------
-" ack.vim
-" ----------------------------------------------------------------------------
-if s:ag
-  let g:ackprg = 'ag --nogroup --nocolor --column'
-elseif !executable('ack')
-  let g:ackprg = 'grep -rn "$*" * \| sed "s/:\([0-9]*\):/:\1:1:/" '
-endif
-
-if has("autocmd")
-  " git gutter color fix
-  au ColorScheme * highlight clear SignColumn
-  " remove/add cursorline colors
-  au WinLeave * set nocursorline nocursorcolumn
-  au WinEnter * set cursorline cursorcolumn
-  " markdown gets wrapped
-  au BufNewFile,BufRead *.md,*.markdown set wrap
-  " python thing
-  au! FileType python setl nosmartindent
-  " save dem folds
-  autocmd BufWinLeave *.* mkview
-  autocmd BufWinEnter *.* silent loadview 
-  " coffee
-  autocmd FileType coffee set commentstring=#\ %s
-endif
-
-let g:CommandTCancelMap=['<ESC>','<C-c>']
-let g:CommandTMaxHeight = 30
-let g:CommandTInputDebounce = 200
-let g:sneak#streak = 1
-let g:Tlist_GainFocus_On_ToggleOpen = 1
-let g:tagbar_autofocus = 1
-let nerdtreeignore = ['\.pyc$']
 nnoremap <leader>. :ctrlptag<cr>
-nnoremap <leader>f :fzf<cr>
+nnoremap <leader>f :FZF<cr>
 map <leader>n :NERDTreeToggle<CR>
 nmap <F8> :TagbarToggle<CR>
 map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
@@ -275,8 +247,6 @@ if has('gui_running')
   set guioptions-=T         " removes main toolbar
   set guioptions-=rRL       " removes vertical scrollbars
   set guioptions=aegimt
-  "set guioptions+=rRL      " split vertical scrollbar
-  "set guioptions+=bh       " adds horizontal scrollbar
   if has("gui_macvim")
     set guifont=Monaco:h13
   else
@@ -300,44 +270,15 @@ nnoremap <silent> <leader>l :nohl<CR><C-l>
 " <f9> will list the open buffers, and wait for you to choose a #
 nnoremap <f9> :buffers<CR>:buffer<Space>
 
-" <f5> autocommand for running files
-autocmd FileType python nnoremap <buffer> <f5> :exec '!python' shellescape(@%, 1)<cr>
-autocmd FileType sh nnoremap <buffer> <f5> :exec '!' shellescape(@%, 1)<cr>
-
 " <f1> same as CTRL-^
 nnoremap <f1> <C-^>
 
-" When editing a file, always jump to the last cursor position
- autocmd BufReadPost *
- \ if line("'\"") > 0 && line ("'\"") <= line("$") |
- \   exe "normal g'\"" |
- \ endif
-
-" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-if executable('ag')
-  let g:ackprg = 'ag --nogroup --column'
-
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-endif
-
-" Gist settings
-let g:gist_detect_filetype = 1
-let g:gist_open_browser_after_post = 1
-let g:gist_post_private = 1
-
-if has("unix")
-  let s:uname = system("uname -s")
-    " <f6> refresh browser, and return focus to terminal
+if s:linux
     nnoremap <f6> :!wmctrl -a chrome && xdotool key F5 && wmctrl -a terminal<CR><CR>
-  if s:uname == "Darwin"
-    let g:gist_clip_command = 'pbcopy'
-  else
     let g:gist_clip_command = 'xclip -selection clipboard'
-  endif
+else
+    nnoremap <f6> :!osascript -e 'tell application "Chrome"' -e 'reload active tab of window 1' -e 'end tell'<CR><CR>
+    let g:gist_clip_command = 'pbcopy'
 endif
 
 """ Functions & Commands
@@ -416,8 +357,25 @@ endfunction
 
 """ PLUGIN SETTINGS
 
+if s:ag
+  let g:ackprg = 'ag --nogroup --nocolor --column'
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+elseif !executable('ack')
+  let g:ackprg = 'grep -rn "$*" * \| sed "s/:\([0-9]*\):/:\1:1:/" '
+endif
+
+" Gist settings
+let g:gist_detect_filetype = 1
+let g:gist_open_browser_after_post = 1
+let g:gist_post_private = 1
+
 " indentline
 let g:indentLine_enabled = 0
+
+let g:sneak#streak = 1
+let g:Tlist_GainFocus_On_ToggleOpen = 1
+let g:tagbar_autofocus = 1
+let nerdtreeignore = ['\.pyc$']
 
 " emoji
 silent! if emoji#available()
@@ -434,3 +392,38 @@ let g:ctrlp_working_path_mode = 'rca'
 " YouCompleteMe
 let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<ENTER>']
 let g:ycm_key_invoke_completion = '<C-Space>'
+
+""" AUTOCMD
+augroup vimrc
+  autocmd!
+
+  " git gutter color fix
+  au ColorScheme * highlight clear SignColumn
+
+  " remove/add cursorline colors
+  au WinLeave * set nocursorline nocursorcolumn
+  au WinEnter * set cursorline cursorcolumn
+
+  " markdown gets wrapped
+  au BufNewFile,BufRead *.md,*.markdown set wrap
+
+  " python thing
+  au! FileType python setl nosmartindent
+
+  " save dem folds
+  autocmd BufWinLeave *.* mkview
+  autocmd BufWinEnter *.* silent loadview
+
+  " coffee
+  autocmd FileType coffee set commentstring=#\ %s
+
+  " <f5> autocommand for running files
+  autocmd FileType python nnoremap <buffer> <f5> :exec '!python' shellescape(@%, 1)<cr>
+  autocmd FileType sh nnoremap <buffer> <f5> :exec '!' shellescape(@%, 1)<cr>
+
+  " When editing a file, always jump to the last cursor position
+   autocmd BufReadPost *
+   \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+   \   exe "normal g'\"" |
+   \ endif
+augroup END
