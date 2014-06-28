@@ -149,6 +149,10 @@ set wmh=0                                       " minimum window height
 
 " editor styling
 set t_Co=256
+
+" dark (239-233) light (256-252)
+let g:seoul256_background = 235
+let g:seoul256_light_background = 256
 colorscheme seoul256
 
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
@@ -286,7 +290,6 @@ endif
 " syntastic/flake8
 " http://learnvimscriptthehardway.stevelosh.com/chapters/38.html (Toggling)
 let g:python_length_is_big = 0
-command! TogglePythonLength call <SID>TogglePythonLength()
 function! <SID>TogglePythonLength()
     if g:python_length_is_big
         let g:python_length_is_big = 0
@@ -300,49 +303,36 @@ function! <SID>TogglePythonLength()
         echo "Python max line length: 160"
     endif
 endfunction
-
-command! PutVimrc call <SID>PutVimrc()
-function! <SID>PutVimrc()
-  :!cd ~/.vim && git add vimrc && git commit -m 'updated vimrc' && git push
-endfunction
-
-command! PullVimrc call <SID>PullVimrc()
-if !exists("*<SID>PullVimrc")
-  function! <SID>PullVimrc()
-    :!cd ~/.vim && git pull
-    :so ~/.vim/vimrc
-  endfunction
-endif
+command! TogglePythonLength call <SID>TogglePythonLength()
 
 " hard wrap text function
 " help command-range && help func-range
-command! -nargs=? HardWrap call HardWrap(<f-args>)
 function! HardWrap(...)
   let textwidth = a:0 == 0? 79 : str2nr(a:1)
   normal! gqG
 endfunction
+command! -nargs=? HardWrap call HardWrap(<f-args>)
 
 " Uses the Repeat group to highlight the repeated lines
 " http://stackoverflow.com/questions/1268032/marking-duplicate-lines/1270689#1270689
-command! HighlightRepeats call <SID>HighlightRepeats()
 function! <SID>HighlightRepeats()
   :syn clear Repeat | g/^\(.*\)\n\ze\%(.*\n\)*\1$/exe 'syn match Repeat "^' . escape(getline('.'), '".\^$*[]') . '$"' | nohlsearch
 endfunction
+command! HighlightRepeats call <SID>HighlightRepeats()
 
 " Clears lines highlighted in Repeat group
-command! ClearHighlightRepeats call <SID>ClearHighlightRepeats()
 function! <SID>ClearHighlightRepeats()
   :syn clear Repeat
 endfunction
+command! ClearHighlightRepeats call <SID>ClearHighlightRepeats()
 
 " Toggles the background color, and reloads the colorscheme.
-command! ToggleBackground call <SID>ToggleBackground()
 function! <SID>ToggleBackground()
-    let &background = ( &background == "dark"? "light" : "dark" )
-    if exists("g:colors_name")
-        exe "colorscheme " . g:colors_name
-    endif
+  if exists("g:colors_name")
+    exe "colorscheme " . ( g:colors_name == "seoul256" ? "seoul256-light" : "seoul256")
+  endif
 endfunction
+command! ToggleBackground call <SID>ToggleBackground()
 
 " Pretty JSON
 " https://coderwall.com/p/faceag
@@ -350,10 +340,10 @@ command! PrettyJSON %!python -m json.tool
 
 " Pretty XML
 " http://unix.stackexchange.com/questions/62464/vim-making-xml-text-pretty
-command! PrettyXml call <SID>PrettyXml()
 function! <SID>PrettyXml()
   :%!xmllint --format %
 endfunction
+command! PrettyXml call <SID>PrettyXml()
 
 """ PLUGIN SETTINGS
 
