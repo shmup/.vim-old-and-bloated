@@ -11,7 +11,6 @@ endif
 let s:ag = executable('ag')
 
 """ PLUGINS
-Plug 'qstrahl/vim-matchmaker'
 Plug 'Yggdroot/indentLine'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/goyo.vim'
@@ -22,10 +21,8 @@ Plug 'bling/vim-airline'
 Plug 'justinmk/vim-sneak'
 Plug 'kien/ctrlp.vim'
 Plug 'mattn/webapi-vim'
-Plug 'nathanaelkane/vim-indent-guides'
 Plug 'schickling/vim-bufonly'
 Plug 'terryma/vim-expand-region'
-Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-sensible'
 Plug 'Valloric/YouCompleteMe'
@@ -61,7 +58,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'mileszs/ack.vim',     { 'on': 'Ack'            }
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 if v:version >= 703
-    Plug 'majutsushi/tagbar'
+  Plug 'majutsushi/tagbar'
 endif
 
 " Git
@@ -374,6 +371,9 @@ silent! if emoji#available()
   let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
   let g:gitgutter_sign_modified_removed = emoji#for('collision')
 endif
+
+" indentline
+let g:indentLine_enabled = 0
 
 " ctrlp
 let g:ctrlp_follow_symlinks = 1
