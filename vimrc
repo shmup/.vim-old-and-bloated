@@ -364,6 +364,9 @@ let g:gist_post_private = 1
 " indentline
 let g:indentLine_enabled = 0
 
+" php folding
+let g:DisableAutoPHPFolding = 1
+
 let g:sneak#streak = 1
 let g:Tlist_GainFocus_On_ToggleOpen = 1
 let g:tagbar_autofocus = 1
