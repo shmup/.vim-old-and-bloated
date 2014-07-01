@@ -102,12 +102,13 @@ set backupdir=$HOME/.vim/backup
 set backupcopy=yes
 set backupskip=/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*
 set directory=~/.vim/swap,~/tmp,.               " keep swp files under ~/.vim/swap
+set tags=./tags;/
 set undodir=~/.vim/undo
 set undolevels=1000                             " number of undos to keep
 
 " editor setup
 set autochdir                                   " auto cd into dir that file is in
-set autoread                                    " watch for file changes
+set autoread                                        " watch for file changes
 set complete=.,w,b,u,U,t,i,d                    " do lots of scanning on tab completion
 if $TMUX == ''
     set clipboard+=unnamed
@@ -144,6 +145,12 @@ set wildignorecase                              " ignore case in tab completion
 set wildignore+=Zend,local,*.pyc
 set wmh=0                                       " minimum window height
 
+set pastetoggle=<Ins>
+
+" Shift-tab on GNU screen
+" http://superuser.com/questions/195794/gnu-screen-shift-tab-issue
+set t_kB=[Z
+    
 " editor styling
 set t_Co=256
 
@@ -156,7 +163,7 @@ colorscheme seoul256
 vmap <Enter> <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. <Leader>aip)
-nmap <Leader>a <Plug>(EasyAlign)
+" nmap <Leader>a <Plug>(EasyAlign)
 
 " mapping for devices without easy <ESC>
 inoremap jj <ESC>
@@ -186,12 +193,12 @@ map <C-l> <C-w>l
 
 " clipboard things
 if s:linux
-  vmap <Leader>y "*y
-  vmap <Leader>d "*d
-  nmap <Leader>p "*p
-  nmap <Leader>P "*P
-  vmap <Leader>p "*p
-  vmap <Leader>P "*P
+  vmap <Leader>y "+y
+  vmap <Leader>d "+d
+  nmap <Leader>p "+p
+  nmap <Leader>P "+P
+  vmap <Leader>p "+p
+  vmap <Leader>P "+P
 else
   " clipboard
   vnoremap <C-c> "*y
@@ -335,12 +342,10 @@ command! ToggleBackground call <SID>ToggleBackground()
 " https://coderwall.com/p/faceag
 command! PrettyJSON %!python -m json.tool
 
-" Pretty XML
-" http://unix.stackexchange.com/questions/62464/vim-making-xml-text-pretty
-function! <SID>PrettyXml()
-  :%!xmllint --format %
-endfunction
-command! PrettyXml call <SID>PrettyXml()
+" Pretty HTML/XML
+" http://vim.wikia.com/wiki/Cleanup_your_HTML
+command! PrettyHtml :%!tidy -q -i --show-errors 0
+command! PrettyXml  :%!tidy -q -i --show-errors 0 -xml
 
 """ PLUGIN SETTINGS
 
