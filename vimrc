@@ -176,6 +176,7 @@ nnoremap j gj
 nnoremap k gk
 
 " quick tab changing
+noremap <leader>1 1gt
 noremap <leader>2 2gt
 noremap <leader>3 3gt
 noremap <leader>4 4gt
