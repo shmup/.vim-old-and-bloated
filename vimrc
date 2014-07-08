@@ -14,9 +14,9 @@ let s:ag = executable('ag')
 Plug 'Yggdroot/indentLine'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 Plug 'junegunn/vim-emoji'
 Plug 'junegunn/seoul256.vim'
-Plug 'altercation/vim-colors-solarized'
 Plug 'bling/vim-airline'
 Plug 'justinmk/vim-sneak'
 Plug 'kien/ctrlp.vim'
@@ -215,6 +215,13 @@ nnoremap <BS> gg
 
 " sudo write
 cmap w!! w !sudo tee > /dev/null %
+
+" Matrix
+nnoremap <leader>m :Matrix<cr>
+
+" Better use of arrows
+nnoremap <silent> <Right> :bnext<CR>
+nnoremap <silent> <Left> :bprev<CR>
 
 " sneak stuff
 nmap <leader>s <Plug>Sneak_s
