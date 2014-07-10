@@ -28,6 +28,7 @@ Plug 'tpope/vim-sensible'
 Plug 'Valloric/YouCompleteMe'
 Plug 'vim-scripts/matrix.vim--Yang'
 Plug 'ervandew/supertab'
+Plug 'tpope/vim-unimpaired'
 
 " Tmux
 Plug 'tpope/vim-tbone'
