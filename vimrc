@@ -166,6 +166,10 @@ vmap <Enter> <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. <Leader>aip)
 " nmap <Leader>a <Plug>(EasyAlign)
 
+" copy file name/file path to clipboard
+nmap <leader>cs :let @+=expand("%")<CR>
+nmap <leader>cl :let @+=expand("%:p:h")<CR>
+
 " mapping for devices without easy <ESC>
 inoremap jj <ESC>
 
@@ -247,7 +251,7 @@ vmap <C-v> <Plug>(expand_region_shrink)
 vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
-map <leader>ra :!sudo service apache2 restart<cr>
+map <leader>ra :!sudo service apache2 restart<cr><cr>
 map <leader>rn :!sudo service nginx restart<cr>
 map <leader>eh :e ~/Work/hosts<cr>
 map <leader>ev :e ~/.vim/vimrc<cr>
@@ -291,10 +295,10 @@ nnoremap <f9> :buffers<CR>:buffer<Space>
 nnoremap <f1> <C-^>
 
 if s:linux
-    nnoremap <f6> :!wmctrl -a chrome && xdotool key F5 && wmctrl -a terminal<CR><CR>
+    nnoremap <f5> :!wmctrl -a chrome && xdotool key F5 && wmctrl -a terminal<CR><CR>
     let g:gist_clip_command = 'xclip -selection clipboard'
 else
-    nnoremap <f6> :!osascript -e 'tell application "Chrome"' -e 'reload active tab of window 1' -e 'end tell'<CR><CR>
+    nnoremap <f5> :!osascript -e 'tell application "Chrome"' -e 'reload active tab of window 1' -e 'end tell'<CR><CR>
     let g:gist_clip_command = 'pbcopy'
 endif
 
@@ -421,12 +425,13 @@ augroup vimrc
   autocmd BufWinLeave *.* mkview
   autocmd BufWinEnter *.* silent loadview
 
-  " coffee
+  " commentary ft adjustments
   autocmd FileType coffee set commentstring=#\ %s
+  autocmd FileType apache set commentstring=#\ %s
 
-  " <f5> autocommand for running files
-  autocmd FileType python nnoremap <buffer> <f5> :exec '!python' shellescape(@%, 1)<cr>
-  autocmd FileType sh nnoremap <buffer> <f5> :exec '!' shellescape(@%, 1)<cr>
+  " <f6> autocommand for running files
+  autocmd FileType python nnoremap <buffer> <f6> :exec '!python' shellescape(@%, 1)<cr>
+  autocmd FileType sh nnoremap <buffer> <f6> :exec '!' shellescape(@%, 1)<cr>
 
   " When editing a file, always jump to the last cursor position
    autocmd BufReadPost *
