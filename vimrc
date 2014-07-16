@@ -170,6 +170,9 @@ vmap <Enter> <Plug>(EasyAlign)
 nmap <leader>cs :let @+=expand("%")<CR>
 nmap <leader>cl :let @+=expand("%:p:h")<CR>
 
+" select last paste in visual mode
+nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
+
 " mapping for devices without easy <ESC>
 inoremap jj <ESC>
 
@@ -295,10 +298,10 @@ nnoremap <f9> :buffers<CR>:buffer<Space>
 nnoremap <f1> <C-^>
 
 if s:linux
-    nnoremap <f5> :!wmctrl -a chrome && xdotool key F5 && wmctrl -a terminal<CR><CR>
+    nnoremap <f6> :!wmctrl -a chrome && xdotool key F5 && wmctrl -a terminal<CR><CR>
     let g:gist_clip_command = 'xclip -selection clipboard'
 else
-    nnoremap <f5> :!osascript -e 'tell application "Chrome"' -e 'reload active tab of window 1' -e 'end tell'<CR><CR>
+    nnoremap <f6> :!osascript -e 'tell application "Chrome"' -e 'reload active tab of window 1' -e 'end tell'<CR><CR>
     let g:gist_clip_command = 'pbcopy'
 endif
 
@@ -430,8 +433,8 @@ augroup vimrc
   autocmd FileType apache set commentstring=#\ %s
 
   " <f6> autocommand for running files
-  autocmd FileType python nnoremap <buffer> <f6> :exec '!python' shellescape(@%, 1)<cr>
-  autocmd FileType sh nnoremap <buffer> <f6> :exec '!' shellescape(@%, 1)<cr>
+  autocmd FileType python nnoremap <buffer> <f5> :exec '!python' shellescape(@%, 1)<cr>
+  autocmd FileType sh nnoremap <buffer> <f5> :exec '!' shellescape(@%, 1)<cr>
 
   " When editing a file, always jump to the last cursor position
    autocmd BufReadPost *
