@@ -318,9 +318,9 @@ function! <SID>TogglePythonLength()
         echo "Python max line length: 79"
     else
         let g:syntastic_python_flake8_args = "--ignore=E501"
-        let g:syntastic_python_flake8_args = "--max-line-length=160"
+        let g:syntastic_python_flake8_args = "--max-line-length=200"
         let g:python_length_is_big = 1
-        echo "Python max line length: 160"
+        echo "Python max line length: 200"
     endif
 endfunction
 command! TogglePythonLength call <SID>TogglePythonLength()
