@@ -45,6 +45,7 @@ Plug 'shmup/phpfolding.vim'
 Plug 'scrooloose/syntastic'
 Plug 'jmcantrell/vim-virtualenv'
 Plug 'vim-scripts/django.vim'
+Plug 'tmhedberg/SimpylFold'
 
 " Edit
 Plug 'junegunn/vim-oblique'
@@ -105,6 +106,7 @@ set backupskip=/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*
 set directory=~/.vim/swap,~/tmp,.               " keep swp files under ~/.vim/swap
 set tags=./tags;/
 set undodir=~/.vim/undo
+set undofile
 set undolevels=1000                             " number of undos to keep
 
 " editor setup
