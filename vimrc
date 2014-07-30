@@ -11,6 +11,7 @@ endif
 let s:ag = executable('ag')
 
 """ PLUGINS
+Plug 'junegunn/vim-pseudocl'
 Plug 'Yggdroot/indentLine'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/goyo.vim'
