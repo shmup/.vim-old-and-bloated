@@ -328,6 +328,16 @@ function! <SID>TogglePythonLength()
 endfunction
 command! TogglePythonLength call <SID>TogglePythonLength()
 
+" focus
+function! <SID>Focus()
+  Goyo
+  Limelight!!
+  Tmux set -g status
+  set wrap!
+  set cursorline! cursorcolumn!
+endfunction
+command! Focus call <sid>Focus()
+
 " hard wrap text function
 " help command-range && help func-range
 function! HardWrap(...)
