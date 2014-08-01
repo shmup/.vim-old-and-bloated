@@ -183,8 +183,8 @@ inoremap jj <ESC>
 nnoremap Y y$
 
 " more intuitive j/k
-nnoremap j gj
-nnoremap k gk
+noremap j gj
+noremap k gk
 
 " quick tab changing
 noremap <leader>1 1gt
