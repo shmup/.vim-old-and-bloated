@@ -47,6 +47,7 @@ Plug 'scrooloose/syntastic'
 Plug 'jmcantrell/vim-virtualenv'
 Plug 'vim-scripts/django.vim'
 Plug 'tmhedberg/SimpylFold'
+Plug 'lukaszkorecki/CoffeeTags'
 
 " Edit
 Plug 'junegunn/vim-oblique'
