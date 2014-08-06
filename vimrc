@@ -11,6 +11,7 @@ endif
 let s:ag = executable('ag')
 
 """ PLUGINS
+Plug 'ap/vim-css-color'
 Plug 'junegunn/vim-pseudocl'
 Plug 'Yggdroot/indentLine'
 Plug 'junegunn/vim-easy-align'
@@ -30,6 +31,7 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'vim-scripts/matrix.vim--Yang'
 Plug 'ervandew/supertab'
 Plug 'tpope/vim-unimpaired'
+Plug 'vimwiki/vimwiki'
 
 " Tmux
 Plug 'tpope/vim-tbone'
@@ -385,6 +387,9 @@ if s:ag
 elseif !executable('ack')
   let g:ackprg = 'grep -rn "$*" * \| sed "s/:\([0-9]*\):/:\1:1:/" '
 endif
+
+" vimwiki settings
+let g:vimwiki_list = [{'path': '~/Dropbox/Briefcase/vimwiki'}]
 
 " Gist settings
 let g:gist_detect_filetype = 1
