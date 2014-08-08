@@ -453,7 +453,7 @@ augroup vimrc
 
   " <f6> autocommand for running files
   autocmd FileType python nnoremap <buffer> <f5> :exec '!python' shellescape(@%, 1)<cr>
-  autocmd FileType sh nnoremap <buffer> <f5> :exec '!' shellescape(@%, 1)<cr>
+  autocmd FileType sh nnoremap <buffer> <f5> :exec '!bash' shellescape(@%, 1)<cr>
 
   " When editing a file, always jump to the last cursor position
    autocmd BufReadPost *
