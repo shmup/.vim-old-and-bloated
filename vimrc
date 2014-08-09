@@ -12,14 +12,14 @@ let s:ag = executable('ag')
 
 """ PLUGINS
 Plug 'ap/vim-css-color'
-Plug 'junegunn/vim-pseudocl'
-Plug 'Yggdroot/indentLine'
-Plug 'junegunn/vim-easy-align'
+Plug 'bling/vim-airline'
+Plug 'ervandew/supertab'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
-Plug 'junegunn/vim-emoji'
 Plug 'junegunn/seoul256.vim'
-Plug 'bling/vim-airline'
+Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/vim-emoji'
+Plug 'junegunn/vim-pseudocl'
 Plug 'justinmk/vim-sneak'
 Plug 'kien/ctrlp.vim'
 Plug 'mattn/webapi-vim'
@@ -27,50 +27,50 @@ Plug 'schickling/vim-bufonly'
 Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-unimpaired'
 Plug 'Valloric/YouCompleteMe'
 Plug 'vim-scripts/matrix.vim--Yang'
-Plug 'ervandew/supertab'
-Plug 'tpope/vim-unimpaired'
 Plug 'vimwiki/vimwiki'
+Plug 'Yggdroot/indentLine'
 
 " Tmux
 Plug 'tpope/vim-tbone'
 
 " Lang
+Plug 'captbaritone/better-indent-support-for-php-with-html'
+Plug 'jmcantrell/vim-virtualenv'
+Plug 'kchmck/vim-coffee-script'
+Plug 'lukaszkorecki/CoffeeTags'
 Plug 'mattn/emmet-vim'
 Plug 'nvie/vim-flake8'
-Plug 'plasticboy/vim-markdown',  { 'for': 'markdown'   }
-Plug 'kchmck/vim-coffee-script'
 Plug 'pangloss/vim-javascript'
-Plug 'captbaritone/better-indent-support-for-php-with-html'
+Plug 'plasticboy/vim-markdown',  { 'for': 'markdown'   }
+Plug 'scrooloose/syntastic'
 Plug 'shawncplus/phpcomplete.vim'
 Plug 'shmup/phpfolding.vim'
-Plug 'scrooloose/syntastic'
-Plug 'jmcantrell/vim-virtualenv'
-Plug 'vim-scripts/django.vim'
 Plug 'tmhedberg/SimpylFold'
-Plug 'lukaszkorecki/CoffeeTags'
+Plug 'vim-scripts/django.vim'
 
 " Edit
 Plug 'junegunn/vim-oblique'
+Plug 'mbbill/undotree'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'mbbill/undotree'
 
 " Browsing
 Plug 'junegunn/fzf'
-Plug 'Yggdroot/indentLine'
 Plug 'mileszs/ack.vim',     { 'on': 'Ack'            }
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'Yggdroot/indentLine'
 if v:version >= 703
   Plug 'majutsushi/tagbar'
 endif
 
 " Git
+Plug 'gregsexton/gitv', { 'on': 'Gitv' }
 Plug 'mattn/gist-vim'
 Plug 'tpope/vim-fugitive'
-Plug 'gregsexton/gitv', { 'on': 'Gitv' }
 if v:version >= 703
   Plug 'airblade/vim-gitgutter'
 else
@@ -456,7 +456,7 @@ augroup vimrc
 
   " <f6> autocommand for running files
   autocmd FileType python nnoremap <buffer> <f5> :exec '!python' shellescape(@%, 1)<cr>
-  autocmd FileType sh nnoremap <buffer> <f5> :exec '!' shellescape(@%, 1)<cr>
+  autocmd FileType sh nnoremap <buffer> <f5> :exec '!bash' shellescape(@%, 1)<cr>
 
   " When editing a file, always jump to the last cursor position
    autocmd BufReadPost *
