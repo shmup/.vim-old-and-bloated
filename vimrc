@@ -48,9 +48,9 @@ Plug 'plasticboy/vim-markdown',  { 'for': 'markdown' }
 Plug 'scrooloose/syntastic'
 Plug 'shawncplus/phpcomplete.vim'
 Plug 'shmup/phpfolding.vim'
-Plug 'tmhedberg/SimpylFold'
 Plug 'vim-scripts/django.vim'
 Plug 'LokiChaos/vim-tintin'
+Plug 'wting/rust.vim'
 
 " Edit
 Plug 'junegunn/vim-oblique'
@@ -424,8 +424,11 @@ let g:ctrlp_follow_symlinks = 1
 let g:ctrlp_working_path_mode = 'rca'
 
 " YouCompleteMe
-let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<ENTER>']
-let g:ycm_key_invoke_completion = '<C-Space>'
+let g:ycm_register_as_syntastic_checker = 1
+let g:ycm_key_list_select_completion = ['<C-TAB>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:SuperTabDefaultCompletionType = '<C-Tab>'
 
 """ AUTOCMD
 augroup vimrc
