@@ -48,8 +48,8 @@ Plug 'plasticboy/vim-markdown',  { 'for': 'markdown'   }
 Plug 'scrooloose/syntastic'
 Plug 'shawncplus/phpcomplete.vim'
 Plug 'shmup/phpfolding.vim'
-Plug 'tmhedberg/SimpylFold'
 Plug 'vim-scripts/django.vim'
+Plug 'wting/rust.vim'
 
 " Edit
 Plug 'junegunn/vim-oblique'
