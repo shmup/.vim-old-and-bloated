@@ -2,6 +2,8 @@ call plug#begin('~/.vim/plugged')
 
 let os=substitute(system('uname'), '\n', '', '')
 
+let browser='Nightly'
+
 if os == 'Darwin' || os == 'Mac'
     let s:linux = 0
 elseif os == 'Linux'
@@ -305,7 +307,7 @@ nnoremap <f9> :buffers<CR>:buffer<Space>
 nnoremap <f1> <C-^>
 
 if s:linux
-    nnoremap <f6> :!wmctrl -a chrome && xdotool key F5 && wmctrl -a terminal<CR><CR>
+    nnoremap <f6> :!wmctrl -a Nightly && xdotool key F5 && wmctrl -a terminus<CR><CR>
     let g:gist_clip_command = 'xclip -selection clipboard'
 else
     nnoremap <f6> :!osascript -e 'tell application "Chrome"' -e 'reload active tab of window 1' -e 'end tell'<CR><CR>
@@ -349,6 +351,12 @@ function! HardWrap(...)
   normal! gqG
 endfunction
 command! -nargs=? HardWrap call HardWrap(<f-args>)
+
+" ix.io paste
+function! <SID>IX()
+  :read !cat % | curl -n -s -F 'f:1=<-' paste.rupa.co | xclip -selection clipboard
+endfunction
+command! IX call <SID>IX()
 
 " Uses the Repeat group to highlight the repeated lines
 " http://stackoverflow.com/questions/1268032/marking-duplicate-lines/1270689#1270689
