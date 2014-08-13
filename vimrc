@@ -50,6 +50,7 @@ Plug 'shawncplus/phpcomplete.vim'
 Plug 'shmup/phpfolding.vim'
 Plug 'tmhedberg/SimpylFold'
 Plug 'vim-scripts/django.vim'
+Plug 'LokiChaos/vim-tintin'
 
 " Edit
 Plug 'junegunn/vim-oblique'
@@ -450,6 +451,7 @@ augroup vimrc
   " commentary ft adjustments
   autocmd FileType coffee set commentstring=#\ %s
   autocmd FileType apache set commentstring=#\ %s
+  autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent
 
   " <f6> autocommand for running files
   autocmd FileType python nnoremap <buffer> <f5> :exec '!python' shellescape(@%, 1)<cr>
