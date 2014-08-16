@@ -333,7 +333,7 @@ command! TogglePythonLength call <SID>TogglePythonLength()
 
 " focus
 function! <SID>Focus()
-  Goyo
+  Goyo 200
   Limelight!!
   Tmux set -g status
   set wrap!
