@@ -4,8 +4,12 @@ let os=substitute(system('uname'), '\n', '', '')
 
 if os == 'Darwin' || os == 'Mac'
     let s:linux = 0
+    let browser='Chrome'
+    let terminal='iTerm2'
 elseif os == 'Linux'
     let s:linux = 1
+    let browser='Chromium'
+    let terminal='terminus'
 endif
 
 let s:ag = executable('ag')
@@ -13,7 +17,7 @@ let s:ag = executable('ag')
 """ PLUGINS
 Plug 'ap/vim-css-color'
 Plug 'bling/vim-airline'
-Plug 'ervandew/supertab'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/seoul256.vim'
@@ -21,17 +25,14 @@ Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/vim-emoji'
 Plug 'junegunn/vim-pseudocl'
 Plug 'justinmk/vim-sneak'
-Plug 'kien/ctrlp.vim'
 Plug 'mattn/webapi-vim'
 Plug 'schickling/vim-bufonly'
 Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-unimpaired'
-Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer --omnisharp-completer' }
 Plug 'vim-scripts/matrix.vim--Yang'
 Plug 'vimwiki/vimwiki'
-Plug 'Yggdroot/indentLine'
 
 " Tmux
 Plug 'tpope/vim-tbone'
@@ -40,11 +41,12 @@ Plug 'tpope/vim-tbone'
 Plug 'captbaritone/better-indent-support-for-php-with-html'
 Plug 'jmcantrell/vim-virtualenv'
 Plug 'kchmck/vim-coffee-script'
+Plug 'LokiChaos/vim-tintin'
 Plug 'lukaszkorecki/CoffeeTags'
 Plug 'mattn/emmet-vim'
 Plug 'nvie/vim-flake8'
 Plug 'pangloss/vim-javascript'
-Plug 'plasticboy/vim-markdown',  { 'for': 'markdown'   }
+Plug 'plasticboy/vim-markdown',  { 'for': 'markdown' }
 Plug 'scrooloose/syntastic'
 Plug 'shawncplus/phpcomplete.vim'
 Plug 'shmup/phpfolding.vim'
@@ -300,11 +302,11 @@ nnoremap <silent> <leader>l :nohl<CR><C-l>
 " <f9> will list the open buffers, and wait for you to choose a #
 nnoremap <f9> :buffers<CR>:buffer<Space>
 
-" <f1> same as CTRL-^
+" <f1> same as CTRL-g
 nnoremap <f1> <C-^>
 
 if s:linux
-    nnoremap <f6> :!wmctrl -a chrome && xdotool key F5 && wmctrl -a terminal<CR><CR>
+    nnoremap <f6> :exec ":!wmctrl -a ". browser ." && xdotool key F5 && wmctrl -a ". terminal<CR><CR>
     let g:gist_clip_command = 'xclip -selection clipboard'
 else
     nnoremap <f6> :!osascript -e 'tell application "Nightly"' -e 'reload active tab of window 1' -e 'end tell'<CR><CR>
@@ -349,6 +351,12 @@ function! HardWrap(...)
 endfunction
 command! -nargs=? HardWrap call HardWrap(<f-args>)
 
+" ix.io paste
+function! <SID>IX()
+  :read !cat % | curl -n -s -F 'f:1=<-' paste.rupa.co | xclip -selection clipboard
+endfunction
+command! IX call <SID>IX()
+
 " Uses the Repeat group to highlight the repeated lines
 " http://stackoverflow.com/questions/1268032/marking-duplicate-lines/1270689#1270689
 function! <SID>HighlightRepeats()
@@ -373,6 +381,12 @@ command! ToggleBackground call <SID>ToggleBackground()
 " Pretty JSON
 " https://coderwall.com/p/faceag
 command! PrettyJSON %!python -m json.tool
+
+" Toggle Browser
+function! <SID>ToggleBrowser()
+  echo s:browsers[0]
+endfunction
+command! ToggleBrowser call <SID>ToggleBrowser()
 
 " Pretty HTML/XML
 " http://vim.wikia.com/wiki/Cleanup_your_HTML
@@ -424,10 +438,10 @@ let g:ctrlp_working_path_mode = 'rca'
 
 " YouCompleteMe
 let g:ycm_register_as_syntastic_checker = 1
-let g:ycm_key_list_select_completion = ['<C-TAB>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
+let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<Enter>']
+let g:ycm_key_list_previous_completion = ['<S-TAB>', '<Up>']
 let g:ycm_collect_identifiers_from_tags_files = 1
-let g:SuperTabDefaultCompletionType = '<C-Tab>'
+" let g:SuperTabDefaultCompletionType = '<C-Tab>'
 
 """ AUTOCMD
 augroup vimrc
@@ -453,6 +467,7 @@ augroup vimrc
   " commentary ft adjustments
   autocmd FileType coffee set commentstring=#\ %s
   autocmd FileType apache set commentstring=#\ %s
+  autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent
 
   " <f6> autocommand for running files
   autocmd FileType python nnoremap <buffer> <f5> :exec '!python' shellescape(@%, 1)<cr>
