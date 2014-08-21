@@ -310,7 +310,7 @@ if s:linux
     nnoremap <f6> :exec ":!wmctrl -a ". browser ." && xdotool key F5 && wmctrl -a ". terminal<CR><CR>
     let g:gist_clip_command = 'xclip -selection clipboard'
 else
-    nnoremap <f6> :!osascript -e 'tell application "Chrome"' -e 'reload active tab of window 1' -e 'end tell'<CR><CR>
+    nnoremap <f6> :!osascript -e 'tell application "Nightly"' -e 'reload active tab of window 1' -e 'end tell'<CR><CR>
     let g:gist_clip_command = 'pbcopy'
 endif
 
@@ -336,7 +336,7 @@ command! TogglePythonLength call <SID>TogglePythonLength()
 
 " focus
 function! <SID>Focus()
-  Goyo
+  Goyo 200
   Limelight!!
   Tmux set -g status
   set wrap!
@@ -476,6 +476,7 @@ augroup vimrc
   " <f6> autocommand for running files
   autocmd FileType python nnoremap <buffer> <f5> :exec '!python' shellescape(@%, 1)<cr>
   autocmd FileType sh nnoremap <buffer> <f5> :exec '!bash' shellescape(@%, 1)<cr>
+  autocmd FileType rust nnoremap <buffer> <f5> :exec '!rustc' shellescape(@%, 1)<cr>
 
   " When editing a file, always jump to the last cursor position
    autocmd BufReadPost *
