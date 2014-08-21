@@ -21,6 +21,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/seoul256.vim'
+Plug 'chriskempson/base16-vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/vim-emoji'
 Plug 'junegunn/vim-pseudocl'
@@ -288,7 +289,7 @@ else
   set background=dark
 endif
 
-" search. cs to replace. esc. n.n.n.n.
+" search. cw (or cs, c whatever) to replace/fix. esc. n.n.n.n.
 vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
     \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
 omap s :normal vs<CR>
@@ -412,6 +413,9 @@ let g:gist_post_private = 1
 
 " indentline
 let g:indentLine_enabled = 0
+
+" nerdtree
+let g:NERDTreeChDirMode = 2
 
 " php folding
 let g:DisableAutoPHPFolding = 1
