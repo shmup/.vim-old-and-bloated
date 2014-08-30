@@ -309,7 +309,7 @@ if s:linux
     nnoremap <f6> :exec ":!wmctrl -a ". browser ." && xdotool key F5 && wmctrl -a ". terminal<CR><CR>
     let g:gist_clip_command = 'xclip -selection clipboard'
 else
-    nnoremap <f6> :!osascript -e 'tell application "Nightly"' -e 'reload active tab of window 1' -e 'end tell'<CR><CR>
+    nnoremap <f6> :!osascript -e 'tell application browser -e 'reload active tab of window 1' -e 'end tell'<CR><CR>
     let g:gist_clip_command = 'pbcopy'
 endif
 
@@ -467,7 +467,7 @@ augroup vimrc
   " commentary ft adjustments
   autocmd FileType coffee set commentstring=#\ %s
   autocmd FileType apache set commentstring=#\ %s
-  autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent
+  autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
 
   " <f6> autocommand for running files
   autocmd FileType python nnoremap <buffer> <f5> :exec '!python' shellescape(@%, 1)<cr>
