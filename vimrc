@@ -53,6 +53,7 @@ Plug 'shawncplus/phpcomplete.vim'
 Plug 'shmup/phpfolding.vim'
 Plug 'vim-scripts/django.vim'
 Plug 'wting/rust.vim'
+Plug 'fatih/vim-go'
 
 " Edit
 Plug 'junegunn/vim-oblique'
@@ -311,7 +312,7 @@ if s:linux
     " nnoremap <f6> :exec ":!wmctrl -a ".browser." && xdotool key F5 && wmctrl -a ".terminal<CR><CR>
     let g:gist_clip_command = 'xclip -selection clipboard'
 else
-    nnoremap <f6> :!osascript -e 'tell application "Nightly"' -e 'reload active tab of window 1' -e 'end tell'<CR><CR>
+    nnoremap <f6> :!osascript -e 'tell application browser -e 'reload active tab of window 1' -e 'end tell'<CR><CR>
     let g:gist_clip_command = 'pbcopy'
 endif
 
@@ -477,13 +478,15 @@ augroup vimrc
   " commentary ft adjustments
   autocmd FileType coffee set commentstring=#\ %s
   autocmd FileType apache set commentstring=#\ %s
-  autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent
+  autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
 
   " <f5> autocommand for running files
   autocmd FileType python nnoremap <buffer> <f5> :exec '!python' shellescape(@%, 1)<cr>
   autocmd FileType sh nnoremap <buffer> <f5> :exec '!bash' shellescape(@%, 1)<cr>
   autocmd FileType rust nnoremap <buffer> <f5> :exec '!rustc' shellescape(@%, 1)<cr>
+  autocmd FileType rust nnoremap <buffer> <f5> :exec '!cargo run'<cr>
   autocmd FileType go nnoremap <buffer> <f5> :GoRun<cr>
+  autocmd FileType go nnoremap <buffer> <leader>b :GoBuild<cr>
 
   " When editing a file, always jump to the last cursor position
    autocmd BufReadPost *
