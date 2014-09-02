@@ -53,6 +53,7 @@ Plug 'shawncplus/phpcomplete.vim'
 Plug 'shmup/phpfolding.vim'
 Plug 'vim-scripts/django.vim'
 Plug 'wting/rust.vim'
+Plug 'fatih/vim-go'
 
 " Edit
 Plug 'junegunn/vim-oblique'
@@ -476,7 +477,9 @@ augroup vimrc
   " <f6> autocommand for running files
   autocmd FileType python nnoremap <buffer> <f5> :exec '!python' shellescape(@%, 1)<cr>
   autocmd FileType sh nnoremap <buffer> <f5> :exec '!bash' shellescape(@%, 1)<cr>
-  autocmd FileType rust nnoremap <buffer> <f5> :exec '!rustc' shellescape(@%, 1)<cr>
+  autocmd FileType rust nnoremap <buffer> <f5> :exec '!cargo run'<cr>
+  autocmd FileType go nnoremap <buffer> <f5> :GoRun<cr>
+  autocmd FileType go nnoremap <buffer> <leader>b :GoBuild<cr>
 
   " When editing a file, always jump to the last cursor position
    autocmd BufReadPost *
