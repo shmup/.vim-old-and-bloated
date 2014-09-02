@@ -54,6 +54,7 @@ Plug 'shmup/phpfolding.vim'
 Plug 'vim-scripts/django.vim'
 Plug 'wting/rust.vim'
 Plug 'fatih/vim-go'
+Plug 'wlue/vim-dm-syntax'
 
 " Edit
 Plug 'junegunn/vim-oblique'
