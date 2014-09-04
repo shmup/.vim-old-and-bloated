@@ -5,7 +5,7 @@ let os=substitute(system('uname'), '\n', '', '')
 if os == 'Darwin' || os == 'Mac'
     let s:linux = 0
     let browser='Chrome'
-    let terminal='iTerm2'
+    let terminal=':)'
 elseif os == 'Linux'
     let s:linux = 1
     let browser='Chromium'
@@ -54,6 +54,7 @@ Plug 'shmup/phpfolding.vim'
 Plug 'vim-scripts/django.vim'
 Plug 'wting/rust.vim'
 Plug 'fatih/vim-go'
+Plug 'wlue/vim-dm-syntax'
 
 " Edit
 Plug 'junegunn/vim-oblique'
@@ -308,7 +309,8 @@ nnoremap <f9> :buffers<CR>:buffer<Space>
 nnoremap <f1> <C-^>
 
 if s:linux
-    nnoremap <f6> :exec ":!wmctrl -a ". browser ." && xdotool key F5 && wmctrl -a ". terminal<CR><CR>
+    nnoremap <f6> :!wmctrl -a Chromium && xdotool key F5 && wmctrl -a ":)"<CR><CR>
+    " nnoremap <f6> :exec ":!wmctrl -a ".browser." && xdotool key F5 && wmctrl -a ".terminal<CR><CR>
     let g:gist_clip_command = 'xclip -selection clipboard'
 else
     nnoremap <f6> :!osascript -e 'tell application browser -e 'reload active tab of window 1' -e 'end tell'<CR><CR>
@@ -405,7 +407,7 @@ elseif !executable('ack')
 endif
 
 " vimwiki settings
-let g:vimwiki_list = [{'path': '~/Dropbox/Briefcase/vimwiki'}]
+let g:vimwiki_list = [{'path': '~/Dropbox/Public/briefcase/vimwiki'}]
 
 " Gist settings
 let g:gist_detect_filetype = 1
@@ -444,9 +446,8 @@ let g:ctrlp_working_path_mode = 'rca'
 " YouCompleteMe
 let g:ycm_register_as_syntastic_checker = 1
 let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<Enter>']
-let g:ycm_key_list_previous_completion = ['<S-TAB>', '<Up>']
+let g:ycm_key_list_previous_completion = ['<C-TAB>', '<Up>']
 let g:ycm_collect_identifiers_from_tags_files = 1
-" let g:SuperTabDefaultCompletionType = '<C-Tab>'
 
 """ AUTOCMD
 augroup vimrc
@@ -469,14 +470,21 @@ augroup vimrc
   autocmd BufWinLeave *.* mkview
   autocmd BufWinEnter *.* silent loadview
 
+  " If you prefer the Omni-Completion tip window to close when a selection is
+  " made, these lines close it on movement in insert mode or when leaving
+  " insert mode
+  " autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+  " autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
   " commentary ft adjustments
   autocmd FileType coffee set commentstring=#\ %s
   autocmd FileType apache set commentstring=#\ %s
   autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
 
-  " <f6> autocommand for running files
+  " <f5> autocommand for running files
   autocmd FileType python nnoremap <buffer> <f5> :exec '!python' shellescape(@%, 1)<cr>
   autocmd FileType sh nnoremap <buffer> <f5> :exec '!bash' shellescape(@%, 1)<cr>
+  autocmd FileType rust nnoremap <buffer> <f5> :exec '!rustc' shellescape(@%, 1)<cr>
   autocmd FileType rust nnoremap <buffer> <f5> :exec '!cargo run'<cr>
   autocmd FileType go nnoremap <buffer> <f5> :GoRun<cr>
   autocmd FileType go nnoremap <buffer> <leader>b :GoBuild<cr>
