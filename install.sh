@@ -24,3 +24,4 @@ if [ -d "$HOME/.vim/bundle/YouCompleteMe" ]; then
     cd $HOME/.vim/bundle/YouCompleteMe && ./install.sh --clang-completer
 fi
 
+ln -s $HOME/.vim/vimrc $HOME/.vimrc
