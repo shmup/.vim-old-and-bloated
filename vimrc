@@ -8,7 +8,7 @@ if os == 'Darwin' || os == 'Mac'
     let terminal=':)'
 elseif os == 'Linux'
     let s:linux = 1
-    let browser='Chromium'
+    let browser='Chrome'
     let terminal='terminus'
 endif
 
@@ -34,6 +34,7 @@ Plug 'tpope/vim-sensible'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer --omnisharp-completer' }
 Plug 'vim-scripts/matrix.vim--Yang'
 Plug 'vimwiki/vimwiki'
+Plug 'AndrewRadev/switch.vim'
 
 " Tmux
 Plug 'tpope/vim-tbone'
@@ -194,6 +195,9 @@ nnoremap Y y$
 noremap j gj
 noremap k gk
 
+" toggle boolean and other things
+nnoremap - :Switch<cr>
+
 " quick tab changing
 noremap <leader>1 1gt
 noremap <leader>2 2gt
@@ -270,6 +274,7 @@ map <leader>rn :!sudo service nginx restart<cr>
 map <leader>eh :e ~/Work/hosts<cr>
 map <leader>ev :e ~/.vim/vimrc<cr>
 map <leader>et :e ~/.tmux.conf<cr>
+map <leader>ep :e /etc/php5/apache2/php.ini<cr>
 map <leader>ec :e ~/Work/confs/
 map <F3> :mksession! ~/.vim/sessions/
 map <F4> :source ~/.vim/sessions/
@@ -309,7 +314,7 @@ nnoremap <f9> :buffers<CR>:buffer<Space>
 nnoremap <f1> <C-^>
 
 if s:linux
-    nnoremap <f6> :!wmctrl -a Chromium && xdotool key F5 && wmctrl -a ":)"<CR><CR>
+    nnoremap <f6> :!wmctrl -a Chrome && xdotool key F5 && wmctrl -a ":)"<CR><CR>
     " nnoremap <f6> :exec ":!wmctrl -a ".browser." && xdotool key F5 && wmctrl -a ".terminal<CR><CR>
     let g:gist_clip_command = 'xclip -selection clipboard'
 else
