@@ -397,6 +397,12 @@ function! <SID>ToggleBrowser()
 endfunction
 command! ToggleBrowser call <SID>ToggleBrowser()
 
+" Toggle Tmux Status
+function! <SID>ToggleTmuxStatus()
+  Tmux set -g status
+endfunction
+command! ToggleTmuxStatus call <SID>ToggleTmuxStatus()
+
 " Pretty HTML/XML
 " http://vim.wikia.com/wiki/Cleanup_your_HTML
 command! PrettyHtml :%!tidy -q -i --show-errors 0
@@ -493,6 +499,7 @@ augroup vimrc
   autocmd FileType rust nnoremap <buffer> <f5> :exec '!cargo run'<cr>
   autocmd FileType go nnoremap <buffer> <f5> :GoRun<cr>
   autocmd FileType go nnoremap <buffer> <leader>b :GoBuild<cr>
+  autocmd FileType go nnoremap <buffer> <leader>t :GoTest<cr>
 
   " When editing a file, always jump to the last cursor position
    autocmd BufReadPost *
