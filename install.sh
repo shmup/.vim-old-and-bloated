@@ -9,11 +9,7 @@ else
     ln -s "$PWD/vimrc" "$HOME/.vimrc"
 fi
 
-mkdir -p ~/.vim/autoload
-mkdir -p ~/.vim/undo
-mkdir -p ~/.vim/backup
-mkdir -p ~/.vim/swap
-mkdir -p ~/.vim/sessions
+mkdir -p $HOME/.vim/{autoload,undo,backup,swap,sessions,autoload}
 curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim
 
 echo "installing vim plugins"

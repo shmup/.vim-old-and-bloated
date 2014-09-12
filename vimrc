@@ -56,6 +56,7 @@ Plug 'vim-scripts/django.vim'
 Plug 'wting/rust.vim'
 Plug 'fatih/vim-go'
 Plug 'wlue/vim-dm-syntax'
+Plug 'PProvost/vim-ps1'
 
 " Edit
 Plug 'junegunn/vim-oblique'
@@ -100,11 +101,18 @@ set softtabstop=4                               " insert mode tab/backspace widt
 set shiftwidth=4                                " normal mode (auto)indent width
 set backspace=indent,eol,start
 
+" speed up syntax highlighting
+syntax sync minlines=256
+set synmaxcol=128
+set re=1
+
 " search
 set ignorecase                                  " case insensitive search
 set smartcase                                   " case-sensitive search if query contains caps
 set hlsearch                                    " highlight search results
 set incsearch                                   " search as you type
+
+set fileformats=unix,dos,mac                    " Prefer Unix over Windows over OS 9 formats
 
 " backup and undo files
 set nobackup
