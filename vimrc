@@ -204,7 +204,7 @@ noremap j gj
 noremap k gk
 
 " toggle boolean and other things
-nnoremap - :Switch<cr>
+nnoremap <leader>t :Switch<cr>
 
 " quick tab changing
 noremap <leader>1 1gt
