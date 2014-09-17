@@ -57,6 +57,7 @@ Plug 'wting/rust.vim'
 Plug 'fatih/vim-go'
 Plug 'wlue/vim-dm-syntax'
 Plug 'PProvost/vim-ps1'
+Plug 'shmup/vim-sql-syntax'
 
 " Edit
 Plug 'junegunn/vim-oblique'
@@ -165,7 +166,6 @@ set wildmode=longest:full
 set wildignorecase                              " ignore case in tab completion
 set wildignore+=Zend,local,*.pyc
 set wmh=0                                       " minimum window height
-
 set pastetoggle=<Ins>
 
 " Shift-tab on GNU screen
@@ -262,11 +262,10 @@ xmap <leader>S <Plug>Sneak_S
 omap <leader>s <Plug>Sneak_s
 omap <leader>S <Plug>Sneak_S
 
-nnoremap <leader>. :ctrlptag<cr>
+nnoremap <leader>. :CtrlPTag<cr>
 nnoremap <leader>f :FZF<cr>
 map <leader>n :NERDTreeToggle<CR>
 nmap <F8> :TagbarToggle<CR>
-map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 noremap <leader>0 :tablast<cr>
 nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
 nmap <leader>a :Ack!<space>
@@ -277,6 +276,7 @@ vmap <C-v> <Plug>(expand_region_shrink)
 vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
+map <silent> <leader>rv :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 map <leader>ra :!sudo service apache2 restart<cr><cr>
 map <leader>rn :!sudo service nginx restart<cr>
 map <leader>eh :e ~/Work/hosts<cr>
