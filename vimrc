@@ -22,7 +22,6 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/seoul256.vim'
 Plug 'chriskempson/base16-vim'
-Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/vim-emoji'
 Plug 'junegunn/vim-pseudocl'
 Plug 'justinmk/vim-sneak'
@@ -60,6 +59,8 @@ Plug 'PProvost/vim-ps1'
 Plug 'shmup/vim-sql-syntax'
 
 " Edit
+Plug 'junegunn/vim-easy-align'
+Plug 'godlygeek/tabular'
 Plug 'junegunn/vim-oblique'
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-commentary'
@@ -192,6 +193,9 @@ nmap <leader>cl :let @+=expand("%:p:h")<CR>
 
 " select last paste in visual mode
 nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
+
+" fu ex mode
+nnoremap Q <nop>
 
 " mapping for devices without easy <ESC>
 inoremap jj <ESC>
