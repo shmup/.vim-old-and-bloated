@@ -105,6 +105,7 @@ set backspace=indent,eol,start
 
 " speed up syntax highlighting
 syntax sync minlines=256
+let base16colorspace=256                        " Access colors present in 256 colorspace
 set synmaxcol=128
 set re=1
 
@@ -131,7 +132,7 @@ set undolevels=1000                             " number of undos to keep
 
 " editor setup
 set autochdir                                   " auto cd into dir that file is in
-set autoread                                        " watch for file changes
+set autoread                                    " watch for file changes
 set complete=.,w,b,u,U,t,i,d                    " do lots of scanning on tab completion
 if $TMUX == ''
     set clipboard+=unnamed
@@ -183,9 +184,6 @@ colorscheme seoul256
 
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
 vmap <Enter> <Plug>(EasyAlign)
-
-" Start interactive EasyAlign for a motion/text object (e.g. <Leader>aip)
-" nmap <Leader>a <Plug>(EasyAlign)
 
 " copy file name/file path to clipboard
 nmap <leader>cs :let @+=expand("%")<CR>
@@ -293,7 +291,7 @@ map <F4> :source ~/.vim/sessions/
 
 " GUI only things
 if has('gui_running')
-  set background=light
+  set background=dark
   set lines=50
   set columns=120
   set guioptions-=T         " removes main toolbar
@@ -302,7 +300,7 @@ if has('gui_running')
   if has("gui_macvim")
     set guifont=Monaco:h13
   else
-    set guifont=Inconsolata\ 10
+    set guifont=Fira\ Mono\ Medium\ 8
   endif
 else
   set background=dark
@@ -492,12 +490,6 @@ augroup vimrc
   " save dem folds
   autocmd BufWinLeave *.* mkview
   autocmd BufWinEnter *.* silent loadview
-
-  " If you prefer the Omni-Completion tip window to close when a selection is
-  " made, these lines close it on movement in insert mode or when leaving
-  " insert mode
-  " autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-  " autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
   " commentary ft adjustments
   autocmd FileType coffee set commentstring=#\ %s
