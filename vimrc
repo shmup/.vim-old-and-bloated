@@ -34,6 +34,7 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer --omnisha
 Plug 'vim-scripts/matrix.vim--Yang'
 Plug 'vimwiki/vimwiki'
 Plug 'AndrewRadev/switch.vim'
+Plug 'mtth/scratch.vim'
 
 " Tmux
 Plug 'tpope/vim-tbone'
@@ -49,6 +50,7 @@ Plug 'nvie/vim-flake8'
 Plug 'pangloss/vim-javascript'
 Plug 'plasticboy/vim-markdown',  { 'for': 'markdown' }
 Plug 'scrooloose/syntastic'
+Plug 'mephux/vim-jsfmt'
 Plug 'shawncplus/phpcomplete.vim'
 Plug 'shmup/phpfolding.vim'
 Plug 'vim-scripts/django.vim'
