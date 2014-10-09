@@ -29,7 +29,6 @@ Plug 'mattn/webapi-vim'
 Plug 'schickling/vim-bufonly'
 Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-obsession'
-Plug 'tpope/vim-sensible'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer --omnisharp-completer' }
 Plug 'vim-scripts/matrix.vim--Yang'
 Plug 'vimwiki/vimwiki'
@@ -140,6 +139,7 @@ if $TMUX == ''
     set clipboard+=unnamed
 endif
 set cursorline cursorcolumn                     " use cursor lines because theyre awesome
+set display+=lastline
 set encoding=utf-8                              " define char set
 set diffopt=filler,iwhite                       " ignore all whitespace and sync
 set encoding=utf-8
@@ -154,6 +154,7 @@ set noautowrite                                 " don't automagically write on :
 set nocompatible                                " vim, not vi
 set noerrorbells                                " No error bells please
 set nowrap                                      " Don't wrap lines by default
+set nrformats-=octal                            
 set number                                      " line numbers
 set ruler                                       " show the line number on the bar
 set scrolloff=5                                 " keep at least 5 lines above/below
@@ -163,6 +164,8 @@ set showmatch                                   " show matching bracket
 set showmode
 set sidescrolloff=5                             " keep at least 5 lines left/right
 set smarttab                                    " tab and backspace are smart
+set ttimeout
+set ttimeoutlen=100
 set ttyfast                                     " we havelet g:ctrlp_by_filename = 1 a fast terminal
 set updatecount=100                             " switch every 100 chars
 set wildmenu                                    " menu has tab completion
