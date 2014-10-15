@@ -445,6 +445,7 @@ let g:indentLine_enabled = 0
 
 " nerdtree
 let g:NERDTreeChDirMode = 2
+let NERDTreeIgnore = ['\.pyc$']
 
 " php folding
 let g:DisableAutoPHPFolding = 1
