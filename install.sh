@@ -2,7 +2,7 @@
 if [ "$PWD" != "$HOME/.vim" ]; then cd $HOME/.vim; fi
 
 if [ -f "$HOME/.vimrc" ]; then
-    echo "found an renaming the existing .vimrc"
+    echo "found and renaming the existing .vimrc"
     mv $HOME/.vimrc $HOME/.vimrc.old
 fi
 
@@ -11,5 +11,5 @@ mkdir -p $HOME/.vim/{autoload,undo,backup,swap,sessions,autoload}
 curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim
 
 echo "installing vim plugins"
-echo "ignore that it yells at you about missing colorscheme."
+echo "ignore that it yells at you about missing colorscheme"
 vim +PlugInstall
