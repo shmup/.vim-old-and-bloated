@@ -1,23 +1,15 @@
 #!/bin/sh
+if [ "$PWD" != "$HOME/.vim" ]; then cd $HOME/.vim; fi
 
-if [ "$PWD" != "$HOME/.vim" ]; then
-    echo "we aren't in $HOME/.vim"
-elif [ -f "$HOME/.vimrc" ]; then
-    echo "$HOME/.vimrc found"
-else
-    echo "linking $PWD/vimrc to $HOME/.vimrc"
-    ln -s "$PWD/vimrc" "$HOME/.vimrc"
+if [ -f "$HOME/.vimrc" ]; then
+    echo "found an renaming the existing .vimrc"
+    mv $HOME/.vimrc $HOME/.vimrc.old
 fi
 
+ln -s "$PWD/vimrc" "$HOME/.vimrc"
 mkdir -p $HOME/.vim/{autoload,undo,backup,swap,sessions,autoload}
 curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim
 
 echo "installing vim plugins"
+echo "ignore that it yells at you about missing colorscheme."
 vim +PlugInstall
-
-if [ -d "$HOME/.vim/bundle/YouCompleteMe" ]; then
-    echo "compiling YouCompleteMe with C language support"
-    cd $HOME/.vim/bundle/YouCompleteMe && ./install.sh --clang-completer
-fi
-
-ln -s $HOME/.vim/vimrc $HOME/.vimrc

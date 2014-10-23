@@ -1,6 +1,7 @@
 call plug#begin('~/.vim/plugged')
 
 let os=substitute(system('uname'), '\n', '', '')
+let g:plug_timeout = 10
 
 if os == 'Darwin' || os == 'Mac'
     let s:linux = 0
@@ -475,6 +476,10 @@ let g:ycm_register_as_syntastic_checker = 1
 let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<Enter>']
 let g:ycm_key_list_previous_completion = ['<C-TAB>', '<Up>']
 let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_use_ultisnips_completer = 1
+let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_complete_in_comments = 1
+let g:ycm_complete_in_strings = 1
 
 """ AUTOCMD
 augroup vimrc
