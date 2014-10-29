@@ -73,6 +73,7 @@ Plug 'tpope/vim-surround'
 Plug 'junegunn/fzf'
 Plug 'mileszs/ack.vim',     { 'on': 'Ack'            }
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'jeetsukumaran/vim-filebeagle'
 Plug 'Yggdroot/indentLine'
 if v:version >= 703
   Plug 'majutsushi/tagbar'
