@@ -46,6 +46,7 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'LokiChaos/vim-tintin'
 Plug 'lukaszkorecki/CoffeeTags'
 Plug 'mattn/emmet-vim'
+Plug 'tmhedberg/matchit'
 Plug 'nvie/vim-flake8'
 Plug 'pangloss/vim-javascript'
 Plug 'plasticboy/vim-markdown',  { 'for': 'markdown' }
@@ -505,6 +506,7 @@ augroup vimrc
 
   " commentary ft adjustments
   autocmd FileType coffee set commentstring=#\ %s
+  autocmd FileType htmldjango set commentstring={#\ %s\ #}
   autocmd FileType apache set commentstring=#\ %s
   autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
 
