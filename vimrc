@@ -16,6 +16,8 @@ endif
 let s:ag = executable('ag')
 
 """ PLUGINS
+Plug 'xolox/vim-reload'
+Plug 'xolox/vim-misc'
 Plug 'ap/vim-css-color'
 Plug 'bling/vim-airline'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -71,10 +73,10 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 
 " Browsing
-Plug 'junegunn/fzf'
 Plug 'mileszs/ack.vim',     { 'on': 'Ack'            }
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'jeetsukumaran/vim-filebeagle'
+Plug 'shmup/vim-v'
 Plug 'Yggdroot/indentLine'
 if v:version >= 703
   Plug 'majutsushi/tagbar'
@@ -185,6 +187,9 @@ set t_kB=[Z
 " editor styling
 set t_Co=256
 
+" V
+nnoremap <leader>v :V<CR>
+
 " dark (239-233) light (256-252)
 let g:seoul256_background = 235
 let g:seoul256_light_background = 256
@@ -273,7 +278,6 @@ omap <leader>s <Plug>Sneak_s
 omap <leader>S <Plug>Sneak_S
 
 nnoremap <leader>. :CtrlPTag<cr>
-nnoremap <leader>f :FZF<cr>
 map <leader>n :NERDTreeToggle<CR>
 nmap <F8> :TagbarToggle<CR>
 noremap <leader>0 :tablast<cr>
@@ -445,6 +449,11 @@ let g:gist_post_private = 1
 
 " indentline
 let g:indentLine_enabled = 0
+let g:indentLine_char = '┊'
+
+" gitgutter
+nmap [h <Plug>GitGutterPrevHunk
+nmap ]h <Plug>GitGutterNextHunk
 
 " nerdtree
 let g:NERDTreeChDirMode = 2
