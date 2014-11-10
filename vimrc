@@ -16,6 +16,7 @@ endif
 let s:ag = executable('ag')
 
 """ PLUGINS
+Plug 'yegappan/mru'
 Plug 'xolox/vim-reload'
 Plug 'xolox/vim-misc'
 Plug 'ap/vim-css-color'
@@ -187,8 +188,8 @@ set t_kB=[Z
 " editor styling
 set t_Co=256
 
-" V
-nnoremap <leader>v :V<CR>
+" MRU
+nnoremap <leader>v :MRU<CR>
 
 " dark (239-233) light (256-252)
 let g:seoul256_background = 235
