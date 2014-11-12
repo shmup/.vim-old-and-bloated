@@ -16,70 +16,72 @@ endif
 let s:ag = executable('ag')
 
 """ PLUGINS
-Plug 'yegappan/mru'
-Plug 'xolox/vim-reload'
-Plug 'xolox/vim-misc'
+Plug 'AndrewRadev/switch.vim'
 Plug 'ap/vim-css-color'
 Plug 'bling/vim-airline'
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'chriskempson/base16-vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/seoul256.vim'
-Plug 'chriskempson/base16-vim'
-Plug 'junegunn/vim-emoji'
 Plug 'junegunn/vim-pseudocl'
 Plug 'justinmk/vim-sneak'
 Plug 'mattn/webapi-vim'
+Plug 'mtth/scratch.vim'
 Plug 'schickling/vim-bufonly'
 Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-obsession'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer --omnisharp-completer' }
 Plug 'vim-scripts/matrix.vim--Yang'
 Plug 'vimwiki/vimwiki'
-Plug 'AndrewRadev/switch.vim'
-Plug 'mtth/scratch.vim'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-reload'
+if !s:linux
+  Plug 'junegunn/vim-emoji'
+  Plug 'zerowidth/vim-copy-as-rtf'
+endif
 
 " Tmux
 Plug 'tpope/vim-tbone'
 
 " Lang
 Plug 'captbaritone/better-indent-support-for-php-with-html'
+Plug 'fatih/vim-go'
 Plug 'jmcantrell/vim-virtualenv'
 Plug 'kchmck/vim-coffee-script'
 Plug 'LokiChaos/vim-tintin'
 Plug 'lukaszkorecki/CoffeeTags'
 Plug 'mattn/emmet-vim'
-Plug 'tmhedberg/matchit'
+Plug 'mephux/vim-jsfmt'
 Plug 'nvie/vim-flake8'
 Plug 'pangloss/vim-javascript'
 Plug 'plasticboy/vim-markdown',  { 'for': 'markdown' }
+Plug 'PProvost/vim-ps1'
 Plug 'scrooloose/syntastic'
-Plug 'mephux/vim-jsfmt'
 Plug 'shawncplus/phpcomplete.vim'
 Plug 'shmup/phpfolding.vim'
-Plug 'vim-scripts/django.vim'
-Plug 'wting/rust.vim'
-Plug 'fatih/vim-go'
-Plug 'wlue/vim-dm-syntax'
-Plug 'PProvost/vim-ps1'
 Plug 'shmup/vim-sql-syntax'
+Plug 'tmhedberg/matchit'
+Plug 'vim-scripts/django.vim'
+Plug 'wlue/vim-dm-syntax'
+Plug 'wting/rust.vim'
 
 " Edit
-Plug 'junegunn/vim-easy-align'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'godlygeek/tabular'
+Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/vim-oblique'
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-eunuch'
 
 " Browsing
+Plug 'jeetsukumaran/vim-filebeagle'
 Plug 'mileszs/ack.vim',     { 'on': 'Ack'            }
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'jeetsukumaran/vim-filebeagle'
 Plug 'shmup/vim-v'
-Plug 'Yggdroot/indentLine'
+Plug 'yegappan/mru'
 if v:version >= 703
   Plug 'majutsushi/tagbar'
 endif
@@ -92,10 +94,6 @@ if v:version >= 703
   Plug 'airblade/vim-gitgutter'
 else
   Plug 'mhinz/vim-signify'
-endif
-
-if !s:linux
-  Plug 'zerowidth/vim-copy-as-rtf'
 endif
 
 call plug#end()
@@ -123,8 +121,6 @@ set smartcase                                   " case-sensitive search if query
 set hlsearch                                    " highlight search results
 set incsearch                                   " search as you type
 
-set fileformats=unix,dos,mac                    " Prefer Unix over Windows over OS 9 formats
-
 " backup and undo files
 set nobackup
 set nowritebackup
@@ -150,6 +146,7 @@ set display+=lastline
 set encoding=utf-8                              " define char set
 set diffopt=filler,iwhite                       " ignore all whitespace and sync
 set encoding=utf-8
+set fileformats=unix,dos,mac                    " Prefer Unix over Windows over OS 9 formats
 set hidden                                      " automatically hide buffers with unsaved changes
 set history=10000
 set laststatus=2
@@ -178,7 +175,7 @@ set updatecount=100                             " switch every 100 chars
 set wildmenu                                    " menu has tab completion
 set wildmode=longest:full
 set wildignorecase                              " ignore case in tab completion
-set wildignore+=Zend,local,*.pyc
+set wildignore+=*.pyc
 set wmh=0                                       " minimum window height
 set pastetoggle=<Ins>
 
@@ -188,14 +185,13 @@ set t_kB=[Z
     
 " editor styling
 set t_Co=256
+set background=dark
+let g:seoul256_background = 235 " dark (239-233), light (256-252)
+let g:seoul256_light_background = 256
+colorscheme seoul256
 
 " MRU
 nnoremap <leader>v :CtrlPMRUFiles<CR>
-
-" dark (239-233) light (256-252)
-let g:seoul256_background = 235
-let g:seoul256_light_background = 256
-colorscheme seoul256
 
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
 vmap <Enter> <Plug>(EasyAlign)
@@ -264,9 +260,6 @@ nnoremap <BS> gg
 " sudo write
 cmap w!! w !sudo tee > /dev/null %
 
-" Matrix
-nnoremap <leader>m :Matrix<cr>
-
 " Better use of arrows
 nnoremap <silent> <Right> :bnext<CR>
 nnoremap <silent> <Left> :bprev<CR>
@@ -279,7 +272,9 @@ xmap <leader>S <Plug>Sneak_S
 omap <leader>s <Plug>Sneak_s
 omap <leader>S <Plug>Sneak_S
 
+" Random bindings
 nnoremap <leader>. :CtrlPTag<cr>
+nnoremap <leader>m :Matrix<cr>
 map <leader>n :NERDTreeToggle<CR>
 nmap <F8> :TagbarToggle<CR>
 noremap <leader>0 :tablast<cr>
@@ -305,7 +300,6 @@ map <F4> :source ~/.vim/sessions/
 
 " GUI only things
 if has('gui_running')
-  set background=dark
   set lines=50
   set columns=120
   set guioptions-=T         " removes main toolbar
@@ -316,8 +310,6 @@ if has('gui_running')
   else
     set guifont=Fira\ Mono\ Medium\ 8
   endif
-else
-  set background=dark
 endif
 
 " search. cw (or cs, c whatever) to replace/fix. esc. n.n.n.n.
@@ -452,10 +444,6 @@ let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1
 let g:gist_post_private = 1
 
-" indentline
-let g:indentLine_enabled = 0
-let g:indentLine_char = '┊'
-
 " gitgutter
 nmap [h <Plug>GitGutterPrevHunk
 nmap ]h <Plug>GitGutterNextHunk
@@ -479,9 +467,6 @@ silent! if emoji#available()
   let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
   let g:gitgutter_sign_modified_removed = emoji#for('collision')
 endif
-
-" indentline
-let g:indentLine_enabled = 0
 
 " ctrlp
 let g:ctrlp_follow_symlinks = 1
