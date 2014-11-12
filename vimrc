@@ -72,6 +72,7 @@ Plug 'mbbill/undotree'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-eunuch'
 
 " Browsing
 Plug 'mileszs/ack.vim',     { 'on': 'Ack'            }
@@ -189,7 +190,7 @@ set t_kB=[Z
 set t_Co=256
 
 " MRU
-nnoremap <leader>v :MRU<CR>
+nnoremap <leader>v :CtrlPMRUFiles<CR>
 
 " dark (239-233) light (256-252)
 let g:seoul256_background = 235
@@ -439,6 +440,9 @@ if s:ag
 elseif !executable('ack')
   let g:ackprg = 'grep -rn "$*" * \| sed "s/:\([0-9]*\):/:\1:1:/" '
 endif
+
+" airline 
+let g:airline_section_c = '%F'  " full file path on active file
 
 " vimwiki settings
 let g:vimwiki_list = [{'path': '~/Dropbox/Public/briefcase/vimwiki'}]
