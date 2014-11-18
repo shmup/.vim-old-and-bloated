@@ -29,6 +29,7 @@ Plug 'mtth/scratch.vim'
 Plug 'schickling/vim-bufonly'
 Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-obsession'
+Plug 'kien/rainbow_parentheses.vim'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer --omnisharp-completer' }
 Plug 'vim-scripts/matrix.vim--Yang'
 Plug 'vimwiki/vimwiki'
@@ -434,6 +435,7 @@ endif
 
 " airline 
 let g:airline_section_c = '%F'  " full file path on active file
+let g:airline#extensions#tabline#enabled = 1
 
 " vimwiki settings
 let g:vimwiki_list = [{'path': '~/Dropbox/Public/briefcase/vimwiki'}]
