@@ -2,6 +2,7 @@ call plug#begin('~/.vim/plugged')
 
 let os=substitute(system('uname'), '\n', '', '')
 let g:plug_timeout = 10
+let s:ag = executable('ag')
 
 if os == 'Darwin' || os == 'Mac'
     let s:linux = 0
@@ -12,8 +13,6 @@ elseif os == 'Linux'
     let browser='Chrome'
     let terminal='terminus'
 endif
-
-let s:ag = executable('ag')
 
 """ PLUGINS
 Plug 'AndrewRadev/switch.vim'
