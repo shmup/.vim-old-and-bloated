@@ -16,6 +16,7 @@ endif
 
 """ PLUGINS
 Plug 'AndrewRadev/switch.vim'
+Plug 'justinmk/vim-gtfo'
 Plug 'ap/vim-css-color'
 Plug 'bling/vim-airline'
 Plug 'chriskempson/base16-vim'
@@ -24,6 +25,7 @@ Plug 'junegunn/limelight.vim'
 Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/vim-pseudocl'
 Plug 'justinmk/vim-sneak'
+Plug 'justinmk/vim-gtfo'
 Plug 'mattn/webapi-vim'
 Plug 'mtth/scratch.vim'
 Plug 'schickling/vim-bufonly'
@@ -435,7 +437,7 @@ endif
 
 " airline 
 let g:airline_section_c = '%F'  " full file path on active file
-let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#enabled = 1
 
 " vimwiki settings
 let g:vimwiki_list = [{'path': '~/Dropbox/Public/briefcase/vimwiki'}]
