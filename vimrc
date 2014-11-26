@@ -2,6 +2,7 @@ call plug#begin('~/.vim/plugged')
 
 let os=substitute(system('uname'), '\n', '', '')
 let g:plug_timeout = 10
+let s:ag = executable('ag')
 
 if os == 'Darwin' || os == 'Mac'
     let s:linux = 0
@@ -13,10 +14,9 @@ elseif os == 'Linux'
     let terminal='terminus'
 endif
 
-let s:ag = executable('ag')
-
 """ PLUGINS
 Plug 'AndrewRadev/switch.vim'
+Plug 'justinmk/vim-gtfo'
 Plug 'ap/vim-css-color'
 Plug 'bling/vim-airline'
 Plug 'chriskempson/base16-vim'
@@ -25,6 +25,7 @@ Plug 'junegunn/limelight.vim'
 Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/vim-pseudocl'
 Plug 'justinmk/vim-sneak'
+Plug 'justinmk/vim-gtfo'
 Plug 'mattn/webapi-vim'
 Plug 'mtth/scratch.vim'
 Plug 'schickling/vim-bufonly'
