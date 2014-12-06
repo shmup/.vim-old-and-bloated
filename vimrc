@@ -68,6 +68,7 @@ Plug 'tmhedberg/matchit'
 Plug 'vim-scripts/django.vim'
 Plug 'wlue/vim-dm-syntax'
 Plug 'wting/rust.vim'
+Plug 'Slava/vim-spacebars'
 
 " Edit
 Plug 'ctrlpvim/ctrlp.vim'
@@ -442,7 +443,7 @@ endif
 
 " airline 
 let g:airline_section_c = '%F'  " full file path on active file
-" let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 0
 
 " vimwiki settings
 let g:vimwiki_list = [{'path': '~/Dropbox/Public/briefcase/vimwiki'}]
