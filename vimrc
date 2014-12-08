@@ -337,7 +337,7 @@ if s:linux
     " nnoremap <f6> :exec ":!wmctrl -a ".browser." && xdotool key F5 && wmctrl -a ".terminal<CR><CR>
     let g:gist_clip_command = 'xclip -selection clipboard'
 else
-    nnoremap <f6> :!osascript -e 'tell application browser -e 'reload active tab of window 1' -e 'end tell'<CR><CR>
+    nnoremap <f6> :!osascript -e 'tell application FirefoxDeveloperEdition -e 'reload active tab of window 1' -e 'end tell'<CR><CR>
     let g:gist_clip_command = 'pbcopy'
 endif
 
