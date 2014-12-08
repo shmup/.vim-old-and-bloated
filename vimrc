@@ -52,6 +52,7 @@ Plug 'jmcantrell/vim-virtualenv'
 Plug 'kchmck/vim-coffee-script'
 Plug 'LokiChaos/vim-tintin'
 Plug 'lukaszkorecki/CoffeeTags'
+Plug 'marijnh/tern_for_vim'
 Plug 'mattn/emmet-vim'
 Plug 'mephux/vim-jsfmt'
 Plug 'nvie/vim-flake8'
@@ -62,6 +63,7 @@ Plug 'scrooloose/syntastic'
 Plug 'shawncplus/phpcomplete.vim'
 Plug 'shmup/phpfolding.vim'
 Plug 'shmup/vim-sql-syntax'
+Plug 'Slava/vim-spacebars'
 Plug 'tmhedberg/matchit'
 Plug 'vim-scripts/django.vim'
 Plug 'wlue/vim-dm-syntax'
@@ -113,6 +115,7 @@ set shiftwidth=4                                " normal mode (auto)indent width
 set backspace=indent,eol,start
 
 " speed up syntax highlighting
+syntax on
 syntax sync minlines=256
 let base16colorspace=256                        " Access colors present in 256 colorspace
 set synmaxcol=128
@@ -192,6 +195,8 @@ set background=dark
 let g:seoul256_background = 235 " dark (239-233), light (256-252)
 let g:seoul256_light_background = 256
 colorscheme seoul256
+
+let g:tern_show_argument_hints = 'on_move'
 
 " MRU
 nnoremap <leader>v :CtrlPMRUFiles<CR>
