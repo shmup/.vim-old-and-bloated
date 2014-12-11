@@ -5,8 +5,8 @@ augroup filetypedetect
     au BufNewFile,BufRead *.js set ts=2         | set sw=2 | set sts=2 | setf javascript
     au BufNewFile,BufRead *.py set ts=4         | set sw=4 | set sts=4 | setf python | set autoindent
     au BufNewFile,BufRead *.php set ts=4        | set sw=4 | set sts=4 | setf php | set autoindent
-    au BufNewFile,BufRead *.html set ts=4       | set sw=4 | set sts=4 | setf html | set autoindent
-    au BufNewFile,BufRead *.htmldjango set ts=4 | set sw=4 | set sts=4 | setf html | set autoindent
+    au BufNewFile,BufRead *.html set ts=2       | set sw=2 | set sts=2 | setf html | set autoindent
+    au BufNewFile,BufRead *.htmldjango set ts=2 | set sw=2 | set sts=2 | setf html | set autoindent
     au BufNewFile,BufRead *.spacebars set ts=2   | set sw=2 | set sts=2 | setf html | set autoindent
     au BufNewFile,BufRead *.wiki set wrap
 
