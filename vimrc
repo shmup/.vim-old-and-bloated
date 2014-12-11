@@ -65,12 +65,14 @@ Plug 'scrooloose/syntastic'
 Plug 'shawncplus/phpcomplete.vim'
 Plug 'shmup/phpfolding.vim'
 Plug 'shmup/vim-sql-syntax'
+Plug 'Slava/tern-meteor'
 Plug 'Slava/vim-spacebars'
+Plug 'Slava/vim-spacebars'
+Plug 'StanAngeloff/php.vim'
 Plug 'tmhedberg/matchit'
 Plug 'vim-scripts/django.vim'
 Plug 'wlue/vim-dm-syntax'
 Plug 'wting/rust.vim'
-Plug 'Slava/vim-spacebars'
 
 " Edit
 Plug 'ctrlpvim/ctrlp.vim'
@@ -120,7 +122,7 @@ set backspace=indent,eol,start
 syntax on
 syntax sync minlines=256
 let base16colorspace=256                        " Access colors present in 256 colorspace
-set synmaxcol=128
+set synmaxcol=500
 set re=1
 
 " search
