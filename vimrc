@@ -153,7 +153,6 @@ if $TMUX == ''
 endif
 set cursorline cursorcolumn                     " use cursor lines because theyre awesome
 set display+=lastline
-set encoding=utf-8                              " define char set
 set diffopt=filler,iwhite                       " ignore all whitespace and sync
 set encoding=utf-8
 set fileformats=unix,dos,mac                    " Prefer Unix over Windows over OS 9 formats
