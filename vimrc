@@ -165,7 +165,7 @@ set noautowrite                                 " don't automagically write on :
 set nocompatible                                " vim, not vi
 set noerrorbells                                " No error bells please
 set nowrap                                      " Don't wrap lines by default
-set nrformats-=octal                            
+set nrformats-=octal
 set number                                      " line numbers
 set ruler                                       " show the line number on the bar
 set scrolloff=5                                 " keep at least 5 lines above/below
@@ -189,7 +189,7 @@ set pastetoggle=<Ins>
 " Shift-tab on GNU screen
 " http://superuser.com/questions/195794/gnu-screen-shift-tab-issue
 set t_kB=[Z
-    
+
 " editor styling
 set t_Co=256
 set background=dark
@@ -442,10 +442,14 @@ elseif !executable('ack')
   let g:ackprg = 'grep -rn "$*" * \| sed "s/:\([0-9]*\):/:\1:1:/" '
 endif
 
-" airline 
+" airline
 let g:airline_section_c = '%F'  " full file path on active file
 let g:airline#extensions#tabline#enabled = 0
 let g:airline_powerline_fonts=1
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
 
 " vimwiki settings
 let g:vimwiki_list = [{'path': '~/Dropbox/Public/briefcase/vimwiki'}]
