@@ -445,6 +445,7 @@ endif
 " airline 
 let g:airline_section_c = '%F'  " full file path on active file
 let g:airline#extensions#tabline#enabled = 0
+let g:airline_powerline_fonts=1
 
 " vimwiki settings
 let g:vimwiki_list = [{'path': '~/Dropbox/Public/briefcase/vimwiki'}]
