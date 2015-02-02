@@ -15,6 +15,9 @@ elseif os == 'Linux'
 endif
 
 """ PLUGINS
+Plug 'OrangeT/vim-csharp'
+Plug 'marijnh/tern_for_vim'
+Plug 'Slava/tern-meteor'
 Plug 'AndrewRadev/switch.vim'
 Plug 'justinmk/vim-gtfo'
 Plug 'ap/vim-css-color'

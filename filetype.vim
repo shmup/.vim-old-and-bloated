@@ -6,6 +6,7 @@ augroup filetypedetect
     au BufNewFile,BufRead *.py set ts=4         | set sw=4 | set sts=4 | setf python | set autoindent
     au BufNewFile,BufRead *.php set ts=4        | set sw=4 | set sts=4 | setf php | set autoindent
     au BufNewFile,BufRead *.html set ts=2       | set sw=2 | set sts=2 | setf html | set autoindent
+    au BufNewFile,BufRead *.cshtml set ts=4       | set sw=4 | set sts=4 | setf html | set autoindent
     au BufNewFile,BufRead *.htmldjango set ts=2 | set sw=2 | set sts=2 | setf html | set autoindent
     au BufNewFile,BufRead *.spacebars set ts=2   | set sw=2 | set sts=2 | setf html | set autoindent
     au BufNewFile,BufRead *.wiki set wrap
@@ -15,18 +16,18 @@ augroup filetypedetect
     au  BufNewFile,BufRead *.html   call FThtml()
 
     func! FThtml()
-    let n = 1
-    while n < 10 && n < line("$")
-      if getline(n) =~ '\<DTD\s\+XHTML\s'
-        setf xhtml
-        return
-      endif
-      if getline(n) =~ '{%\|{{\|{#'
-        setf htmldjango
-        return
-      endif
-      let n = n + 1
-    endwhile
-    setf html
+        let n = 1
+        while n < 10 && n < line("$")
+            if getline(n) =~ '\<DTD\s\+XHTML\s'
+                setf xhtml
+                return
+            endif
+            if getline(n) =~ '{%\|{{\|{#'
+                setf htmldjango
+                return
+            endif
+            let n = n + 1
+        endwhile
+        setf html
     endfunc
 augroup END
