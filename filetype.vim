@@ -9,6 +9,8 @@ augroup filetypedetect
     au BufNewFile,BufRead *.htmldjango set ts=2 | set sw=2 | set sts=2 | setf html | set autoindent
     au BufNewFile,BufRead *.spacebars set ts=2   | set sw=2 | set sts=2 | setf html | set autoindent
     au BufNewFile,BufRead *.wiki set wrap
+    au BufRead,BufNewFile *.es6 setfiletype javascript
+
 
     " removes current htmldjango detection located at $VIMRUNTIME/filetype.vim
     au! BufNewFile,BufRead *.html
