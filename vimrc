@@ -118,6 +118,9 @@ set tabstop=4                                   " actual tab width
 set softtabstop=4                               " insert mode tab/backspace width
 set shiftwidth=4                                " normal mode (auto)indent width
 set backspace=indent,eol,start
+set foldmethod=syntax
+set foldlevelstart=1
+let javaScript_fold=1
 
 " speed up syntax highlighting
 syntax on
