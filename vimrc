@@ -15,6 +15,7 @@ elseif os == 'Linux'
 endif
 
 """ PLUGINS
+Plug 'mephux/vim-jsfmt'
 Plug 'AndrewRadev/switch.vim'
 Plug 'bling/vim-airline'
 Plug 'chriskempson/base16-vim'
@@ -32,6 +33,7 @@ Plug 'schickling/vim-bufonly'
 Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-obsession'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer --omnisharp-completer' }
+" Plug 'marijnh/tern_for_vim'
 Plug 'vim-scripts/matrix.vim--Yang'
 Plug 'vimwiki/vimwiki'
 Plug 'xolox/vim-misc'
@@ -54,7 +56,7 @@ Plug 'jmcantrell/vim-virtualenv'
 Plug 'kchmck/vim-coffee-script'
 Plug 'LokiChaos/vim-tintin'
 Plug 'lukaszkorecki/CoffeeTags'
-Plug 'marijnh/tern_for_vim'
+" Plug 'marijnh/tern_for_vim'
 Plug 'mattn/emmet-vim'
 Plug 'mephux/vim-jsfmt'
 Plug 'nvie/vim-flake8'
@@ -67,7 +69,7 @@ Plug 'scrooloose/syntastic'
 Plug 'shawncplus/phpcomplete.vim'
 Plug 'shmup/phpfolding.vim'
 Plug 'shmup/vim-sql-syntax'
-Plug 'Slava/tern-meteor'
+" Plug 'Slava/tern-meteor'
 Plug 'Slava/vim-spacebars'
 Plug 'StanAngeloff/php.vim'
 Plug 'tmhedberg/matchit'
@@ -208,6 +210,9 @@ let g:tern_show_argument_hints = 'on_move'
 " MRU
 nnoremap <leader>v :CtrlPMRUFiles<CR>
 
+" No register delete
+nnoremap <leader>dd "_dd
+
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
 vmap <Enter> <Plug>(EasyAlign)
 
@@ -307,6 +312,7 @@ map <leader>ra :!sudo service apache2 restart<cr><cr>
 map <leader>rn :!sudo service nginx restart<cr>
 map <leader>eh :e ~/Work/hosts<cr>
 map <leader>ev :e ~/.vim/vimrc<cr>
+map <leader>ef :e ~/.vim/filetype.vim<cr>
 map <leader>et :e ~/.tmux.conf<cr>
 map <leader>ep :e /etc/php5/apache2/php.ini<cr>
 map <leader>ec :e ~/Work/confs/
@@ -459,6 +465,9 @@ let g:airline_right_alt_sep = ''
 
 " vimwiki settings
 let g:vimwiki_list = [{'path': '~/Dropbox/Public/briefcase/vimwiki'}]
+
+" jsfmt
+let g:js_fmt_fail_silently = 1
 
 " Gist settings
 let g:gist_detect_filetype = 1
