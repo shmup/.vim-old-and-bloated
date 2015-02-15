@@ -15,18 +15,13 @@ elseif os == 'Linux'
 endif
 
 """ PLUGINS
-Plug 'mephux/vim-jsfmt'
 Plug 'AndrewRadev/switch.vim'
 Plug 'bling/vim-airline'
-Plug 'chriskempson/base16-vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/vim-pseudocl'
 Plug 'justinmk/vim-gtfo'
-Plug 'justinmk/vim-gtfo'
-Plug 'justinmk/vim-sneak'
-Plug 'kien/rainbow_parentheses.vim'
 Plug 'mattn/webapi-vim'
 Plug 'mtth/scratch.vim'
 Plug 'schickling/vim-bufonly'
@@ -47,39 +42,43 @@ endif
 Plug 'tpope/vim-tbone'
 
 " Lang
-Plug 'ap/vim-css-color'
-Plug 'captbaritone/better-indent-support-for-php-with-html'
-Plug 'fatih/vim-go'
-Plug 'groenewege/vim-less'
-Plug 'hail2u/vim-css3-syntax'
-Plug 'jmcantrell/vim-virtualenv'
-Plug 'kchmck/vim-coffee-script'
-Plug 'LokiChaos/vim-tintin'
-Plug 'lukaszkorecki/CoffeeTags'
-" Plug 'marijnh/tern_for_vim'
-Plug 'mattn/emmet-vim'
-Plug 'mephux/vim-jsfmt'
-Plug 'nvie/vim-flake8'
-Plug 'OrangeT/vim-csharp'
-Plug 'othree/html5.vim'
-Plug 'pangloss/vim-javascript'
-Plug 'plasticboy/vim-markdown',  { 'for': 'markdown' }
-Plug 'PProvost/vim-ps1'
 Plug 'scrooloose/syntastic'
+Plug 'captbaritone/better-indent-support-for-php-with-html'
 Plug 'shawncplus/phpcomplete.vim'
 Plug 'shmup/phpfolding.vim'
-Plug 'shmup/vim-sql-syntax'
-" Plug 'Slava/tern-meteor'
-Plug 'Slava/vim-spacebars'
 Plug 'StanAngeloff/php.vim'
-Plug 'tmhedberg/matchit'
+Plug 'fatih/vim-go'
+Plug 'jmcantrell/vim-virtualenv'
+Plug 'LokiChaos/vim-tintin'
+Plug 'lukaszkorecki/CoffeeTags'
+Plug 'mattn/emmet-vim'
+Plug 'nvie/vim-flake8'
+Plug 'OrangeT/vim-csharp'
+Plug 'plasticboy/vim-markdown',  { 'for': 'markdown' }
+Plug 'PProvost/vim-ps1'
+Plug 'shmup/vim-sql-syntax'
+Plug 'Slava/vim-spacebars'
 Plug 'vim-scripts/django.vim'
 Plug 'wlue/vim-dm-syntax'
 Plug 'wting/rust.vim'
 
+" JavaScript
+Plug 'kchmck/vim-coffee-script'
+Plug 'mephux/vim-jsfmt'
+Plug 'pangloss/vim-javascript'
+" Plug 'marijnh/tern_for_vim'
+" Plug 'Slava/tern-meteor'
+
+" HTML/CSS
+Plug 'groenewege/vim-less'
+Plug 'ap/vim-css-color'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'othree/html5.vim'
+
 " Edit
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'godlygeek/tabular'
+Plug 'tmhedberg/matchit'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/vim-oblique'
 Plug 'mbbill/undotree'
@@ -87,12 +86,14 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+Plug 'justinmk/vim-sneak'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'tpope/vim-unimpaired'
 
 " Browsing
 Plug 'jeetsukumaran/vim-filebeagle'
 Plug 'mileszs/ack.vim',     { 'on': 'Ack'            }
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'shmup/vim-v'
 Plug 'yegappan/mru'
 if v:version >= 703
   Plug 'majutsushi/tagbar'
@@ -136,6 +137,9 @@ set ignorecase                                  " case insensitive search
 set smartcase                                   " case-sensitive search if query contains caps
 set hlsearch                                    " highlight search results
 set incsearch                                   " search as you type
+
+" dictionary
+set dictionary+=~/.vim/dict/*
 
 " backup and undo files
 set nobackup
@@ -511,6 +515,16 @@ let g:ycm_use_ultisnips_completer = 1
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_complete_in_comments = 1
 let g:ycm_complete_in_strings = 1
+
+" syntastic
+let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_html_tidy_ignore_errors = [
+    \"trimming empty <i>",
+    \"trimming empty <span>",
+    \"<input> proprietary attribute \"autocomplete\"",
+    \"proprietary attribute \"role\"",
+    \"proprietary attribute \"hidden\"",
+\]
 
 """ AUTOCMD
 augroup vimrc
