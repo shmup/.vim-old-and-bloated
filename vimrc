@@ -56,7 +56,6 @@ Plug 'jmcantrell/vim-virtualenv'
 Plug 'kchmck/vim-coffee-script'
 Plug 'LokiChaos/vim-tintin'
 Plug 'lukaszkorecki/CoffeeTags'
-" Plug 'marijnh/tern_for_vim'
 Plug 'mattn/emmet-vim'
 Plug 'mephux/vim-jsfmt'
 Plug 'nvie/vim-flake8'
@@ -207,8 +206,9 @@ colorscheme seoul256
 
 let g:tern_show_argument_hints = 'on_move'
 
-" MRU
+" ctrlp
 nnoremap <leader>v :CtrlPMRUFiles<CR>
+nnoremap <leader>b :CtrlPBuffer<CR>
 
 " No register delete
 nnoremap <leader>dd "_dd
@@ -274,8 +274,10 @@ else
 endif
 
 " return and backspace hacks
-nnoremap <CR> G
-nnoremap <BS> gg
+" I commented these out because often I'll miss a command before hitting <return> and so it just
+" does a G instead, taking me to the bottom of the window, forcing me to ctrl-o to return :)
+" nnoremap <CR> G
+" nnoremap <BS> gg
 
 " sudo write
 cmap w!! w !sudo tee > /dev/null %
