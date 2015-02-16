@@ -6,12 +6,12 @@ augroup filetypedetect
     au BufNewFile,BufRead *.py set ts=4         | set sw=4 | set sts=4 | setf python | set autoindent
     au BufNewFile,BufRead *.php set ts=4        | set sw=4 | set sts=4 | setf php | set autoindent
     au BufNewFile,BufRead *.html set ts=2       | set sw=2 | set sts=2 | setf html | set autoindent
-    au BufNewFile,BufRead *.cshtml set ts=4       | set sw=4 | set sts=4 | setf html | set autoindent
+    au BufNewFile,BufRead *.cshtml set ts=4     | set sw=4 | set sts=4 | setf html | set autoindent
     au BufNewFile,BufRead *.htmldjango set ts=2 | set sw=2 | set sts=2 | setf html | set autoindent
-    au BufNewFile,BufRead *.spacebars set ts=2   | set sw=2 | set sts=2 | setf html | set autoindent
+    au BufNewFile,BufRead *.spacebars set ts=2  | set sw=2 | set sts=2 | setf html | set autoindent
     au BufNewFile,BufRead *.wiki set wrap
-    au BufRead,BufNewFile *.es6 setfiletype javascript
-
+    au BufNewFile,BufRead *.es6 set ts=2        | set sw=2 | set sts=2 | setf javascript
+    au FileType javascript setlocal omnifunc=tern#Complete
 
     " removes current htmldjango detection located at $VIMRUNTIME/filetype.vim
     au! BufNewFile,BufRead *.html
