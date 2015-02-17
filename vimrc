@@ -28,7 +28,6 @@ Plug 'schickling/vim-bufonly'
 Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-obsession'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer --omnisharp-completer' }
-" Plug 'marijnh/tern_for_vim'
 Plug 'vim-scripts/matrix.vim--Yang'
 Plug 'vimwiki/vimwiki'
 Plug 'xolox/vim-misc'
