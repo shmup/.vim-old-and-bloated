@@ -15,23 +15,18 @@ elseif os == 'Linux'
 endif
 
 """ PLUGINS
-Plug 'AndrewRadev/switch.vim'
+Plug 'junegunn/seoul256.vim'
+Plug 'junegunn/vim-peekaboo'
 Plug 'bling/vim-airline'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
-Plug 'junegunn/seoul256.vim'
-Plug 'junegunn/vim-pseudocl'
 Plug 'justinmk/vim-gtfo'
-Plug 'mattn/webapi-vim'
-Plug 'mtth/scratch.vim'
 Plug 'schickling/vim-bufonly'
 Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-obsession'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer --omnisharp-completer' }
 Plug 'vim-scripts/matrix.vim--Yang'
 Plug 'vimwiki/vimwiki'
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-reload'
 if !s:linux
   Plug 'junegunn/vim-emoji'
   Plug 'zerowidth/vim-copy-as-rtf'
@@ -76,9 +71,11 @@ Plug 'othree/html5.vim'
 
 " Edit
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'AndrewRadev/switch.vim'
 Plug 'godlygeek/tabular'
 Plug 'tmhedberg/matchit'
 Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/vim-pseudocl'
 Plug 'junegunn/vim-oblique'
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-commentary'
