@@ -59,7 +59,9 @@ Plug 'wting/rust.vim'
 " JavaScript
 Plug 'kchmck/vim-coffee-script'
 Plug 'mephux/vim-jsfmt'
-Plug 'pangloss/vim-javascript'
+Plug 'othree/yajs.vim'
+Plug 'othree/javascript-libraries-syntax.vim'
+" Plug 'pangloss/vim-javascript'
 " Plug 'marijnh/tern_for_vim'
 " Plug 'Slava/tern-meteor'
 
@@ -517,12 +519,17 @@ let g:ycm_complete_in_strings = 1
 
 " syntastic
 let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_json_checkers=['jsonlint']
+let g:syntastic_html_tidy_ignore_errors = [
+    \  '<html> attribute "lang" lacks value'
+    \ ]
 let g:syntastic_html_tidy_ignore_errors = [
     \"trimming empty <i>",
     \"trimming empty <span>",
-    \"<input> proprietary attribute \"autocomplete\"",
-    \"proprietary attribute \"role\"",
-    \"proprietary attribute \"hidden\"",
+    \" proprietary attribute ",
+    \" lacks \"action\" ",
+    \"is not recognized!",
+    \"discarding unexpected"
 \]
 
 """ AUTOCMD
