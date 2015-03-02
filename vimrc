@@ -6,11 +6,9 @@ let s:ag = executable('ag')
 
 if os == 'Darwin' || os == 'Mac'
     let s:linux = 0
-    let browser='Chrome'
     let terminal=':)'
 elseif os == 'Linux'
     let s:linux = 1
-    let browser='Chrome'
     let terminal='terminus'
 endif
 
@@ -345,7 +343,6 @@ nnoremap <f1> <C-^>
 
 if s:linux
     nnoremap <f6> :!wmctrl -a Chrome && xdotool key F5 && wmctrl -a ":)"<CR><CR>
-    " nnoremap <f6> :exec ":!wmctrl -a ".browser." && xdotool key F5 && wmctrl -a ".terminal<CR><CR>
     let g:gist_clip_command = 'xclip -selection clipboard'
 else
     nnoremap <f6> :!osascript -e 'tell application FirefoxDeveloperEdition -e 'reload active tab of window 1' -e 'end tell'<CR><CR>
@@ -420,12 +417,6 @@ command! ToggleBackground call <SID>ToggleBackground()
 " Pretty JSON
 " https://coderwall.com/p/faceag
 command! PrettyJSON %!python -m json.tool
-
-" Toggle Browser
-function! <SID>ToggleBrowser()
-  echo s:browsers[0]
-endfunction
-command! ToggleBrowser call <SID>ToggleBrowser()
 
 " Toggle Tmux Status
 function! <SID>ToggleTmuxStatus()
@@ -545,7 +536,6 @@ augroup vimrc
   autocmd FileType coffee set commentstring=#\ %s
   autocmd FileType htmldjango set commentstring={#\ %s\ #}
   autocmd FileType apache set commentstring=#\ %s
-  autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
 
   " <f5> autocommand for running files
   autocmd FileType python nnoremap <buffer> <f5> :exec '!python' shellescape(@%, 1)<cr>
