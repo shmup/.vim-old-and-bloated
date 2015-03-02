@@ -61,9 +61,6 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'mephux/vim-jsfmt'
 Plug 'othree/yajs.vim'
 Plug 'othree/javascript-libraries-syntax.vim'
-" Plug 'pangloss/vim-javascript'
-" Plug 'marijnh/tern_for_vim'
-" Plug 'Slava/tern-meteor'
 
 " HTML/CSS
 Plug 'groenewege/vim-less'
@@ -260,21 +257,12 @@ map <C-k> <C-w>k
 map <C-l> <C-w>l
 
 " clipboard things
-if s:linux
-  vmap <Leader>y "+y
-  vmap <Leader>d "+d
-  nmap <Leader>p "+p
-  nmap <Leader>P "+P
-  vmap <Leader>p "+p
-  vmap <Leader>P "+P
-else
-  " clipboard
-  vnoremap <C-c> "*y
-  " <C-V><C-V> Paste clipboard content
-  inoremap <C-V><C-V> <c-o>"*P
-  " Clipboard-RTF
-  vnoremap <S-c> <esc>:colo seoul256-light<cr>gv:CopyRTF<cr>:colo seoul256<cr>
-endif
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
 
 " return and backspace hacks
 " I commented these out because often I'll miss a command before hitting <return> and so it just
