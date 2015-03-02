@@ -1,16 +1,17 @@
-call plug#begin('~/.vim/plugged')
+" ============================================================================
+" " .vimrc of Jared Tyler Miller
+" ============================================================================
+
+let s:darwin = has('mac')
+
+" ============================================================================
+" VIM-PLUG BLOCK
+" ============================================================================
+
+silent! if plug#begin('~/.vim/plugged')
 
 let os=substitute(system('uname'), '\n', '', '')
 let g:plug_timeout = 10
-let s:ag = executable('ag')
-
-if os == 'Darwin' || os == 'Mac'
-    let s:linux = 0
-    let terminal=':)'
-elseif os == 'Linux'
-    let s:linux = 1
-    let terminal='terminus'
-endif
 
 """ PLUGINS
 Plug 'junegunn/seoul256.vim'
@@ -25,7 +26,7 @@ Plug 'tpope/vim-obsession'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer --omnisharp-completer' }
 Plug 'vim-scripts/matrix.vim--Yang'
 Plug 'vimwiki/vimwiki'
-if !s:linux
+if s:darwin
   Plug 'junegunn/vim-emoji'
   Plug 'zerowidth/vim-copy-as-rtf'
 endif
@@ -83,7 +84,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'justinmk/vim-sneak'
-Plug 'kien/rainbow_parentheses.vim'
+Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'tpope/vim-unimpaired'
 
 " Browsing
@@ -106,8 +107,12 @@ else
 endif
 
 call plug#end()
+endif
 
-""" BASIC
+" ============================================================================
+" Basic settings
+" ============================================================================
+
 let mapleader = "\<Space>"
 
 " code formatting
@@ -206,6 +211,14 @@ let g:seoul256_light_background = 256
 colorscheme seoul256
 
 let g:tern_show_argument_hints = 'on_move'
+
+" ============================================================================
+" MAPPINGS
+" ============================================================================
+
+" ----------------------------------------------------------------------------
+" Basic mappings
+" ----------------------------------------------------------------------------
 
 " ctrlp
 nnoremap <leader>v :CtrlPMRUFiles<CR>
@@ -344,15 +357,17 @@ nnoremap <f9> :buffers<CR>:buffer<Space>
 " <f1> same as CTRL-g
 nnoremap <f1> <C-^>
 
-if s:linux
-    nnoremap <f6> :!wmctrl -a Chrome && xdotool key F5 && wmctrl -a ":)"<CR><CR>
-    let g:gist_clip_command = 'xclip -selection clipboard'
-else
+if s:darwin
     nnoremap <f6> :!osascript -e 'tell application FirefoxDeveloperEdition -e 'reload active tab of window 1' -e 'end tell'<CR><CR>
     let g:gist_clip_command = 'pbcopy'
+else
+    nnoremap <f6> :!wmctrl -a Chrome && xdotool key F5 && wmctrl -a ":)"<CR><CR>
+    let g:gist_clip_command = 'xclip -selection clipboard'
 endif
 
-""" Functions & Commands
+" ============================================================================
+" FUNCTIONS & COMMANDS
+" ============================================================================
 
 " syntastic/flake8
 " http://learnvimscriptthehardway.stevelosh.com/chapters/38.html (Toggling)
@@ -432,9 +447,11 @@ command! ToggleTmuxStatus call <SID>ToggleTmuxStatus()
 command! PrettyHtml :%!tidy -q -i --show-errors 0
 command! PrettyXml  :%!tidy -q -i --show-errors 0 -xml
 
-""" PLUGIN SETTINGS
+" ============================================================================
+" PLUGINS
+" ============================================================================
 
-if s:ag
+if executable('ag')
   let g:ackprg = 'ag --nogroup --nocolor --column'
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 elseif !executable('ack')
@@ -514,7 +531,10 @@ let g:syntastic_html_tidy_ignore_errors = [
     \"discarding unexpected"
 \]
 
-""" AUTOCMD
+" ============================================================================
+" AUTOCMD
+" ============================================================================
+
 augroup vimrc
   autocmd!
 
