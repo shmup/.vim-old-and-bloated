@@ -1,0 +1,122 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+filetypedetect	filetype.vim	/^augroup filetypedetect$/;"	a
+FThtml	filetype.vim	/^    func! FThtml()$/;"	f
+g:loaded_plug	autoload/plug.vim	/^let g:loaded_plug = 1$/;"	v
+s:cpo_save	autoload/plug.vim	/^let s:cpo_save = &cpo$/;"	v
+s:plug_src	autoload/plug.vim	/^let s:plug_src = 'https:\/\/raw.githubusercontent.com\/junegunn\/vim-plug\/master\/plug.vim'$/;"	v
+s:plug_tab	autoload/plug.vim	/^let s:plug_tab = get(s:, 'plug_tab', -1)$/;"	v
+s:plug_buf	autoload/plug.vim	/^let s:plug_buf = get(s:, 'plug_buf', -1)$/;"	v
+s:mac_gui	autoload/plug.vim	/^let s:mac_gui = has('gui_macvim') && has('gui_running')$/;"	v
+s:is_win	autoload/plug.vim	/^let s:is_win = has('win32') || has('win64')$/;"	v
+s:nvim	autoload/plug.vim	/^let s:nvim = has('nvim') && !s:is_win$/;"	v
+s:me	autoload/plug.vim	/^let s:me = resolve(expand('<sfile>:p'))$/;"	v
+s:base_spec	autoload/plug.vim	/^let s:base_spec = { 'branch': 'master', 'frozen': 0 }$/;"	v
+s:TYPE	autoload/plug.vim	/^let s:TYPE = {$/;"	v
+s:loaded	autoload/plug.vim	/^let s:loaded = get(s:, 'loaded', {})$/;"	v
+s:triggers	autoload/plug.vim	/^let s:triggers = get(s:, 'triggers', {})$/;"	v
+plug#begin	autoload/plug.vim	/^function! plug#begin(...)$/;"	f
+define_commands	autoload/plug.vim	/^function! s:define_commands()$/;"	f
+to_a	autoload/plug.vim	/^function! s:to_a(v)$/;"	f
+to_s	autoload/plug.vim	/^function! s:to_s(v)$/;"	f
+source	autoload/plug.vim	/^function! s:source(from, ...)$/;"	f
+assoc	autoload/plug.vim	/^function! s:assoc(dict, key, val)$/;"	f
+plug#end	autoload/plug.vim	/^function! plug#end()$/;"	f
+loaded_names	autoload/plug.vim	/^function! s:loaded_names()$/;"	f
+reload	autoload/plug.vim	/^function! s:reload()$/;"	f
+trim	autoload/plug.vim	/^function! s:trim(str)$/;"	f
+rtp	autoload/plug.vim	/^  function! s:rtp(spec)$/;"	f
+path	autoload/plug.vim	/^  function! s:path(path)$/;"	f
+dirpath	autoload/plug.vim	/^  function! s:dirpath(path)$/;"	f
+is_local_plug	autoload/plug.vim	/^  function! s:is_local_plug(repo)$/;"	f
+rtp	autoload/plug.vim	/^  function! s:rtp(spec)$/;"	f
+path	autoload/plug.vim	/^  function! s:path(path)$/;"	f
+dirpath	autoload/plug.vim	/^  function! s:dirpath(path)$/;"	f
+is_local_plug	autoload/plug.vim	/^  function! s:is_local_plug(repo)$/;"	f
+err	autoload/plug.vim	/^function! s:err(msg)$/;"	f
+esc	autoload/plug.vim	/^function! s:esc(path)$/;"	f
+escrtp	autoload/plug.vim	/^function! s:escrtp(path)$/;"	f
+remove_rtp	autoload/plug.vim	/^function! s:remove_rtp()$/;"	f
+reorg_rtp	autoload/plug.vim	/^function! s:reorg_rtp()$/;"	f
+plug#load	autoload/plug.vim	/^function! plug#load(...)$/;"	f
+remove_triggers	autoload/plug.vim	/^function! s:remove_triggers(name)$/;"	f
+lod	autoload/plug.vim	/^function! s:lod(names, types)$/;"	f
+lod_ft	autoload/plug.vim	/^function! s:lod_ft(pat, names)$/;"	f
+lod_cmd	autoload/plug.vim	/^function! s:lod_cmd(cmd, bang, l1, l2, args, names)$/;"	f
+lod_map	autoload/plug.vim	/^function! s:lod_map(map, names, prefix)$/;"	f
+add	autoload/plug.vim	/^function! s:add(repo, ...)$/;"	f
+parse_options	autoload/plug.vim	/^function! s:parse_options(arg)$/;"	f
+infer_properties	autoload/plug.vim	/^function! s:infer_properties(name, repo)$/;"	f
+install	autoload/plug.vim	/^function! s:install(force, names)$/;"	f
+update	autoload/plug.vim	/^function! s:update(force, names)$/;"	f
+plug#helptags	autoload/plug.vim	/^function! plug#helptags()$/;"	f
+syntax	autoload/plug.vim	/^function! s:syntax()$/;"	f
+lpad	autoload/plug.vim	/^function! s:lpad(str, len)$/;"	f
+lines	autoload/plug.vim	/^function! s:lines(msg)$/;"	f
+lastline	autoload/plug.vim	/^function! s:lastline(msg)$/;"	f
+new_window	autoload/plug.vim	/^function! s:new_window()$/;"	f
+plug_window_exists	autoload/plug.vim	/^function! s:plug_window_exists()$/;"	f
+switch_in	autoload/plug.vim	/^function! s:switch_in()$/;"	f
+switch_out	autoload/plug.vim	/^function! s:switch_out(...)$/;"	f
+prepare	autoload/plug.vim	/^function! s:prepare()$/;"	f
+assign_name	autoload/plug.vim	/^function! s:assign_name()$/;"	f
+do	autoload/plug.vim	/^function! s:do(pull, force, todo)$/;"	f
+finish	autoload/plug.vim	/^function! s:finish(pull)$/;"	f
+retry	autoload/plug.vim	/^function! s:retry()$/;"	f
+is_managed	autoload/plug.vim	/^function! s:is_managed(name)$/;"	f
+names	autoload/plug.vim	/^function! s:names(...)$/;"	f
+update_impl	autoload/plug.vim	/^function! s:update_impl(pull, force, args) abort$/;"	f
+update_finish	autoload/plug.vim	/^function! s:update_finish()$/;"	f
+job_abort	autoload/plug.vim	/^function! s:job_abort()$/;"	f
+job_handler	autoload/plug.vim	/^function! s:job_handler(name) abort$/;"	f
+spawn	autoload/plug.vim	/^function! s:spawn(name, cmd, opts)$/;"	f
+reap	autoload/plug.vim	/^function! s:reap(name)$/;"	f
+bar	autoload/plug.vim	/^function! s:bar()$/;"	f
+logpos	autoload/plug.vim	/^function! s:logpos(name)$/;"	f
+log	autoload/plug.vim	/^function! s:log(bullet, name, lines)$/;"	f
+update_vim	autoload/plug.vim	/^function! s:update_vim()$/;"	f
+tick	autoload/plug.vim	/^function! s:tick()$/;"	f
+update_ruby	autoload/plug.vim	/^function! s:update_ruby()$/;"	f
+shellesc	autoload/plug.vim	/^function! s:shellesc(arg)$/;"	f
+glob_dir	autoload/plug.vim	/^function! s:glob_dir(path)$/;"	f
+progress_bar	autoload/plug.vim	/^function! s:progress_bar(line, bar, total)$/;"	f
+compare_git_uri	autoload/plug.vim	/^function! s:compare_git_uri(a, b)$/;"	f
+format_message	autoload/plug.vim	/^function! s:format_message(bullet, name, message)$/;"	f
+with_cd	autoload/plug.vim	/^function! s:with_cd(cmd, dir)$/;"	f
+system	autoload/plug.vim	/^function! s:system(cmd, ...)$/;"	f
+system_chomp	autoload/plug.vim	/^function! s:system_chomp(...)$/;"	f
+git_valid	autoload/plug.vim	/^function! s:git_valid(spec, check_branch)$/;"	f
+clean	autoload/plug.vim	/^function! s:clean(force)$/;"	f
+upgrade	autoload/plug.vim	/^function! s:upgrade()$/;"	f
+upgrade_using_ruby	autoload/plug.vim	/^function! s:upgrade_using_ruby(new)$/;"	f
+upgrade_specs	autoload/plug.vim	/^function! s:upgrade_specs()$/;"	f
+status	autoload/plug.vim	/^function! s:status()$/;"	f
+extract_name	autoload/plug.vim	/^function! s:extract_name(str, prefix, suffix)$/;"	f
+status_load	autoload/plug.vim	/^function! s:status_load(lnum)$/;"	f
+status_update	autoload/plug.vim	/^function! s:status_update() range$/;"	f
+is_preview_window_open	autoload/plug.vim	/^function! s:is_preview_window_open()$/;"	f
+find_name	autoload/plug.vim	/^function! s:find_name(lnum)$/;"	f
+preview_commit	autoload/plug.vim	/^function! s:preview_commit()$/;"	f
+section	autoload/plug.vim	/^function! s:section(flags)$/;"	f
+diff	autoload/plug.vim	/^function! s:diff()$/;"	f
+revert	autoload/plug.vim	/^function! s:revert()$/;"	f
+snapshot	autoload/plug.vim	/^function! s:snapshot(...) abort$/;"	f
+split_rtp	autoload/plug.vim	/^function! s:split_rtp()$/;"	f
+s:first_rtp	autoload/plug.vim	/^let s:first_rtp = s:escrtp(get(s:split_rtp(), 0, ''))$/;"	v
+s:last_rtp	autoload/plug.vim	/^let s:last_rtp  = s:escrtp(get(s:split_rtp(), -1, ''))$/;"	v
+g:plugs_order	autoload/plug.vim	/^  let g:plugs_order = get(g:, 'plugs_order', keys(g:plugs))$/;"	v
+window.fbAsyncInit	undo/%home%jared%Sites%piratestories%mockup-scorecard.php	/^/;"	j
+fbAsyncInit	undo/%home%jared%Sites%piratestories%mockup-scorecard.php	/^/;"	j
+window.fbAsyncInit	undo/%home%jared%Sites%piratestories%mockup-scorecard.php	/^        };/;"	j
+fbAsyncInit	undo/%home%jared%Sites%piratestories%mockup-scorecard.php	/^        };/;"	j
+window.fbAsyncInit	undo/%home%jared%Sites%piratestories%mockup-scorecard.php	/^/;"	j
+fbAsyncInit	undo/%home%jared%Sites%piratestories%mockup-scorecard.php	/^/;"	j
+window.fbAsyncInit	undo/%home%jared%Sites%piratestories%mockup-scorecard.php	/^/;"	j
+fbAsyncInit	undo/%home%jared%Sites%piratestories%mockup-scorecard.php	/^/;"	j
+iterations	undo/%home%jared%temp.go	/^VimŸUnDoå/;"	v
+change	undo/%home%jared%Sites%piratestories%scorecard.php	/^VimŸUnDoå/;"	j
+window.fbAsyncInit	undo/%home%jared%Sites%piratestories%scorecard.php	/^VimŸUnD
