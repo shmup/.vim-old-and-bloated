@@ -10,7 +10,6 @@ let s:darwin = has('mac')
 
 silent! if plug#begin('~/.vim/plugged')
 
-let os=substitute(system('uname'), '\n', '', '')
 let g:plug_timeout = 10
 
 """ PLUGINS
@@ -52,7 +51,7 @@ Plug 'shmup/vim-sql-syntax'
 Plug 'Slava/vim-spacebars'
 Plug 'vim-scripts/django.vim'
 Plug 'wlue/vim-dm-syntax'
-Plug 'wting/rust.vim'
+Plug 'wting/rust.vim', { 'for': 'rust' }
 
 " JavaScript
 Plug 'kchmck/vim-coffee-script'
@@ -60,7 +59,7 @@ Plug 'mephux/vim-jsfmt'
 Plug 'othree/yajs.vim'
 Plug 'othree/javascript-libraries-syntax.vim'
 " Plug 'lukaszkorecki/CoffeeTags'
-" Plug 'pangloss/vim-javascript'
+Plug 'pangloss/vim-javascript'
 " Plug 'marijnh/tern_for_vim'
 " Plug 'Slava/tern-meteor'
 
@@ -459,6 +458,7 @@ elseif !executable('ack')
 endif
 
 " airline
+let b:javascript_fold = 1
 let g:airline_section_c = '%F'  " full file path on active file
 let g:airline#extensions#tabline#enabled = 0
 let g:airline_powerline_fonts=1
