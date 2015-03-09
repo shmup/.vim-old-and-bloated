@@ -10,13 +10,13 @@ let s:darwin = has('mac')
 
 silent! if plug#begin('~/.vim/plugged')
 
-let os=substitute(system('uname'), '\n', '', '')
 let g:plug_timeout = 10
 
 """ PLUGINS
 Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/vim-peekaboo'
 Plug 'bling/vim-airline'
+Plug 'tpope/vim-dispatch'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'justinmk/vim-gtfo'
@@ -52,15 +52,15 @@ Plug 'shmup/vim-sql-syntax'
 Plug 'Slava/vim-spacebars'
 Plug 'vim-scripts/django.vim'
 Plug 'wlue/vim-dm-syntax'
-Plug 'wting/rust.vim'
+Plug 'wting/rust.vim', { 'for': 'rust' }
 
 " JavaScript
 Plug 'kchmck/vim-coffee-script'
 Plug 'mephux/vim-jsfmt'
 Plug 'othree/yajs.vim'
 Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'pangloss/vim-javascript'
 " Plug 'lukaszkorecki/CoffeeTags'
-" Plug 'pangloss/vim-javascript'
 " Plug 'marijnh/tern_for_vim'
 " Plug 'Slava/tern-meteor'
 
@@ -84,7 +84,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'justinmk/vim-sneak'
-Plug 'junegunn/rainbow_parentheses.vim'
+" Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'tpope/vim-unimpaired'
 
 " Browsing
@@ -158,7 +158,8 @@ set undolevels=1000                             " number of undos to keep
 " editor setup
 set autochdir                                   " auto cd into dir that file is in
 set autoread                                    " watch for file changes
-set complete=.,w,b,u,U,t,i,d                    " do lots of scanning on tab completion
+" set complete=.,w,b,u,U,t,i,d                    " do lots of scanning on tab completion
+set complete-=i
 if $TMUX == ''
     set clipboard+=unnamed
 endif
@@ -547,9 +548,17 @@ augroup vimrc
 
   " markdown gets wrapped
   au BufNewFile,BufRead *.md,*.markdown set wrap
+  au BufNewFile,BufReadPost *.md set filetype=markdown
+  let g:markdown_fenced_languages = ['coffee', 'css', 'erb=eruby', 'javascript', 'js=javascript', 'json=javascript', 'python', 'ruby', 'sass', 'xml', 'html']
 
   " python thing
   au! FileType python setl nosmartindent
+
+  " Activate it by default
+  " autocmd VimEnter * RainbowParentheses
+
+  " Use octodown as default build command for Markdown files
+  " autocmd FileType markdown let b:dispatch = 'octodown --live-reload %'
 
   " save dem folds
   autocmd BufWinLeave *.* mkview
