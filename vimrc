@@ -16,6 +16,8 @@ let g:plug_timeout = 10
 Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/vim-peekaboo'
 Plug 'bling/vim-airline'
+Plug 'mattn/webapi-vim'
+Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'tpope/vim-dispatch'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
@@ -84,7 +86,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'justinmk/vim-sneak'
-" Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'tpope/vim-unimpaired'
 
 " Browsing
@@ -124,7 +126,7 @@ set shiftwidth=4                                " normal mode (auto)indent width
 set backspace=indent,eol,start
 set foldmethod=syntax
 set foldlevelstart=1
-let javaScript_fold=1
+let javascript_fold=1
 
 " speed up syntax highlighting
 syntax on
@@ -454,7 +456,14 @@ command! PrettyXml  :%!tidy -q -i --show-errors 0 -xml
 
 if executable('ag')
   let g:ackprg = 'ag --nogroup --nocolor --column'
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+        \ --ignore .git
+        \ --ignore .svn
+        \ --ignore .hg
+        \ --ignore .DS_Store
+        \ --ignore "**/*.pyc"
+        \ -g ""'
+
 elseif !executable('ack')
   let g:ackprg = 'grep -rn "$*" * \| sed "s/:\([0-9]*\):/:\1:1:/" '
 endif
@@ -506,6 +515,7 @@ endif
 " ctrlp
 let g:ctrlp_follow_symlinks = 1
 let g:ctrlp_working_path_mode = 'rca'
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 
 " YouCompleteMe
 let g:ycm_register_as_syntastic_checker = 1
