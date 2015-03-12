@@ -16,6 +16,9 @@ let g:plug_timeout = 10
 Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/vim-peekaboo'
 Plug 'bling/vim-airline'
+Plug 'mattn/webapi-vim'
+Plug 'FelikZ/ctrlp-py-matcher'
+Plug 'tpope/vim-dispatch'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'justinmk/vim-gtfo'
@@ -58,8 +61,8 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'mephux/vim-jsfmt'
 Plug 'othree/yajs.vim'
 Plug 'othree/javascript-libraries-syntax.vim'
-" Plug 'lukaszkorecki/CoffeeTags'
 Plug 'pangloss/vim-javascript'
+" Plug 'lukaszkorecki/CoffeeTags'
 " Plug 'marijnh/tern_for_vim'
 " Plug 'Slava/tern-meteor'
 
@@ -123,7 +126,7 @@ set shiftwidth=4                                " normal mode (auto)indent width
 set backspace=indent,eol,start
 set foldmethod=syntax
 set foldlevelstart=1
-let javaScript_fold=1
+let javascript_fold=1
 
 " speed up syntax highlighting
 syntax on
@@ -157,7 +160,8 @@ set undolevels=1000                             " number of undos to keep
 " editor setup
 set autochdir                                   " auto cd into dir that file is in
 set autoread                                    " watch for file changes
-set complete=.,w,b,u,U,t,i,d                    " do lots of scanning on tab completion
+" set complete=.,w,b,u,U,t,i,d                    " do lots of scanning on tab completion
+set complete-=i
 if $TMUX == ''
     set clipboard+=unnamed
 endif
@@ -452,7 +456,14 @@ command! PrettyXml  :%!tidy -q -i --show-errors 0 -xml
 
 if executable('ag')
   let g:ackprg = 'ag --nogroup --nocolor --column'
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+        \ --ignore .git
+        \ --ignore .svn
+        \ --ignore .hg
+        \ --ignore .DS_Store
+        \ --ignore "**/*.pyc"
+        \ -g ""'
+
 elseif !executable('ack')
   let g:ackprg = 'grep -rn "$*" * \| sed "s/:\([0-9]*\):/:\1:1:/" '
 endif
@@ -505,6 +516,7 @@ endif
 " ctrlp
 let g:ctrlp_follow_symlinks = 1
 let g:ctrlp_working_path_mode = 'rca'
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 
 " YouCompleteMe
 let g:ycm_register_as_syntastic_checker = 1
@@ -547,9 +559,17 @@ augroup vimrc
 
   " markdown gets wrapped
   au BufNewFile,BufRead *.md,*.markdown set wrap
+  au BufNewFile,BufReadPost *.md set filetype=markdown
+  let g:markdown_fenced_languages = ['coffee', 'css', 'erb=eruby', 'javascript', 'js=javascript', 'json=javascript', 'python', 'ruby', 'sass', 'xml', 'html']
 
   " python thing
   au! FileType python setl nosmartindent
+
+  " Activate it by default
+  " autocmd VimEnter * RainbowParentheses
+
+  " Use octodown as default build command for Markdown files
+  " autocmd FileType markdown let b:dispatch = 'octodown --live-reload %'
 
   " save dem folds
   autocmd BufWinLeave *.* mkview
