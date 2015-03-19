@@ -14,20 +14,20 @@ let g:plug_timeout = 10
 
 """ PLUGINS
 Plug 'junegunn/seoul256.vim'
+Plug 'shmup/crawl.vim'
 Plug 'junegunn/vim-peekaboo'
 Plug 'bling/vim-airline'
 Plug 'mattn/webapi-vim'
-Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'tpope/vim-dispatch'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'justinmk/vim-gtfo'
 Plug 'schickling/vim-bufonly'
-Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-obsession'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer --omnisharp-completer' }
 Plug 'vim-scripts/matrix.vim--Yang'
 Plug 'vimwiki/vimwiki'
+Plug 'airblade/vim-rooter'
 if s:darwin
   Plug 'junegunn/vim-emoji'
   Plug 'zerowidth/vim-copy-as-rtf'
@@ -52,7 +52,7 @@ Plug 'plasticboy/vim-markdown',  { 'for': 'markdown' }
 Plug 'PProvost/vim-ps1'
 Plug 'shmup/vim-sql-syntax'
 Plug 'Slava/vim-spacebars'
-Plug 'vim-scripts/django.vim'
+" Plug 'vim-scripts/django.vim'
 Plug 'wlue/vim-dm-syntax'
 Plug 'wting/rust.vim', { 'for': 'rust' }
 
@@ -74,6 +74,8 @@ Plug 'othree/html5.vim'
 
 " Edit
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'FelikZ/ctrlp-py-matcher'
+Plug 'terryma/vim-expand-region'
 Plug 'AndrewRadev/switch.vim'
 Plug 'godlygeek/tabular'
 Plug 'tmhedberg/matchit'
@@ -177,6 +179,7 @@ set lazyredraw                                  " don't redraw when don't have t
 set linebreak
 set more                                        " use more prompt
 set mouse+=a
+set noautochdir                                 " https://github.com/airblade/vim-rooter
 set noautowrite                                 " don't automagically write on :next
 set nocompatible                                " vim, not vi
 set noerrorbells                                " No error bells please
@@ -455,6 +458,7 @@ command! PrettyXml  :%!tidy -q -i --show-errors 0 -xml
 " ============================================================================
 
 if executable('ag')
+  " let g:ackprg = 'ag --vimgrep'
   let g:ackprg = 'ag --nogroup --nocolor --column'
   let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
         \ --ignore .git
@@ -491,6 +495,7 @@ let g:gist_post_private = 1
 " gitgutter
 nmap [h <Plug>GitGutterPrevHunk
 nmap ]h <Plug>GitGutterNextHunk
+let g:gitgutter_max_signs = 3000
 
 " nerdtree
 let g:NERDTreeChDirMode = 2
@@ -578,6 +583,7 @@ augroup vimrc
   autocmd FileType coffee set commentstring=#\ %s
   autocmd FileType htmldjango set commentstring={#\ %s\ #}
   autocmd FileType apache set commentstring=#\ %s
+  autocmd FileType crawl set commentstring=#\ %s
 
   " <f5> autocommand for running files
   autocmd FileType python nnoremap <buffer> <f5> :exec '!python' shellescape(@%, 1)<cr>
