@@ -473,6 +473,7 @@ elseif !executable('ack')
 endif
 
 " airline
+let b:javascript_fold = 1
 let g:airline_section_c = '%F'  " full file path on active file
 let g:airline#extensions#tabline#enabled = 0
 let g:airline_powerline_fonts=1
