@@ -14,6 +14,7 @@ let g:plug_timeout = 10
 
 """ PLUGINS
 Plug 'junegunn/seoul256.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 Plug 'shmup/crawl.vim'
 Plug 'junegunn/vim-peekaboo'
 Plug 'bling/vim-airline'
@@ -27,7 +28,7 @@ Plug 'tpope/vim-obsession'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer --omnisharp-completer' }
 Plug 'vim-scripts/matrix.vim--Yang'
 Plug 'vimwiki/vimwiki'
-Plug 'airblade/vim-rooter'
+" Plug 'airblade/vim-rooter'
 if s:darwin
   Plug 'junegunn/vim-emoji'
   Plug 'zerowidth/vim-copy-as-rtf'
@@ -179,7 +180,7 @@ set lazyredraw                                  " don't redraw when don't have t
 set linebreak
 set more                                        " use more prompt
 set mouse+=a
-set noautochdir                                 " https://github.com/airblade/vim-rooter
+" set noautochdir                                 " https://github.com/airblade/vim-rooter
 set noautowrite                                 " don't automagically write on :next
 set nocompatible                                " vim, not vi
 set noerrorbells                                " No error bells please
@@ -242,6 +243,8 @@ nmap <leader>cl :let @+=expand("%:p:h")<CR>
 
 " select last paste in visual mode
 nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
+
+nnoremap <leader>z :FZF<CR>
 
 " fu ex mode
 nnoremap Q <nop>
@@ -519,7 +522,7 @@ silent! if emoji#available()
 endif
 
 " ctrlp
-let g:ctrlp_follow_symlinks = 1
+let g:ctrlp_follow_symlinks = 2
 let g:ctrlp_working_path_mode = 'rca'
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 
