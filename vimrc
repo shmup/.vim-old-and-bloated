@@ -15,6 +15,7 @@ let g:plug_timeout = 10
 """ PLUGINS
 Plug 'junegunn/seoul256.vim'
 Plug 'shmup/crawl.vim'
+Plug 'cespare/vim-toml'
 Plug 'junegunn/vim-peekaboo'
 Plug 'bling/vim-airline'
 Plug 'mattn/webapi-vim'
@@ -27,7 +28,7 @@ Plug 'tpope/vim-obsession'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer --omnisharp-completer' }
 Plug 'vim-scripts/matrix.vim--Yang'
 Plug 'vimwiki/vimwiki'
-Plug 'airblade/vim-rooter'
+" Plug 'airblade/vim-rooter'
 if s:darwin
   Plug 'junegunn/vim-emoji'
   Plug 'zerowidth/vim-copy-as-rtf'
@@ -179,7 +180,7 @@ set lazyredraw                                  " don't redraw when don't have t
 set linebreak
 set more                                        " use more prompt
 set mouse+=a
-set noautochdir                                 " https://github.com/airblade/vim-rooter
+" set noautochdir                                 " https://github.com/airblade/vim-rooter
 set noautowrite                                 " don't automagically write on :next
 set nocompatible                                " vim, not vi
 set noerrorbells                                " No error bells please
@@ -589,7 +590,7 @@ augroup vimrc
   " <f5> autocommand for running files
   autocmd FileType python nnoremap <buffer> <f5> :exec '!python' shellescape(@%, 1)<cr>
   autocmd FileType sh nnoremap <buffer> <f5> :exec '!bash' shellescape(@%, 1)<cr>
-  autocmd FileType rust nnoremap <buffer> <f5> :exec '!rustc' shellescape(@%, 1)<cr>
+  " autocmd FileType rust nnoremap <buffer> <f5> :exec '!rustc' shellescape(@%, 1)<cr>
   autocmd FileType rust nnoremap <buffer> <f5> :exec '!cargo run'<cr>
   autocmd FileType go nnoremap <buffer> <f5> :GoRun<cr>
   autocmd FileType go nnoremap <buffer> <leader>b :GoBuild<cr>
