@@ -13,18 +13,14 @@ silent! if plug#begin('~/.vim/plugged')
 let g:plug_timeout = 10
 
 """ PLUGINS
-Plug 'junegunn/seoul256.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
-Plug 'shmup/crawl.vim'
-Plug 'cespare/vim-toml'
-Plug 'junegunn/vim-peekaboo'
 Plug 'bling/vim-airline'
-Plug 'mattn/webapi-vim'
-Plug 'tpope/vim-dispatch'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
+Plug 'junegunn/seoul256.vim'
 Plug 'justinmk/vim-gtfo'
+Plug 'mattn/webapi-vim'
 Plug 'schickling/vim-bufonly'
+Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-obsession'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer --omnisharp-completer' }
 Plug 'vim-scripts/matrix.vim--Yang'
@@ -39,11 +35,8 @@ endif
 Plug 'tpope/vim-tbone'
 
 " Lang
-Plug 'scrooloose/syntastic'
 Plug 'captbaritone/better-indent-support-for-php-with-html'
-Plug 'shawncplus/phpcomplete.vim'
-Plug 'shmup/phpfolding.vim'
-Plug 'StanAngeloff/php.vim'
+Plug 'cespare/vim-toml'
 Plug 'fatih/vim-go'
 Plug 'jmcantrell/vim-virtualenv'
 Plug 'LokiChaos/vim-tintin'
@@ -52,9 +45,14 @@ Plug 'nvie/vim-flake8'
 Plug 'OrangeT/vim-csharp'
 Plug 'plasticboy/vim-markdown',  { 'for': 'markdown' }
 Plug 'PProvost/vim-ps1'
+Plug 'scrooloose/syntastic'
+Plug 'shawncplus/phpcomplete.vim'
+Plug 'shmup/crawl.vim'
+Plug 'shmup/phpfolding.vim'
 Plug 'shmup/vim-sql-syntax'
 Plug 'Slava/vim-spacebars'
-" Plug 'vim-scripts/django.vim'
+Plug 'StanAngeloff/php.vim'
+Plug 'timonv/vim-cargo'
 Plug 'wlue/vim-dm-syntax'
 Plug 'wting/rust.vim', { 'for': 'rust' }
 
@@ -64,9 +62,6 @@ Plug 'mephux/vim-jsfmt'
 Plug 'othree/yajs.vim'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'pangloss/vim-javascript'
-" Plug 'lukaszkorecki/CoffeeTags'
-" Plug 'marijnh/tern_for_vim'
-" Plug 'Slava/tern-meteor'
 
 " HTML/CSS
 Plug 'groenewege/vim-less'
@@ -75,22 +70,24 @@ Plug 'hail2u/vim-css3-syntax'
 Plug 'othree/html5.vim'
 
 " Edit
+Plug 'AndrewRadev/switch.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'FelikZ/ctrlp-py-matcher'
-Plug 'terryma/vim-expand-region'
-Plug 'AndrewRadev/switch.vim'
 Plug 'godlygeek/tabular'
-Plug 'tmhedberg/matchit'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'junegunn/vim-easy-align'
-Plug 'junegunn/vim-pseudocl'
 Plug 'junegunn/vim-oblique'
+Plug 'junegunn/vim-peekaboo'
+Plug 'junegunn/vim-pseudocl'
+Plug 'justinmk/vim-sneak'
 Plug 'mbbill/undotree'
+Plug 'terryma/vim-expand-region'
+Plug 'tmhedberg/matchit'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'justinmk/vim-sneak'
-Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'tpope/vim-unimpaired'
 
 " Browsing
@@ -593,8 +590,9 @@ augroup vimrc
   " <f5> autocommand for running files
   autocmd FileType python nnoremap <buffer> <f5> :exec '!python' shellescape(@%, 1)<cr>
   autocmd FileType sh nnoremap <buffer> <f5> :exec '!bash' shellescape(@%, 1)<cr>
-  " autocmd FileType rust nnoremap <buffer> <f5> :exec '!rustc' shellescape(@%, 1)<cr>
-  autocmd FileType rust nnoremap <buffer> <f5> :exec '!cargo run'<cr>
+  autocmd FileType rust nnoremap <buffer> <f5> :CargoBuild && :CargoRun<cr>
+  autocmd FileType rust nnoremap <buffer> <leader>b :CargoBuild<cr>
+  autocmd FileType rust nnoremap <buffer> <leader>t :CargoTest<cr>
   autocmd FileType go nnoremap <buffer> <f5> :GoRun<cr>
   autocmd FileType go nnoremap <buffer> <leader>b :GoBuild<cr>
   autocmd FileType go nnoremap <buffer> <leader>t :GoTest<cr>
