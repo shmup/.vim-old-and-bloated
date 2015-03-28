@@ -14,6 +14,7 @@ let g:plug_timeout = 10
 
 """ PLUGINS
 Plug 'junegunn/seoul256.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 Plug 'shmup/crawl.vim'
 Plug 'cespare/vim-toml'
 Plug 'junegunn/vim-peekaboo'
@@ -243,6 +244,8 @@ nmap <leader>cl :let @+=expand("%:p:h")<CR>
 
 " select last paste in visual mode
 nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
+
+nnoremap <leader>z :FZF<CR>
 
 " fu ex mode
 nnoremap Q <nop>
@@ -520,7 +523,7 @@ silent! if emoji#available()
 endif
 
 " ctrlp
-let g:ctrlp_follow_symlinks = 1
+let g:ctrlp_follow_symlinks = 2
 let g:ctrlp_working_path_mode = 'rca'
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 
