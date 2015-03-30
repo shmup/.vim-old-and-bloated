@@ -52,7 +52,8 @@ Plug 'shmup/phpfolding.vim'
 Plug 'shmup/vim-sql-syntax'
 Plug 'Slava/vim-spacebars'
 Plug 'StanAngeloff/php.vim'
-Plug 'timonv/vim-cargo'
+" Plug 'timonv/vim-cargo'
+Plug '~/Code/vim-cargo'
 Plug 'wlue/vim-dm-syntax'
 Plug 'wting/rust.vim', { 'for': 'rust' }
 
@@ -454,6 +455,8 @@ command! ToggleTmuxStatus call <SID>ToggleTmuxStatus()
 command! PrettyHtml :%!tidy -q -i --show-errors 0
 command! PrettyXml  :%!tidy -q -i --show-errors 0 -xml
 
+command! RustPointerCheatSheet execute '!cat ~/Dropbox/Briefcase/Documents/rust_pointers_cheat_sheet.txt'
+
 " ============================================================================
 " PLUGINS
 " ============================================================================
@@ -590,9 +593,11 @@ augroup vimrc
   " <f5> autocommand for running files
   autocmd FileType python nnoremap <buffer> <f5> :exec '!python' shellescape(@%, 1)<cr>
   autocmd FileType sh nnoremap <buffer> <f5> :exec '!bash' shellescape(@%, 1)<cr>
-  autocmd FileType rust nnoremap <buffer> <f5> :CargoBuild && :CargoRun<cr>
+
+  autocmd FileType rust nnoremap <buffer> <f5> :CargoRun<cr>
   autocmd FileType rust nnoremap <buffer> <leader>b :CargoBuild<cr>
   autocmd FileType rust nnoremap <buffer> <leader>t :CargoTest<cr>
+
   autocmd FileType go nnoremap <buffer> <f5> :GoRun<cr>
   autocmd FileType go nnoremap <buffer> <leader>b :GoBuild<cr>
   autocmd FileType go nnoremap <buffer> <leader>t :GoTest<cr>
