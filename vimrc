@@ -53,7 +53,7 @@ Plug 'shmup/vim-sql-syntax'
 Plug 'Slava/vim-spacebars'
 Plug 'StanAngeloff/php.vim'
 " Plug 'timonv/vim-cargo'
-Plug '~/Code/vim-cargo'
+Plug '~/code/vim-cargo'
 Plug 'wlue/vim-dm-syntax'
 Plug 'wting/rust.vim', { 'for': 'rust' }
 
@@ -229,6 +229,9 @@ let g:tern_show_argument_hints = 'on_move'
 " ctrlp
 nnoremap <leader>v :CtrlPMRUFiles<CR>
 nnoremap <leader>b :CtrlPBuffer<CR>
+
+" true maximize
+nnoremap <C-w>\ <C-w>\|<C-w>_
 
 " No register delete
 nnoremap <leader>dd "_dd
