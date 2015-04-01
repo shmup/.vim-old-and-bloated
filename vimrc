@@ -55,7 +55,7 @@ Plug 'StanAngeloff/php.vim'
 " Plug 'timonv/vim-cargo'
 Plug '~/code/vim-cargo'
 Plug 'wlue/vim-dm-syntax'
-Plug 'wting/rust.vim', { 'for': 'rust' }
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 
 " JavaScript
 Plug 'kchmck/vim-coffee-script'
