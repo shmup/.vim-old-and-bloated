@@ -48,7 +48,7 @@ Plug 'PProvost/vim-ps1'
 Plug 'scrooloose/syntastic'
 Plug 'shawncplus/phpcomplete.vim'
 Plug 'shmup/crawl.vim'
-Plug 'shmup/phpfolding.vim'
+" Plug 'shmup/phpfolding.vim'
 Plug 'shmup/vim-sql-syntax'
 Plug 'Slava/vim-spacebars'
 Plug 'StanAngeloff/php.vim'
@@ -336,6 +336,11 @@ map <leader>ep :e /etc/php5/apache2/php.ini<cr>
 map <leader>ec :e ~/Work/confs/
 map <F3> :mksession! ~/.vim/sessions/
 map <F4> :source ~/.vim/sessions/
+
+" neovim terminal
+if has('nvim')
+  tnoremap jj <c-\><c-n>
+endif
 
 " GUI only things
 if has('gui_running')
