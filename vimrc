@@ -34,26 +34,30 @@ endif
 Plug 'tpope/vim-tbone'
 
 " Lang
-Plug 'captbaritone/better-indent-support-for-php-with-html'
 Plug 'cespare/vim-toml'
 Plug 'fatih/vim-go'
-Plug 'jmcantrell/vim-virtualenv'
 Plug 'LokiChaos/vim-tintin'
 Plug 'mattn/emmet-vim'
-Plug 'nvie/vim-flake8'
 Plug 'OrangeT/vim-csharp'
 Plug 'plasticboy/vim-markdown',  { 'for': 'markdown' }
 Plug 'PProvost/vim-ps1'
 Plug 'scrooloose/syntastic'
-Plug 'shawncplus/phpcomplete.vim'
 Plug 'shmup/crawl.vim'
 Plug 'shmup/vim-sql-syntax'
 Plug 'Slava/vim-spacebars'
-Plug 'StanAngeloff/php.vim'
 " Plug 'timonv/vim-cargo'
 Plug '~/code/vim-cargo'
 Plug 'wlue/vim-dm-syntax'
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+
+" python
+Plug 'jmcantrell/vim-virtualenv'
+Plug 'nvie/vim-flake8'
+
+" PHP
+Plug 'captbaritone/better-indent-support-for-php-with-html'
+Plug 'shawncplus/phpcomplete.vim'
+Plug 'StanAngeloff/php.vim'
 
 " JavaScript
 Plug 'kchmck/vim-coffee-script'
@@ -375,7 +379,7 @@ if s:darwin
     nnoremap <f6> :!osascript -e 'tell application FirefoxDeveloperEdition -e 'reload active tab of window 1' -e 'end tell'<CR><CR>
     let g:gist_clip_command = 'pbcopy'
 else
-    nnoremap <f6> :!wmctrl -a Chrome && xdotool key F5 && wmctrl -a ":)"<CR><CR>
+    nnoremap <f6> :!wmctrl -a Firefox && xdotool key F5 && wmctrl -a ":)"<CR><CR>
     let g:gist_clip_command = 'xclip -selection clipboard'
 endif
 
