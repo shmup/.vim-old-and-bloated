@@ -214,7 +214,7 @@ set t_kB=[Z
 " editor styling
 set t_Co=256
 colorscheme seoul256
-set background=light
+set background=dark
 
 if &background == 'light'
   let g:airline_theme='light'
