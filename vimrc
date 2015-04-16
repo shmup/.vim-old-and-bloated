@@ -213,10 +213,15 @@ set t_kB=[Z
 
 " editor styling
 set t_Co=256
-set background=dark
+colorscheme seoul256
+set background=light
+
+if &background == 'light'
+  let g:airline_theme='light'
+endif
+
 let g:seoul256_background = 235 " dark (239-233), light (256-252)
 let g:seoul256_light_background = 256
-colorscheme seoul256
 
 let g:tern_show_argument_hints = 'on_move'
 
