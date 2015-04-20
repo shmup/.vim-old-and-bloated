@@ -220,10 +220,8 @@ if &background == 'light'
   let g:airline_theme='light'
 endif
 
-let g:seoul256_background = 235 " dark (239-233), light (256-252)
+let g:seoul256_background = 233 " dark (239-233), light (256-252)
 let g:seoul256_light_background = 256
-
-let g:tern_show_argument_hints = 'on_move'
 
 " ============================================================================
 " MAPPINGS
@@ -267,6 +265,10 @@ nnoremap Y y$
 " more intuitive j/k
 noremap j gj
 noremap k gk
+
+" fold ideas
+noremap za zA
+noremap zA za
 
 " toggle boolean and other things
 nnoremap <leader>t :Switch<cr>
