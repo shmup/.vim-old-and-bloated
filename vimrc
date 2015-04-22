@@ -23,6 +23,7 @@ Plug 'schickling/vim-bufonly'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-obsession'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer --omnisharp-completer' }
+Plug 'phildawes/racer', { 'do' : 'cargo build --release' }
 Plug 'vim-scripts/matrix.vim--Yang'
 Plug 'vimwiki/vimwiki'
 if s:darwin
@@ -213,6 +214,8 @@ set t_kB=[Z
 
 " editor styling
 set t_Co=256
+let g:seoul256_background = 234 " dark (239-233), light (256-252)
+let g:seoul256_light_background = 256
 colorscheme seoul256
 set background=dark
 
@@ -220,8 +223,6 @@ if &background == 'light'
   let g:airline_theme='light'
 endif
 
-let g:seoul256_background = 233 " dark (239-233), light (256-252)
-let g:seoul256_light_background = 256
 
 " ============================================================================
 " MAPPINGS
@@ -543,6 +544,14 @@ endif
 let g:ctrlp_follow_symlinks = 2
 let g:ctrlp_working_path_mode = 'rca'
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+
+" racer shit
+let g:racer_cmd = "~/.vim/plugged/racer/target/release/racer"
+if s:darwin
+  let $RUST_SRC_PATH="/Users/jared/code/rust-lang/src/"
+else
+  let $RUST_SRC_PATH="/home/jared/code/rust-lang/src/"
+endif
 
 " YouCompleteMe
 let g:ycm_register_as_syntastic_checker = 1
