@@ -1,11 +1,13 @@
+" vim: set foldmethod=marker foldlevel=0:
 " ============================================================================
-" " .vimrc of Jared Tyler Miller
+" " .vimrc of Jared Tyler Miller {{{
 " ============================================================================
 
 let s:darwin = has('mac')
 
+" }}}
 " ============================================================================
-" VIM-PLUG BLOCK
+" VIM-PLUG BLOCK {{{
 " ============================================================================
 
 silent! if plug#begin('~/.vim/plugged')
@@ -23,7 +25,6 @@ Plug 'schickling/vim-bufonly'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-obsession'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer --omnisharp-completer' }
-Plug 'phildawes/racer', { 'do' : 'cargo build --release' }
 Plug 'vim-scripts/matrix.vim--Yang'
 Plug 'vimwiki/vimwiki'
 if s:darwin
@@ -46,10 +47,13 @@ Plug 'scrooloose/syntastic'
 Plug 'shmup/crawl.vim'
 Plug 'shmup/vim-sql-syntax'
 Plug 'Slava/vim-spacebars'
+Plug 'wlue/vim-dm-syntax'
+
+" rust
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+Plug 'phildawes/racer', { 'do' : 'cargo build --release', 'for': 'rust' }
 " Plug 'timonv/vim-cargo'
 Plug '~/code/vim-cargo'
-Plug 'wlue/vim-dm-syntax'
-Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 
 " python
 Plug 'jmcantrell/vim-virtualenv'
@@ -82,7 +86,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/vim-oblique'
-Plug 'junegunn/vim-peekaboo'
+" Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/vim-pseudocl'
 Plug 'justinmk/vim-sneak'
 Plug 'mbbill/undotree'
@@ -116,8 +120,9 @@ endif
 call plug#end()
 endif
 
+" }}}
 " ============================================================================
-" Basic settings
+" BASIC SETTINGS {{{
 " ============================================================================
 
 let mapleader = "\<Space>"
@@ -224,8 +229,9 @@ if &background == 'light'
 endif
 
 
+" }}}
 " ============================================================================
-" MAPPINGS
+" MAPPINGS {{{
 " ============================================================================
 
 " ----------------------------------------------------------------------------
@@ -391,8 +397,9 @@ else
     let g:gist_clip_command = 'xclip -selection clipboard'
 endif
 
+" }}}
 " ============================================================================
-" FUNCTIONS & COMMANDS
+" FUNCTIONS & COMMANDS {{{
 " ============================================================================
 
 " syntastic/flake8
@@ -475,8 +482,9 @@ command! PrettyXml  :%!tidy -q -i --show-errors 0 -xml
 
 command! RustPointerCheatSheet execute '!cat ~/Dropbox/Briefcase/Documents/rust_pointers_cheat_sheet.txt'
 
+" }}}
 " ============================================================================
-" PLUGINS
+" PLUGINS {{{
 " ============================================================================
 
 if executable('ag')
@@ -578,8 +586,9 @@ let g:syntastic_html_tidy_ignore_errors = [
     \"discarding unexpected"
 \]
 
+" }}}
 " ============================================================================
-" AUTOCMD
+" AUTOCMD {{{
 " ============================================================================
 
 augroup vimrc
