@@ -16,6 +16,7 @@ let g:plug_timeout = 10
 
 """ PLUGINS
 Plug 'bling/vim-airline'
+Plug 'mhinz/vim-sayonara'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/seoul256.vim'
@@ -86,7 +87,6 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/vim-oblique'
-" Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/vim-pseudocl'
 Plug 'justinmk/vim-sneak'
 Plug 'mbbill/undotree'
@@ -263,8 +263,6 @@ nnoremap <leader>z :FZF<CR>
 " fu ex mode
 nnoremap Q <nop>
 
-" mapping for devices without easy <ESC>
-inoremap jj <ESC>
 
 " make Y like C/D
 nnoremap Y y$
@@ -355,7 +353,7 @@ map <F4> :source ~/.vim/sessions/
 
 " neovim terminal
 if has('nvim')
-  tnoremap jj <c-\><c-n>
+  tnoremap <esc> <c-\><c-n>
 endif
 
 " GUI only things
@@ -497,7 +495,6 @@ if executable('ag')
         \ --ignore .DS_Store
         \ --ignore "**/*.pyc"
         \ -g ""'
-
 elseif !executable('ack')
   let g:ackprg = 'grep -rn "$*" * \| sed "s/:\([0-9]*\):/:\1:1:/" '
 endif
@@ -538,7 +535,6 @@ let g:DisableAutoPHPFolding = 1
 let g:sneak#streak = 1
 let g:Tlist_GainFocus_On_ToggleOpen = 1
 let g:tagbar_autofocus = 1
-let nerdtreeignore = ['\.pyc$']
 
 " emoji
 silent! if emoji#available()
