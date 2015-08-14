@@ -4,11 +4,16 @@
 " ============================================================================
 
 let s:darwin = has('mac')
+let s:win = has('win32')
 
 " }}}
 " ============================================================================
 " VIM-PLUG BLOCK {{{
 " ============================================================================
+
+if s:win
+  set runtimepath^=~/.vim  "Use instead of "vimfiles" on windows
+endif
 
 silent! if plug#begin('~/.vim/plugged')
 
@@ -25,9 +30,11 @@ Plug 'mattn/webapi-vim'
 Plug 'schickling/vim-bufonly'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-obsession'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer --omnisharp-completer' }
 Plug 'vim-scripts/matrix.vim--Yang'
 Plug 'vimwiki/vimwiki'
+if !s:win
+  Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer --omnisharp-completer' }
+endif
 if s:darwin
   Plug 'junegunn/vim-emoji'
   Plug 'zerowidth/vim-copy-as-rtf'
@@ -51,19 +58,23 @@ Plug 'Slava/vim-spacebars'
 Plug 'wlue/vim-dm-syntax'
 
 " rust
-Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-Plug 'phildawes/racer', { 'do' : 'cargo build --release', 'for': 'rust' }
-" Plug 'timonv/vim-cargo'
-Plug '~/code/vim-cargo'
+if !s:win
+  Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+  Plug 'phildawes/racer', { 'do' : 'cargo build --release', 'for': 'rust' }
+  " Plug 'timonv/vim-cargo'
+  Plug '~/code/vim-cargo'
+endif
 
 " python
 Plug 'jmcantrell/vim-virtualenv'
 Plug 'nvie/vim-flake8'
 
 " PHP
-Plug 'captbaritone/better-indent-support-for-php-with-html'
-Plug 'shawncplus/phpcomplete.vim'
-Plug 'StanAngeloff/php.vim'
+if !s:win
+  Plug 'captbaritone/better-indent-support-for-php-with-html'
+  Plug 'shawncplus/phpcomplete.vim'
+  Plug 'StanAngeloff/php.vim'
+endif
 
 " JavaScript
 Plug 'kchmck/vim-coffee-script'
@@ -83,7 +94,6 @@ Plug 'AndrewRadev/switch.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'godlygeek/tabular'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/vim-oblique'
@@ -97,12 +107,17 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+if !s:win
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+endif
 
 " Browsing
 Plug 'jeetsukumaran/vim-filebeagle'
-Plug 'mileszs/ack.vim',     { 'on': 'Ack'            }
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'yegappan/mru'
+if !s:win
+  Plug 'mileszs/ack.vim',     { 'on': 'Ack'            }
+endif
 if v:version >= 703
   Plug 'majutsushi/tagbar'
 endif
@@ -339,7 +354,11 @@ vmap <C-v> <Plug>(expand_region_shrink)
 vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
-map <silent> <leader>rv :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+if s:win
+  map <silent> <leader>rv :source ~/_vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+else
+  map <silent> <leader>rv :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+endif
 map <leader>ra :!sudo service apache2 restart<cr><cr>
 map <leader>rn :!sudo service nginx restart<cr>
 map <leader>eh :e ~/Work/hosts<cr>
@@ -365,6 +384,8 @@ if has('gui_running')
   set guioptions=aegimt
   if has("gui_macvim")
     set guifont=Monaco:h13
+  elseif has("gui_running")
+    set guifont=Fira\ Mono:h8
   else
     set guifont=Fira\ Mono\ Medium\ 8
   endif
