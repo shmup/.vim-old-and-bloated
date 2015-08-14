@@ -190,7 +190,10 @@ set complete-=i
 if $TMUX == ''
     set clipboard+=unnamed
 endif
-set cursorline cursorcolumn                     " use cursor lines because theyre awesome
+set cursorline                                  " use cursor lines because theyre awesome
+if has('gui_running')
+  set cursorcolumn                     
+endif
 set display+=lastline
 set diffopt=filler,iwhite                       " ignore all whitespace and sync
 set encoding=utf-8
@@ -233,11 +236,13 @@ set pastetoggle=<Ins>
 set t_kB=[Z
 
 " editor styling
-set t_Co=256
-let g:seoul256_background = 234 " dark (239-233), light (256-252)
-let g:seoul256_light_background = 256
-colorscheme seoul256
-set background=dark
+if has('gui_running')
+  set t_Co=256
+  let g:seoul256_background = 234 " dark (239-233), light (256-252)
+  let g:seoul256_light_background = 256
+  colorscheme seoul256
+  set background=dark
+endif
 
 if &background == 'light'
   let g:airline_theme='light'
@@ -385,7 +390,7 @@ if has('gui_running')
   if has("gui_macvim")
     set guifont=Monaco:h13
   elseif has("gui_running")
-    set guifont=Fira\ Mono:h8
+    set guifont=Fira\ Mono\ Medium:h8
   else
     set guifont=Fira\ Mono\ Medium\ 8
   endif
