@@ -190,9 +190,8 @@ set complete-=i
 if $TMUX == ''
     set clipboard+=unnamed
 endif
-set cursorline                                  " use cursor lines because theyre awesome
 if has('gui_running')
-  set cursorcolumn                     
+  set cursorline cursorcolumn                   " use cursor lines because theyre awesome
 endif
 set display+=lastline
 set diffopt=filler,iwhite                       " ignore all whitespace and sync
