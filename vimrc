@@ -53,8 +53,7 @@ Plug 'wlue/vim-dm-syntax'
 " rust
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'phildawes/racer', { 'do' : 'cargo build --release', 'for': 'rust' }
-" Plug 'timonv/vim-cargo'
-Plug '~/code/vim-cargo'
+Plug 'timonv/vim-cargo'
 
 " python
 Plug 'jmcantrell/vim-virtualenv'
@@ -339,11 +338,11 @@ vmap <C-v> <Plug>(expand_region_shrink)
 vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
-map <silent> <leader>rv :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+map <silent> <leader>rv :source ~/.vimrc<CR>:filetype detect<CR>zR<CR>:exe ":echo 'vimrc reloaded'"<CR>
 map <leader>ra :!sudo service apache2 restart<cr><cr>
 map <leader>rn :!sudo service nginx restart<cr>
 map <leader>eh :e ~/Work/hosts<cr>
-map <leader>ev :e ~/.vim/vimrc<cr>
+map <leader>ev :e ~/.vim/vimrc<cr>zR
 map <leader>ef :e ~/.vim/filetype.vim<cr>
 map <leader>et :e ~/.tmux.conf<cr>
 map <leader>ep :e /etc/php5/apache2/php.ini<cr>
