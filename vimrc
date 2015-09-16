@@ -13,6 +13,7 @@ let s:win = has('win32')
 
 if s:win
   set runtimepath^=~/.vim  "Use instead of "vimfiles" on windows
+  cd C:\Users\jared.miller\ 
 endif
 
 silent! if plug#begin('~/.vim/plugged')
@@ -58,12 +59,9 @@ Plug 'Slava/vim-spacebars'
 Plug 'wlue/vim-dm-syntax'
 
 " rust
-if !s:win
-  Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-  Plug 'phildawes/racer', { 'do' : 'cargo build --release', 'for': 'rust' }
-  " Plug 'timonv/vim-cargo'
-  Plug '~/code/vim-cargo'
-endif
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+Plug 'phildawes/racer', { 'do' : 'cargo build --release', 'for': 'rust' }
+Plug 'timonv/vim-cargo'
 
 " python
 Plug 'jmcantrell/vim-virtualenv'
@@ -260,6 +258,9 @@ endif
 " ctrlp
 nnoremap <leader>v :CtrlPMRUFiles<CR>
 nnoremap <leader>b :CtrlPBuffer<CR>
+
+" vimwiki
+nnoremap <leader>wb :Vimwiki2HTMLBrowse<cr>
 
 " true maximize
 nnoremap <C-w>\ <C-w>\|<C-w>_
@@ -575,9 +576,11 @@ let g:ctrlp_working_path_mode = 'rca'
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 
 " racer shit
-let g:racer_cmd = "~/.vim/plugged/racer/target/release/racer"
+let g:racer_cmd = "~/.vim/plugged/racer/target/release/racer.exe"
 if s:darwin
   let $RUST_SRC_PATH="/Users/jared/code/rust-lang/src/"
+elseif s:win
+  let $RUST_SRC_PATH= "C:/Users/jared.miller/code/rust/src"
 else
   let $RUST_SRC_PATH="/home/jared/code/rust-lang/src/"
 endif
@@ -637,14 +640,17 @@ augroup vimrc
   " autocmd FileType markdown let b:dispatch = 'octodown --live-reload %'
 
   " save dem folds
-  autocmd BufWinLeave *.* mkview
-  autocmd BufWinEnter *.* silent loadview
+  if !s:win
+    autocmd BufWinLeave *.* mkview
+    autocmd BufWinEnter *.* silent loadview
+  endif
 
   " commentary ft adjustments
   autocmd FileType coffee set commentstring=#\ %s
   autocmd FileType htmldjango set commentstring={#\ %s\ #}
   autocmd FileType apache set commentstring=#\ %s
   autocmd FileType crawl set commentstring=#\ %s
+  autocmd FileType tt set commentstring=#nop\ %s
 
   " <f5> autocommand for running files
   autocmd FileType python nnoremap <buffer> <f5> :exec '!python' shellescape(@%, 1)<cr>
