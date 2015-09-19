@@ -52,7 +52,7 @@ Plug 'wlue/vim-dm-syntax'
 
 " rust
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-Plug 'phildawes/racer', { 'do' : 'cargo build --release', 'for': 'rust' }
+" Plug 'phildawes/racer', { 'do' : 'cargo build --release', 'for': 'rust' }
 Plug 'timonv/vim-cargo'
 
 " python
@@ -133,7 +133,7 @@ set tabstop=4                                   " actual tab width
 set softtabstop=4                               " insert mode tab/backspace width
 set shiftwidth=4                                " normal mode (auto)indent width
 set backspace=indent,eol,start
-set foldmethod=syntax
+set foldmethod=manual
 set foldlevelstart=1
 let javascript_fold=1
 
@@ -186,7 +186,6 @@ set lazyredraw                                  " don't redraw when don't have t
 set linebreak
 set more                                        " use more prompt
 set mouse+=a
-" set noautochdir                                 " https://github.com/airblade/vim-rooter
 set noautowrite                                 " don't automagically write on :next
 set nocompatible                                " vim, not vi
 set noerrorbells                                " No error bells please
@@ -271,8 +270,8 @@ noremap j gj
 noremap k gk
 
 " fold ideas
-noremap za zA
-noremap zA za
+" noremap za zA
+" noremap zA za
 
 " toggle boolean and other things
 nnoremap <leader>t :Switch<cr>
@@ -547,6 +546,9 @@ endif
 let g:ctrlp_follow_symlinks = 2
 let g:ctrlp_working_path_mode = 'rca'
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+
+" vim-go
+let g:go_fmt_command = "goimports"
 
 " racer shit
 let g:racer_cmd = "~/.vim/plugged/racer/target/release/racer"
