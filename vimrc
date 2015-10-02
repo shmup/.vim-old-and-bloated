@@ -384,9 +384,10 @@ endif
 if has('gui_running')
   set lines=50
   set columns=120
+  set guioptions-=m         " removes menu bar
   set guioptions-=T         " removes main toolbar
   set guioptions-=rRL       " removes vertical scrollbars
-  set guioptions=aegimt
+  set guioptions=aegit
   if has("gui_macvim")
     set guifont=Monaco:h13
   elseif has("gui_running")
@@ -528,7 +529,7 @@ endif
 " airline
 let b:javascript_fold = 1
 let g:airline_section_c = '%F'  " full file path on active file
-let g:airline#extensions#tabline#enabled = 0
+let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts=1
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
