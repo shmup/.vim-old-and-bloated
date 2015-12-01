@@ -16,6 +16,7 @@ let g:plug_timeout = 10
 
 """ PLUGINS
 Plug 'bling/vim-airline'
+Plug 'chrisbra/csv.vim'
 Plug 'mhinz/vim-sayonara'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
@@ -99,7 +100,8 @@ Plug 'tpope/vim-unimpaired'
 
 " Browsing
 Plug 'jeetsukumaran/vim-filebeagle'
-Plug 'mileszs/ack.vim',     { 'on': 'Ack'            }
+Plug 'wincent/ferret'
+" Plug 'mileszs/ack.vim',     { 'on': 'Ack'            }
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'yegappan/mru'
 if v:version >= 703
@@ -133,7 +135,8 @@ set tabstop=4                                   " actual tab width
 set softtabstop=4                               " insert mode tab/backspace width
 set shiftwidth=4                                " normal mode (auto)indent width
 set backspace=indent,eol,start
-set foldmethod=manual
+set foldmethod=syntax
+set foldnestmax=1
 set foldlevelstart=1
 let javascript_fold=1
 
@@ -165,6 +168,7 @@ set tags=./tags;/
 set undodir=~/.vim/undo
 set undofile
 set undolevels=1000                             " number of undos to keep
+set undoreload=10000
 
 " editor setup
 set autochdir                                   " auto cd into dir that file is in
@@ -239,6 +243,8 @@ endif
 " ctrlp
 nnoremap <leader>v :CtrlPMRUFiles<CR>
 nnoremap <leader>b :CtrlPBuffer<CR>
+
+" tmux shit for go
 
 " true maximize
 nnoremap <C-w>\ <C-w>\|<C-w>_
@@ -329,15 +335,14 @@ map <leader>n :NERDTreeToggle<CR>
 nmap <F8> :TagbarToggle<CR>
 noremap <leader>0 :tablast<cr>
 nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
-nmap <leader>a :Ack!<space>
-nmap <leader>g :GitGutterToggle<CR>
+" nmap <leader>a :Ack!<space>
 nmap <Leader><Leader> V
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
-map <silent> <leader>rv :source ~/.vimrc<CR>:filetype detect<CR>zR<CR>:exe ":echo 'vimrc reloaded'"<CR>
+map <silent> <leader>rv :source ~/.vimrc<CR>:filetype detect<CR>zR<CR>:exe ":echo 'vimrc reloaded'"<cr>k
 map <leader>ra :!sudo service apache2 restart<cr><cr>
 map <leader>rn :!sudo service nginx restart<cr>
 map <leader>eh :e ~/Work/hosts<cr>
@@ -500,7 +505,7 @@ endif
 " airline
 let b:javascript_fold = 1
 let g:airline_section_c = '%F'  " full file path on active file
-let g:airline#extensions#tabline#enabled = 0
+let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts=1
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
@@ -622,7 +627,8 @@ augroup vimrc
   autocmd FileType apache set commentstring=#\ %s
   autocmd FileType crawl set commentstring=#\ %s
 
-  " <f5> autocommand for running files
+  " run/build shit
+  autocmd FileType python nnoremap <buffer> <leader>r :call PyThong()<cr>
   autocmd FileType python nnoremap <buffer> <f5> :exec '!python' shellescape(@%, 1)<cr>
   autocmd FileType sh nnoremap <buffer> <f5> :exec '!bash' shellescape(@%, 1)<cr>
 
@@ -633,6 +639,27 @@ augroup vimrc
   autocmd FileType go nnoremap <buffer> <f5> :GoRun<cr>
   autocmd FileType go nnoremap <buffer> <leader>b :GoBuild<cr>
   autocmd FileType go nnoremap <buffer> <leader>t :GoTest<cr>
+  autocmd FileType go nnoremap <buffer> <leader>i :GoInfo<cr>
+  autocmd FileType go nnoremap <buffer> <leader>r :call GoIRC()<cr>
+  " autocmd FileType go nnoremap <buffer> <leader>r :call GoShit()<cr>
+
+  function! PyThong()
+    :Tmux send-keys -t 1.1 'python prob3b.py' Enter
+  endfunction
+
+  function! Conway()
+    :Tmux send-keys -t 2.1 'python rabbit.py' Enter
+  endfunction
+
+  function! GoMud()
+    :Tmux send-keys -t 2.2 C-c 'go install' Enter clear Enter meganmud Enter
+    :Tmux send-keys -t 2.1 C-] C-c Enter 'sleep .2' Enter clear Enter 
+    :Tmux send-keys -t 2.1 'telnet 127.0.0.1 4000' Enter
+  endfunction
+
+  function! GoIRC()
+    :Tmux send-keys -t 2.2 C-c 'go install' Enter clear Enter lobsang Enter
+  endfunction
 
   " When editing a file, always jump to the last cursor position
    autocmd BufReadPost *
