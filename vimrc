@@ -59,9 +59,9 @@ Plug 'Slava/vim-spacebars'
 Plug 'wlue/vim-dm-syntax'
 
 " rust
-Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-Plug 'phildawes/racer', { 'do' : 'cargo build --release', 'for': 'rust' }
-Plug 'timonv/vim-cargo'
+" Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+" Plug 'phildawes/racer', { 'do' : 'cargo build --release', 'for': 'rust' }
+" Plug 'timonv/vim-cargo'
 
 " python
 Plug 'jmcantrell/vim-virtualenv'
@@ -641,10 +641,8 @@ augroup vimrc
   " autocmd FileType markdown let b:dispatch = 'octodown --live-reload %'
 
   " save dem folds
-  if !s:win
-    autocmd BufWinLeave *.* mkview
-    autocmd BufWinEnter *.* silent loadview
-  endif
+  autocmd BufWinLeave *.* mkview
+  autocmd BufWinEnter *.* silent loadview
 
   " commentary ft adjustments
   autocmd FileType coffee set commentstring=#\ %s
