@@ -26,7 +26,9 @@ Plug 'mattn/webapi-vim'
 Plug 'schickling/vim-bufonly'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-obsession'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer --omnisharp-completer' }
+Plug 'Valloric/YouCompleteMe'
+" Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
+" autocmd! User YouCompleteMe if !has('vim_starting') | call youcompleteme#Enable() | endif
 Plug 'vim-scripts/matrix.vim--Yang'
 Plug 'vimwiki/vimwiki'
 if s:darwin
@@ -38,6 +40,7 @@ endif
 Plug 'tpope/vim-tbone'
 
 " Lang
+Plug 'lambdatoast/elm.vim'
 Plug 'cespare/vim-toml'
 Plug 'fatih/vim-go'
 Plug 'LokiChaos/vim-tintin'
@@ -51,14 +54,25 @@ Plug 'shmup/vim-sql-syntax'
 Plug 'Slava/vim-spacebars'
 Plug 'wlue/vim-dm-syntax'
 
+" clojure
+Plug 'tpope/vim-fireplace'
+Plug 'guns/vim-clojure-static'
+Plug 'guns/vim-clojure-highlight'
+Plug 'tpope/vim-salve'
+Plug 'tpope/vim-classpath'
+
 " rust
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-" Plug 'phildawes/racer', { 'do' : 'cargo build --release', 'for': 'rust' }
+Plug 'phildawes/racer', { 'do' : 'cargo build --release', 'for': 'rust' }
 Plug 'timonv/vim-cargo'
+
+" elixir/erlang
+Plug 'elixir-lang/vim-elixir'
 
 " python
 Plug 'jmcantrell/vim-virtualenv'
 Plug 'nvie/vim-flake8'
+Plug 'tmhedberg/SimpylFold'
 
 " PHP
 Plug 'captbaritone/better-indent-support-for-php-with-html'
@@ -68,9 +82,11 @@ Plug 'StanAngeloff/php.vim'
 " JavaScript
 Plug 'kchmck/vim-coffee-script'
 Plug 'mephux/vim-jsfmt'
-Plug 'othree/yajs.vim'
-Plug 'othree/javascript-libraries-syntax.vim'
+" Plug 'othree/yajs.vim'
+" Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'pangloss/vim-javascript'
+" Plug 'ternjs/tern_for_vim'
+" Plug 'Slava/tern-meteor'
 
 " HTML/CSS
 Plug 'groenewege/vim-less'
@@ -101,7 +117,7 @@ Plug 'tpope/vim-unimpaired'
 " Browsing
 Plug 'jeetsukumaran/vim-filebeagle'
 Plug 'wincent/ferret'
-" Plug 'mileszs/ack.vim',     { 'on': 'Ack'            }
+Plug 'mileszs/ack.vim',     { 'on': 'Ack'            }
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'yegappan/mru'
 if v:version >= 703
@@ -115,7 +131,7 @@ Plug 'tpope/vim-fugitive'
 if v:version >= 703
   Plug 'airblade/vim-gitgutter'
 else
-  Plug 'mhinz/vim-signify'
+  " Plug 'mhinz/vim-signify'
 endif
 
 call plug#end()
@@ -135,7 +151,6 @@ set tabstop=4                                   " actual tab width
 set softtabstop=4                               " insert mode tab/backspace width
 set shiftwidth=4                                " normal mode (auto)indent width
 set backspace=indent,eol,start
-set foldmethod=syntax
 set foldnestmax=1
 set foldlevelstart=1
 let javascript_fold=1
@@ -189,7 +204,7 @@ set laststatus=2
 set lazyredraw                                  " don't redraw when don't have to
 set linebreak
 set more                                        " use more prompt
-set mouse+=a
+" set mouse+=a
 set noautowrite                                 " don't automagically write on :next
 set nocompatible                                " vim, not vi
 set noerrorbells                                " No error bells please
@@ -243,6 +258,8 @@ endif
 " ctrlp
 nnoremap <leader>v :CtrlPMRUFiles<CR>
 nnoremap <leader>b :CtrlPBuffer<CR>
+
+nnoremap <leader>g :GitGutterToggle<CR>
 
 " tmux shit for go
 
@@ -541,10 +558,10 @@ let g:tagbar_autofocus = 1
 
 " emoji
 silent! if emoji#available()
-  let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
-  let g:gitgutter_sign_modified = emoji#for('small_orange_diamond')
-  let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
-  let g:gitgutter_sign_modified_removed = emoji#for('collision')
+  " let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
+  " let g:gitgutter_sign_modified = emoji#for('small_orange_diamond')
+  " let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
+  " let g:gitgutter_sign_modified_removed = emoji#for('collision')
 endif
 
 " ctrlp
@@ -555,10 +572,10 @@ let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 " vim-go
 let g:go_fmt_command = "goimports"
 
-" racer shit
+" racer/rust shit
 let g:racer_cmd = "~/.vim/plugged/racer/target/release/racer"
 if s:darwin
-  let $RUST_SRC_PATH="/Users/jared/code/rust-lang/src/"
+  let $RUST_SRC_PATH="/Users/jared/code/src/rust/src/"
 else
   let $RUST_SRC_PATH="/home/jared/code/rust-lang/src/"
 endif
@@ -575,6 +592,7 @@ let g:ycm_complete_in_strings = 1
 
 " syntastic
 let g:syntastic_javascript_checkers = ['jshint']
+" let g:syntastic_javascript_checkers = ['standard']
 let g:syntastic_json_checkers=['jsonlint']
 let g:syntastic_html_tidy_ignore_errors = [
     \  '<html> attribute "lang" lacks value'
@@ -611,6 +629,10 @@ augroup vimrc
   " python thing
   au! FileType python setl nosmartindent
 
+  " SimplyFold
+  autocmd BufWinEnter *.py setlocal foldexpr=SimpylFold(v:lnum) foldmethod=expr
+  autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
+
   " Activate it by default
   " autocmd VimEnter * RainbowParentheses
 
@@ -618,8 +640,8 @@ augroup vimrc
   " autocmd FileType markdown let b:dispatch = 'octodown --live-reload %'
 
   " save dem folds
-  autocmd BufWinLeave *.* mkview
-  autocmd BufWinEnter *.* silent loadview
+  " autocmd BufWinLeave *.* mkview
+  " autocmd BufWinEnter *.* silent loadview
 
   " commentary ft adjustments
   autocmd FileType coffee set commentstring=#\ %s
@@ -628,11 +650,14 @@ augroup vimrc
   autocmd FileType crawl set commentstring=#\ %s
 
   " run/build shit
+  " autocmd FileType perl6 nnoremap <buffer> <leader>r :exec '!perl6' shellescape(@%, 1)<cr>
+  autocmd FileType perl6 nnoremap <buffer> <leader>r :call Perl6()<cr>
+
   autocmd FileType python nnoremap <buffer> <leader>r :call PyThong()<cr>
   autocmd FileType python nnoremap <buffer> <f5> :exec '!python' shellescape(@%, 1)<cr>
   autocmd FileType sh nnoremap <buffer> <f5> :exec '!bash' shellescape(@%, 1)<cr>
 
-  autocmd FileType rust nnoremap <buffer> <f5> :CargoRun<cr>
+  autocmd FileType rust nnoremap <buffer> <leader>r :CargoRun<cr>
   autocmd FileType rust nnoremap <buffer> <leader>b :CargoBuild<cr>
   autocmd FileType rust nnoremap <buffer> <leader>t :CargoTest<cr>
 
@@ -644,7 +669,11 @@ augroup vimrc
   " autocmd FileType go nnoremap <buffer> <leader>r :call GoShit()<cr>
 
   function! PyThong()
-    :Tmux send-keys -t 1.1 'python prob3b.py' Enter
+    :Tmux send-keys -t 1.1 clear Enter 'python prob3b.py' Enter
+  endfunction
+
+  function! Perl6()
+    :Tmux send-keys -t 2.1 clear Enter 'perl6 test.pl' Enter
   endfunction
 
   function! Conway()
