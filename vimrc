@@ -32,7 +32,10 @@ Plug 'schickling/vim-bufonly'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-obsession'
 Plug 'vim-scripts/matrix.vim--Yang'
+Plug 'jbnicolai/vim-AnsiEsc'
 Plug 'vimwiki/vimwiki'
+Plug 'junegunn/vim-journal'
+Plug 'chrisbra/csv.vim'
 if !s:win
   Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer --omnisharp-completer' }
 endif
@@ -82,6 +85,7 @@ Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'pangloss/vim-javascript'
 
 " HTML/CSS
+Plug 'adamclerk/vim-razor'
 Plug 'groenewege/vim-less'
 Plug 'ap/vim-css-color'
 Plug 'hail2u/vim-css3-syntax'
@@ -360,9 +364,9 @@ vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
 if s:win
-  map <silent> <leader>rv :source ~/_vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+  map <silent> <leader>rv :source ~/.vim/vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 else
-  map <silent> <leader>rv :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+  map <silent> <leader>rv :source ~/.vim/ imrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 endif
 map <leader>ra :!sudo service apache2 restart<cr><cr>
 map <leader>rn :!sudo service nginx restart<cr>
