@@ -240,14 +240,16 @@ set pastetoggle=<Ins>
 " http://superuser.com/questions/195794/gnu-screen-shift-tab-issue
 set t_kB=[Z
 
-" editor styling
-if has('gui_running')
-  set t_Co=256
-  let g:seoul256_background = 234 " dark (239-233), light (256-252)
-  let g:seoul256_light_background = 256
+try
   colorscheme seoul256
-  set background=dark
-endif
+catch /^Vim\%((\a\+)\)\=:E185/
+    " deal with it
+endtry
+
+set t_Co=256
+let g:seoul256_background = 234 " dark (239-233), light (256-252)
+let g:seoul256_light_background = 256
+set background=dark
 
 if &background == 'light'
   let g:airline_theme='light'
