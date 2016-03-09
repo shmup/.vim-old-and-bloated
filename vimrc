@@ -243,7 +243,7 @@ set t_kB=[Z
 try
   colorscheme seoul256
 catch /^Vim\%((\a\+)\)\=:E185/
-    " deal with it
+  :PlugInstall
 endtry
 
 set t_Co=256
