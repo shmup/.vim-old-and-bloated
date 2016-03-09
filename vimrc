@@ -45,7 +45,9 @@ if s:darwin
 endif
 
 " Tmux
-Plug 'tpope/vim-tbone'
+if !s:win
+  Plug 'tpope/vim-tbone'
+endif
 
 " Lang
 Plug 'cespare/vim-toml'
@@ -62,9 +64,11 @@ Plug 'Slava/vim-spacebars'
 Plug 'wlue/vim-dm-syntax'
 
 " rust
-" Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-" Plug 'phildawes/racer', { 'do' : 'cargo build --release', 'for': 'rust' }
-" Plug 'timonv/vim-cargo'
+if !s:win
+  Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+  Plug 'phildawes/racer', { 'do' : 'cargo build --release', 'for': 'rust' }
+  Plug 'timonv/vim-cargo'
+endif
 
 " python
 Plug 'jmcantrell/vim-virtualenv'
@@ -105,11 +109,11 @@ Plug 'mbbill/undotree'
 Plug 'terryma/vim-expand-region'
 Plug 'tmhedberg/matchit'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 if !s:win
+  Plug 'tpope/vim-eunuch'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 endif
 
