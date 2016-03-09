@@ -13,7 +13,7 @@ let s:win = has('win32')
 
 if s:win
   set runtimepath^=~/.vim  "Use instead of "vimfiles" on windows
-  cd C:\Users\jared.miller\ 
+  cd C:\Users\jared.miller\
 endif
 
 silent! if plug#begin('~/.vim/plugged')
